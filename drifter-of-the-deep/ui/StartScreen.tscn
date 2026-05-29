@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bpyhjseyq21qq"]
+
+[ext_resource type="Script" uid="uid://b8r1u5mofr2w4" path="res://ui/script/start_screen.gd" id="1_rte7b"]
+[ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_p5me2"]
+
+[sub_resource type="Gradient" id="Gradient_p5me2"]
+offsets = PackedFloat32Array(0.012048192, 0.6626506, 0.8072289, 1)
+colors = PackedColorArray(0.6435118, 0.89211744, 0.65674925, 1, 0.17531136, 0.44510823, 0.48168367, 1, 0.14831427, 0.34861773, 0.42083585, 1, 0.11529439, 0.2574924, 0.34607676, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_enn3t"]
+gradient = SubResource("Gradient_p5me2")
+fill = 1
+fill_from = Vector2(0.6652174, 0.2173913)
+fill_to = Vector2(0.5304348, 0.9652174)
+
+[node name="StartScreen" type="CanvasLayer" unique_id=39087477]
+script = ExtResource("1_rte7b")
+
+[node name="BG" type="TextureRect" parent="." unique_id=432075248]
+anchors_preset = -1
+anchor_left = -0.011284722
+anchor_top = -0.013888889
+anchor_right = 1.0095487
+anchor_bottom = 1.0231482
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_p5me2")
+texture = SubResource("GradientTexture2D_enn3t")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG" unique_id=1575589423]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.040816333
+anchor_top = 0.59970236
+anchor_right = 0.5289116
+anchor_bottom = 0.94494045
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "DRIFTER
+OF THE DEEP"
+fit_content = true
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Options" type="VBoxContainer" parent="BG" unique_id=44366574]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.63435376
+anchor_top = 0.73363096
+anchor_right = 0.954932
+anchor_bottom = 0.9089506
+metadata/_edit_use_anchors_ = true
+
+[node name="Start" type="Button" parent="BG/Options" unique_id=1857748556]
+layout_mode = 2
+size_flags_vertical = 3
+text = "START GAME"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1102416183]
+volume_db = -17.175
+autoplay = true
+
+[connection signal="pressed" from="BG/Options/Start" to="." method="_on_start_pressed"]

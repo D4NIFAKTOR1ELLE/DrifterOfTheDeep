@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d1hrs2t0rbkq5"]
+
+[ext_resource type="Script" uid="uid://brealvc4f5jou" path="res://game/elements/idea.gd" id="1_0ruvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubcc3"]
+
+[node name="Idea" type="Area2D" unique_id=1162066078]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_0ruvh")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1621434772]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=431168115]
+shape = SubResource("RectangleShape2D_ubcc3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

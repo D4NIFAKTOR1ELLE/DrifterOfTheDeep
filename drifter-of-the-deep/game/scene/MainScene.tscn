@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bawyitphgexhu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vg7ww"]
+normal = Vector2(1, 0)
+
+[node name="MainScene" type="TileMapLayer" unique_id=1575692685]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=820216217]
+position = Vector2(0, 150)
+shape = SubResource("WorldBoundaryShape2D_vg7ww")
