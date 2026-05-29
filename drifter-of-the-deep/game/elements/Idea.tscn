@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d1hrs2t0rbkq5"]
 
 [ext_resource type="Script" uid="uid://brealvc4f5jou" path="res://game/elements/idea.gd" id="1_0ruvh"]
+[ext_resource type="Texture2D" uid="uid://mtttu27ipjgy" path="res://assets/elements/idea.png" id="2_umbjf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubcc3"]
 
@@ -11,8 +12,14 @@ monitorable = false
 script = ExtResource("1_0ruvh")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1621434772]
+scale = Vector2(0.753, 0.8)
+texture = ExtResource("2_umbjf")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=431168115]
 shape = SubResource("RectangleShape2D_ubcc3")
 
+[node name="SelfDestructTimer" type="Timer" parent="." unique_id=1994374830]
+wait_time = 7.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]

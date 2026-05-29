@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://la4yi4akt601"]
+
+[sub_resource type="Gradient" id="Gradient_4gsak"]
+offsets = PackedFloat32Array(0, 0.44578314, 1)
+colors = PackedColorArray(0.11425678, 0.18517625, 0.42216712, 1, 0.26202995, 0.57803214, 0.69567806, 1, 0.7910783, 0.87337565, 0.75837463, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tk0ko"]
+gradient = SubResource("Gradient_4gsak")
+fill_from = Vector2(1, 1)
+
+[node name="Background" type="CanvasLayer" unique_id=1199686135]
+layer = -3
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1761083340]
+anchors_preset = -1
+anchor_left = -0.0017361111
+anchor_top = -0.0046296297
+anchor_right = 2.1675348
+anchor_bottom = 2.2037036
+texture = SubResource("GradientTexture2D_tk0ko")
+metadata/_edit_use_anchors_ = true

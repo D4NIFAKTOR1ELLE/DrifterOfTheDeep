@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cvbeb6cbn3xkg"]
+
+[ext_resource type="Script" uid="uid://br0idacnaumea" path="res://ui/ui.gd" id="1_xmm75"]
+
+[sub_resource type="Theme" id="Theme_xmm75"]
+
+[node name="UI" type="CanvasLayer" unique_id=1479335240]
+script = ExtResource("1_xmm75")
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=856814825]
+offset_left = 25.0
+offset_top = 14.0
+offset_right = 1126.0
+offset_bottom = 32.0
+theme = SubResource("Theme_xmm75")
+theme_override_constants/separation = 20
+
+[node name="Bar1" type="ProgressBar" parent="Container" unique_id=593252103]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 30.0
+show_percentage = false
+
+[node name="Bar2" type="ProgressBar" parent="Container" unique_id=1177266348]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 30.0
+show_percentage = false
+
+[node name="Bar3" type="ProgressBar" parent="Container" unique_id=1435436830]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+show_percentage = false
