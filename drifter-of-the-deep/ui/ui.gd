@@ -35,8 +35,10 @@ func update_bar1():
 		var tween: Tween = create_tween()
 		tween.tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
 		await Game.next_phase()
-		objective.text = "[[color=yellow]OBJECTIVE[/color]] CREATE 7 DRAWINGS."
-		tween.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
+		objective.text = "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS."
+		player.creation_count = 0
+		var tween2: Tween = create_tween()
+		tween2.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
 func update_bar2():
 	bar2.value = player.creation_count
@@ -46,7 +48,8 @@ func update_bar2():
 		tween.tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
 		await Game.next_phase()
 		objective.text = "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK."
-		tween.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
+		var tween2: Tween = create_tween()
+		tween2.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
 func update_bar3():
 	bar3.value = player.creation_count

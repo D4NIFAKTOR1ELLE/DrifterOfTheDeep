@@ -48,14 +48,20 @@ func next_phase():
 			tween.tween_property(player, "rotation", deg_to_rad(180), 1)
 			await tween.finished
 			player.animation.play("descend")
-			tween.tween_property(main_scene.background.bg_texture, "self_modulate", Color.CORNFLOWER_BLUE, 2)
 			
+			var tween2: Tween = create_tween()
+			tween2.tween_property(main_scene.background.bg_texture, "self_modulate", Color.CORNFLOWER_BLUE, 2)
 			await player.animation.animation_finished
 		3:
 			player.creation_changed.disconnect(main_scene.ui.update_bar2)
 			player.creation_changed.connect(main_scene.ui.update_bar3)
-			
+
+			var tween: Tween = create_tween()
+			tween.tween_property(player, "rotation", deg_to_rad(180), 1)			
 			player.animation.play("descend")
+
+			var tween2: Tween = create_tween()
+			tween2.tween_property(main_scene.background.bg_texture, "self_modulate", Color.DARK_BLUE, 2)
 			await player.animation.animation_finished
 		_:
 			finish_game()

@@ -6,8 +6,8 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
-var speed = 300.0
-var trajectory = 400
+var movement_speed = 300.0
+var trajectory = 200
 var rotation_speed: float = PI / 1.5
 
 var health: int = 5
@@ -17,8 +17,8 @@ var creation_count: int = 0
 
 var cooldown: bool = false
 
-var dash_velocity: Vector2
-var dash_remaining_distance: float
+var swim_direction := Vector2.ZERO
+var swim_distance_remaining := 0.0
 
 signal health_changed
 signal idea_changed
@@ -26,36 +26,28 @@ signal idea_changed
 signal creation_changed
 
 func _physics_process(delta: float) -> void:
-	if !cooldown:
-		dash_movement(delta)
+	if cooldown:
+		swim_movement(delta)
 	else:
-		normal_movement(delta)
+		var rotation_direction = Input.get_axis("left", "right")
+		rotation += rotation_direction * rotation_speed * delta
 	
 	move_and_slide()
+
+	if cooldown and get_slide_collision_count() > 0:
+		sprite.play("Hurt")
+		end_swim()
+
+func end_swim() -> void:
+	cooldown = false
+	velocity = Vector2.ZERO
+	sprite.play("Idle")
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("swim"):
 		swim()
 	if Input.is_action_just_pressed("create") and ideas_collected >= max_idea_level:
 		create()
-
-func normal_movement(delta: float):
-	var rotation_direction = Input.get_axis("left", "right")
-	rotation += rotation_direction * rotation_speed * delta
-
-func dash_movement(delta: float):
-	var movement = dash_velocity * delta
-
-	dash_remaining_distance -= movement.length()
-
-	if dash_remaining_distance <= 0.0:
-		sprite.play("Idle")
-		await sprite.animation_finished
-		set_process_input(true)
-		cooldown = false
-		velocity = Vector2.ZERO
-
-	velocity = dash_velocity
 
 func swim():
 	if cooldown:
@@ -65,19 +57,26 @@ func swim():
 
 	cooldown = true
 
-	var forward: Vector2 = Vector2.UP.rotated(rotation)
-	var distance: float = trajectory
+	swim_direction = Vector2.UP.rotated(rotation)
+	swim_distance_remaining = trajectory
 
-	var target_position = global_position + forward * distance
+func swim_movement(delta: float) -> void:
+	var frame_distance = movement_speed * delta
 
-	var tween: Tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.tween_property(self, "global_position", target_position, 0.6)
-	
-	await tween.finished
+	frame_distance = min(frame_distance, swim_distance_remaining)
 
-	sprite.play("Idle")
+	velocity = swim_direction * movement_speed
 
-	cooldown = false
+	var collision = move_and_collide(velocity * delta)
+
+	if collision:
+		end_swim()
+		return
+
+	swim_distance_remaining -= frame_distance
+
+	if swim_distance_remaining <= 0.0:
+		end_swim()
 
 func take_damage(damage: int):
 	velocity = Vector2.ZERO
@@ -104,6 +103,7 @@ func die():
 	Transition.fade_out()
 
 func create():
+	end_swim()
 	stop(false)
 	
 	ideas_collected = 0

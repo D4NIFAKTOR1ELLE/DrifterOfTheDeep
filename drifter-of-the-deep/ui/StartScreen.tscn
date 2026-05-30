@@ -2,16 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8r1u5mofr2w4" path="res://ui/script/start_screen.gd" id="1_rte7b"]
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_p5me2"]
-
-[sub_resource type="Gradient" id="Gradient_p5me2"]
-offsets = PackedFloat32Array(0.012048192, 0.6626506, 0.8072289, 1)
-colors = PackedColorArray(0.6435118, 0.89211744, 0.65674925, 1, 0.17531136, 0.44510823, 0.48168367, 1, 0.14831427, 0.34861773, 0.42083585, 1, 0.11529439, 0.2574924, 0.34607676, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_enn3t"]
-gradient = SubResource("Gradient_p5me2")
-fill = 1
-fill_from = Vector2(0.6652174, 0.2173913)
-fill_to = Vector2(0.5304348, 0.9652174)
+[ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_enn3t"]
 
 [node name="StartScreen" type="CanvasLayer" unique_id=39087477]
 script = ExtResource("1_rte7b")
@@ -25,7 +16,7 @@ anchor_bottom = 1.0231482
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_p5me2")
-texture = SubResource("GradientTexture2D_enn3t")
+texture = ExtResource("3_enn3t")
 metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BG" unique_id=1575589423]

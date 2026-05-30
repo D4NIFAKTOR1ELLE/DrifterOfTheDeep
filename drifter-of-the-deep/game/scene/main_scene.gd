@@ -1,4 +1,4 @@
-extends TileMapLayer
+extends Node2D
 
 class_name MainScene
 
@@ -12,7 +12,7 @@ class_name MainScene
 
 func random_idea_spawn():
 	var screen_rect: Rect2 = get_camera_rect()
-	for i in range(5):
+	for i in range(8):
 		var new_idea = Globals.idea.instantiate()
 		new_idea.global_position = Vector2(
 			randf_range(screen_rect.position.x, screen_rect.end.x),
@@ -22,8 +22,8 @@ func random_idea_spawn():
 		ideas.add_child(new_idea)
 
 func get_camera_rect() -> Rect2:
-	var pos = $Jelly/Camera2D.get_target_position()
-	var half_size = $Jelly/Camera2D.get_viewport_rect().size * 0.5
+	var pos = player.camera.get_target_position()
+	var half_size = player.camera.get_viewport_rect().size * 0.5
 	return Rect2(pos - half_size, pos + half_size)
 
 func _on_timer_timeout() -> void:
