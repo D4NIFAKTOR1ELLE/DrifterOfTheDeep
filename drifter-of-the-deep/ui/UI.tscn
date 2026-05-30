@@ -31,7 +31,7 @@ script = ExtResource("1_xmm75")
 offset_left = 25.0
 offset_top = 14.0
 offset_right = 1126.0
-offset_bottom = 32.0
+offset_bottom = 28.0
 theme = SubResource("Theme_xmm75")
 theme_override_constants/separation = 20
 
@@ -39,21 +39,39 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-max_value = 30.0
+max_value = 5.0
+step = 1.0
 show_percentage = false
 
 [node name="Bar2" type="ProgressBar" parent="Container" unique_id=1177266348]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-max_value = 30.0
+max_value = 10.0
+step = 1.0
 show_percentage = false
 
 [node name="Bar3" type="ProgressBar" parent="Container" unique_id=1435436830]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+max_value = 4.0
+step = 1.0
 show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=672988700]
+anchors_preset = -1
+anchor_left = 0.21788195
+anchor_top = 0.050925925
+anchor_right = 0.7838542
+anchor_bottom = 0.10185185
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "OBJECTIVE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Health" type="TextureRect" parent="." unique_id=1529849385]
 clip_children = 1
@@ -90,7 +108,7 @@ texture_progress = SubResource("GradientTexture2D_s15di")
 visible = false
 offset_left = 488.0
 offset_top = 385.0
-offset_right = 672.0
+offset_right = 671.9998
 offset_bottom = 410.0
 bbcode_enabled = true
 text = "[[color=yellow]D[/color]] [color=yellow]CREATE[/color]"

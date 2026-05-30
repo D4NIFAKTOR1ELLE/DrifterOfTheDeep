@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c5cplpu3okqej"]
+
+[ext_resource type="Texture2D" uid="uid://u1jnos06vlpj" path="res://assets/character/paper_fish.png" id="1_gxv2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
+size = Vector2(99, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piwuu"]
+atlas = ExtResource("1_gxv2x")
+region = Rect2(0, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sa1h"]
+atlas = ExtResource("1_gxv2x")
+region = Rect2(100, 0, 100, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_li5hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piwuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sa1h")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[node name="BadPaperFish" type="CharacterBody2D" unique_id=605056912]
+collision_layer = 8
+collision_mask = 3
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_p6j3w")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1235028354]
+sprite_frames = SubResource("SpriteFrames_li5hk")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.16268265

@@ -13,6 +13,8 @@ script = ExtResource("1_srjx5")
 
 [node name="Ideas" type="Node2D" parent="." unique_id=1074232102]
 
+[node name="Enemies" type="Node" parent="." unique_id=1093655683]
+
 [node name="Spawn" type="Marker2D" parent="." unique_id=771486536]
 position = Vector2(680, 309)
 

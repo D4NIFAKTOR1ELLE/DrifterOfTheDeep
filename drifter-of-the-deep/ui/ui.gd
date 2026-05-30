@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name UI
+
 @onready var bar1 = $Container/Bar1
 @onready var bar2 = $Container/Bar2
 @onready var bar3 = $Container/Bar3
@@ -10,13 +12,38 @@ extends CanvasLayer
 
 @onready var player: Player = Game.player
 
-@onready var create_prompt_position = create_prompt.global_position
+@onready var create_prompt_position: Vector2 = Vector2(488, 385)
 
 var create_bar_full: bool = false
 
-func _ready() -> void:
+func initialise() -> void:
 	player.health_changed.connect(update_health)
 	player.idea_changed.connect(update_idea)
+	player.creation_changed.connect(update_bar1)
+
+func update_phase_bar(bar: ProgressBar, value: int):
+	bar.value = value
+	
+	if bar.value >= bar.max_value:
+		Game.next_phase()
+
+func update_bar1():
+	bar1.value = player.creation_count
+	
+	if player.creation_count >= bar1.max_value:
+		Game.next_phase()
+
+func update_bar2():
+	bar2.value = player.creation_count
+	
+	if player.creation_count >= bar2.max_value:
+		Game.next_phase()
+
+func update_bar3():
+	bar3.value = player.creation_count
+	
+	if player.creation_count >= bar3.max_value:
+		Game.next_phase()
 
 func update_health():
 	health_bar.value = player.health

@@ -4,6 +4,7 @@ class_name Player
 
 @onready var camera: Camera2D = $Camera2D
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
 var speed = 300.0
 var trajectory = 400
@@ -12,11 +13,14 @@ var rotation_speed: float = PI / 1.5
 var health: int = 5
 var ideas_collected: int = 0
 var max_idea_level: int = 5
+var creation_count: int = 0
 
 var cooldown: bool = false
 
-signal health_changed()
-signal idea_changed()
+signal health_changed
+signal idea_changed
+@warning_ignore("unused_signal")
+signal creation_changed
 
 func _physics_process(delta: float) -> void:
 	var rotation_direction = Input.get_axis("left", "right")
@@ -52,6 +56,7 @@ func swim():
 	cooldown = false
 
 func take_damage(damage: int):
+	velocity = Vector2.ZERO
 	health = health - damage
 	health_changed.emit()
 	var tween: Tween = create_tween()
@@ -76,6 +81,7 @@ func die():
 
 func create():
 	stop(false)
+	
 	ideas_collected = 0
 	await Game.main_scene.ui.create_done()
 	idea_changed.emit()
@@ -90,6 +96,9 @@ func create():
 	
 	await tween.finished
 	
+	var new_creation = Globals.creation.instantiate()
+	Game.main_scene.enemies.add_child(new_creation)
+	new_creation.global_position = Game.player.global_position
 	
 	sprite.play("Idle")
 	stop(true)

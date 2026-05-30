@@ -5,7 +5,15 @@ extends Area2D
 
 @onready var player: Player = Game.player
 
-func _on_body_entered(body: Node2D) -> void:
+func _ready():
+	var tween: Tween = create_tween()
+	tween.tween_property(
+		sprite,
+		"self_modulate",
+		Color.WHITE,
+		0.2).from(Color.TRANSPARENT)
+
+func  _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		collect()
 

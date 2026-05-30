@@ -1,11 +1,44 @@
 extends Node2D
 
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var rand = randf_range(0, 1)
+	
+	if rand < 0.3:
+		normal_creation()
+	else:
+		bad_creation()
 
+func normal_creation():
+	Game.player.creation_count += 1
+	Game.player.creation_changed.emit()
+	animation.play("normal_creation")
+	var tween: Tween = create_tween()
+	tween.tween_property(sprite, "self_modulate", Color(1, 1, 1, 5), 1)
+	await animation.animation_finished
+	
+	var new_fish = Globals.normal_creations.pick_random()
+	new_fish = new_fish.instantiate()
+	Game.main_scene.enemies.add_child(new_fish)
+	new_fish.global_position = sprite.global_position
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	var tween2: Tween = create_tween()
+	tween2.tween_property(new_fish, "modulate", Color.WHITE, 1).from(Color(1, 1, 1, 5))
+	self.queue_free()
+
+func bad_creation():
+	animation.play("bad_creation")
+	var tween: Tween = create_tween()
+	tween.tween_property(sprite, "self_modulate", Color(1, 1, 1, 5), 1)
+	await animation.animation_finished
+	
+	var new_fish = Globals.bad_creations.pick_random()
+	new_fish = new_fish.instantiate()
+	Game.main_scene.enemies.add_child(new_fish)
+	new_fish.global_position = sprite.global_position
+
+	var tween2: Tween = create_tween()
+	tween2.tween_property(new_fish, "modulate", Color.WHITE, 1).from(Color(1, 1, 1, 5))
+	self.queue_free()

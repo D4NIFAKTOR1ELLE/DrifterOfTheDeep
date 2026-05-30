@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://cg4dvpg0ivema"]
+[gd_scene format=3 uid="uid://b0n28ivegjikm"]
 
 [ext_resource type="Script" uid="uid://bpaa4kwk0hgvx" path="res://game/characters/jelly.gd" id="1_ijgx5"]
 [ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="2_ii5tr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mq5jx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgx5"]
 size = Vector2(62, 62)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voh5p"]
@@ -42,7 +42,7 @@ region = Rect2(160, 0, 80, 80)
 atlas = ExtResource("2_ii5tr")
 region = Rect2(240, 0, 80, 80)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_mq5jx"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii5tr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -106,19 +106,58 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Jelly" type="CharacterBody2D" unique_id=1163751745 groups=["Player"]]
+[sub_resource type="Animation" id="Animation_voh5p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ii5tr"]
+resource_name = "descend"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_voh5p"]
+_data = {
+&"RESET": SubResource("Animation_voh5p"),
+&"descend": SubResource("Animation_ii5tr")
+}
+
+[node name="Jelly" type="CharacterBody2D" unique_id=1263766328 groups=["Player"]]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 15
 script = ExtResource("1_ijgx5")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=2039568825]
-shape = SubResource("RectangleShape2D_mq5jx")
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=798104385]
+shape = SubResource("RectangleShape2D_ijgx5")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=10979587]
-sprite_frames = SubResource("SpriteFrames_mq5jx")
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=158737799]
+sprite_frames = SubResource("SpriteFrames_ii5tr")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=975648518]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=174476708]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1317180509]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236938901]
+libraries/ = SubResource("AnimationLibrary_voh5p")

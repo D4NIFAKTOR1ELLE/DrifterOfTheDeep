@@ -17,8 +17,8 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 Game="*uid://duluw257fmxly"
-Globals="*uid://ph5dai27j4pt"
 Transition="*uid://6e50iphxju6v"
+Globals="*uid://ph5dai27j4pt"
 
 [display]
 

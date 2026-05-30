@@ -20,10 +20,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Title" type="RichTextLabel" parent="BG" unique_id=1815335575]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1736111
-anchor_top = 0.054012347
-anchor_right = 0.8307292
-anchor_bottom = 0.27006173
+anchor_left = 0.03720872
+anchor_top = 0.08839201
+anchor_right = 0.59117246
+anchor_bottom = 0.30444136
 offset_left = 6.3541718
 offset_top = 7.8657417
 offset_right = 6.354187
@@ -31,18 +31,17 @@ offset_bottom = 7.865738
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[center]SAMPLE TEXT[/center]"
-horizontal_alignment = 1
+text = "YOU GOT YOUR INSPIRATION BACK!"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="GridContainer" type="GridContainer" parent="BG" unique_id=1727580139]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.24975133
-anchor_top = 0.28569454
-anchor_right = 0.81079495
-anchor_bottom = 0.6833029
+anchor_left = 0.03918015
+anchor_top = 0.3992969
+anchor_right = 0.5046533
+anchor_bottom = 0.58913255
 offset_left = 5.041687
 offset_top = 1.8703613
 offset_right = 5.041687
@@ -66,38 +65,28 @@ text = "ATTEMPTS"
 layout_mode = 2
 text = "0"
 
-[node name="Collectibles" type="Label" parent="BG/GridContainer" unique_id=1835081518]
-layout_mode = 2
-text = "COLLECTIBLES
-(IF ANY)"
-clip_text = true
-
-[node name="Collected" type="Label" parent="BG/GridContainer" unique_id=1795031449]
-layout_mode = 2
-text = "0 / 3"
-
 [node name="QuitMessage" type="RichTextLabel" parent="BG" unique_id=360511587]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.22676897
-anchor_top = 0.6591928
-anchor_right = 0.8235294
-anchor_bottom = 0.7841928
+anchor_left = 0.04518329
+anchor_top = 0.66068757
+anchor_right = 0.4970162
+anchor_bottom = 0.7647609
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
-text = "[center]THANK YOU FOR PLAYING!"
+text = "THANK YOU FOR PLAYING!"
 fit_content = true
 metadata/_edit_use_anchors_ = true
 
 [node name="ReturnToStart" type="Button" parent="BG" unique_id=1617985796]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.39583334
-anchor_top = 0.7654321
-anchor_right = 0.6666667
-anchor_bottom = 0.8888889
+anchor_left = 0.04203964
+anchor_top = 0.7579583
+anchor_right = 0.31287298
+anchor_bottom = 0.88141507
 offset_left = 1.6875
 offset_top = -7.0740967
 offset_right = 1.6875
