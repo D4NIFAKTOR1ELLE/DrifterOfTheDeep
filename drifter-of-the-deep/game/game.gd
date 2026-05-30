@@ -12,5 +12,8 @@ func start_game():
 	main_scene.add_child(player)
 	player.global_position = main_scene.get_node("Spawn").global_position
 
+func respawn():
+	pass
+
 func finish_game():
 	pass
