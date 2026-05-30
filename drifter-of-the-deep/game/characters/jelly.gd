@@ -8,10 +8,15 @@ class_name Player
 var speed = 300.0
 var trajectory = 400
 var rotation_speed: float = PI / 1.5
+
 var health: int = 5
 var ideas_collected: int = 0
+var max_idea_level: int = 5
 
 var cooldown: bool = false
+
+signal health_changed()
+signal idea_changed()
 
 func _physics_process(delta: float) -> void:
 	var rotation_direction = Input.get_axis("left", "right")
@@ -21,6 +26,8 @@ func _physics_process(delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("swim"):
 		swim()
+	if Input.is_action_just_pressed("create") and ideas_collected >= max_idea_level:
+		create()
 
 func swim():
 	if cooldown:
@@ -44,7 +51,9 @@ func swim():
 
 	cooldown = false
 
-func take_damage():
+func take_damage(damage: int):
+	health = health - damage
+	health_changed.emit()
 	var tween: Tween = create_tween()
 	tween.tween_property(sprite,
 		"self_modulate",
@@ -67,15 +76,22 @@ func die():
 
 func create():
 	stop(false)
+	ideas_collected = 0
+	await Game.main_scene.ui.create_done()
+	idea_changed.emit()
 	
 	sprite.play("CreateInit")
 	await sprite.animation_finished
 	
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "rotation", 0, 3)
+	
 	sprite.play("Create")
-	await get_tree().create_timer(1).timeout
+	
+	await tween.finished
+	
 	
 	sprite.play("Idle")
-	
 	stop(true)
 
 func stop(enable: bool = false):

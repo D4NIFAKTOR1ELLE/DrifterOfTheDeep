@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b74lxhfbxh6vf"]
 
-[ext_resource type="Script" uid="uid://bp1y0rd1g003t" path="res://enemies/bad_paper_fish.gd" id="1_ysxld"]
+[ext_resource type="Script" uid="uid://bp1y0rd1g003t" path="res://enemies/script/bad_paper_fish.gd" id="1_ysxld"]
 [ext_resource type="Texture2D" uid="uid://xmqiroh0dgmh" path="res://assets/character/bad_paper_fish.png" id="2_ysxld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
@@ -43,10 +43,15 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="BadPaperFish" type="CharacterBody2D" unique_id=431944606]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysxld"]
+size = Vector2(107, 75)
+
+[node name="BadPaperFish" type="CharacterBody2D" unique_id=605056912]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_ysxld")
+health = null
+movement_speed = null
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
 position = Vector2(-0.5, 0.5)
@@ -56,3 +61,13 @@ shape = SubResource("RectangleShape2D_p6j3w")
 sprite_frames = SubResource("SpriteFrames_li5hk")
 animation = &"Idle"
 autoplay = "Idle"
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1999581520]
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1337240919]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ysxld")
+debug_color = Color(0.72276074, 0.44076014, 0.50562745, 0.41960785)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

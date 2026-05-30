@@ -3,11 +3,17 @@ extends Area2D
 @onready var sprite = $Sprite
 @onready var collision: CollisionShape2D = $Collision
 
+@onready var player: Player = Game.player
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		collect()
 
 func collect():
+	if player.ideas_collected < player.max_idea_level:
+		player.ideas_collected += 1
+		player.idea_changed.emit()
+	
 	await die()
 	queue_free()
 

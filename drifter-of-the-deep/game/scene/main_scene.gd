@@ -3,6 +3,7 @@ extends TileMapLayer
 @onready var background = $Background
 @onready var player = Game.player
 @onready var ideas = $Ideas
+@onready var ui = $UI
 
 func random_idea_spawn():
 	var screen_rect: Rect2 = get_camera_rect()

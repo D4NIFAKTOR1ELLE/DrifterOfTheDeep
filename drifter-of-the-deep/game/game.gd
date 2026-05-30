@@ -1,7 +1,7 @@
 extends Node
 
 var phase: int = 1
-var player
+var player: Player
 var main_scene
 
 func start_game():
