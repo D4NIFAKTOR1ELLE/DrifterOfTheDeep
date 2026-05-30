@@ -2,16 +2,7 @@
 
 [ext_resource type="Script" uid="uid://br0idacnaumea" path="res://ui/ui.gd" id="1_xmm75"]
 [ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon2.png" id="2_hxwew"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qesnl"]
-bg_color = Color(0.1882353, 0.16470589, 0.21568628, 0.7607843)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxwew"]
-bg_color = Color(0.85, 0.73935837, 0.24650003, 1)
-
-[sub_resource type="Theme" id="Theme_xmm75"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_qesnl")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_hxwew")
+[ext_resource type="Theme" uid="uid://c17qqh4q77kn3" path="res://ui/theme/ui2.tres" id="2_u132g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6px5"]
 bg_color = Color(0.31090328, 0.11669334, 0.11272455, 1)
@@ -40,7 +31,7 @@ offset_left = 25.0
 offset_top = 14.0
 offset_right = 1126.0
 offset_bottom = 28.0
-theme = SubResource("Theme_xmm75")
+theme = ExtResource("2_u132g")
 theme_override_constants/separation = 20
 
 [node name="Bar1" type="ProgressBar" parent="Container" unique_id=593252103]
@@ -55,7 +46,7 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-max_value = 5.0
+max_value = 10.0
 step = 1.0
 show_percentage = false
 
@@ -70,7 +61,7 @@ show_percentage = false
 [node name="Objective" type="RichTextLabel" parent="." unique_id=672988700]
 anchors_preset = -1
 anchor_left = 0.21614583
-anchor_top = 0.8657407
+anchor_top = 0.875
 anchor_right = 0.7821181
 anchor_bottom = 0.93209875
 offset_left = 16.0
@@ -119,11 +110,11 @@ texture_under = SubResource("GradientTexture1D_u132g")
 texture_progress = SubResource("GradientTexture2D_s15di")
 
 [node name="CreatePrompt" type="RichTextLabel" parent="." unique_id=1084711443]
-visible = false
 offset_left = 488.0
-offset_top = 385.0
+offset_top = 395.0
 offset_right = 671.9998
-offset_bottom = 410.0
+offset_bottom = 478.0
 bbcode_enabled = true
 text = "[[color=yellow]D[/color]] [color=yellow]CREATE[/color]"
+scroll_active = false
 horizontal_alignment = 1

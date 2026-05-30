@@ -2,7 +2,7 @@ extends Node
 
 var phase: int = 1
 var player: Player
-var main_scene
+var main_scene: MainScene
 
 func start_game():
 	player = load("res://game/characters/Jelly.tscn").instantiate()

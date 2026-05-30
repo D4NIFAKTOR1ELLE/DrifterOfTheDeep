@@ -10,6 +10,7 @@ var movement_speed = 300.0
 var trajectory = 200
 var rotation_speed: float = PI / 1.5
 
+const max_health: int = 5
 var health: int = 5
 var ideas_collected: int = 4
 var max_idea_level: int = 5
@@ -35,7 +36,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if cooldown and get_slide_collision_count() > 0:
-		sprite.play("Hurt")
 		end_swim()
 
 func end_swim() -> void:
@@ -48,6 +48,27 @@ func _input(_event: InputEvent) -> void:
 		swim()
 	if Input.is_action_just_pressed("create") and ideas_collected >= max_idea_level:
 		create()
+	if Input.is_action_just_pressed("heal"):
+		heal()
+	if Input.is_action_just_pressed("attack"):
+		attack()
+
+func heal():
+	if Game.phase < 2 or Game.main_scene.ui.create_bar_full == false:
+		return
+	
+	await action_done()
+	
+	health = min(max_health, health + 1)
+	health_changed.emit()
+	var tween: Tween = create_tween()
+	tween.tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 1, 0, 5))
+
+func attack():
+	if Game.phase < 3 or Game.main_scene.ui.create_bar_full == false:
+		return
+	
+	await action_done()
 
 func swim():
 	if cooldown:
@@ -70,6 +91,7 @@ func swim_movement(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 
 	if collision:
+		sprite.play("Hurt")
 		end_swim()
 		return
 
@@ -106,9 +128,7 @@ func create():
 	end_swim()
 	stop(false)
 	
-	ideas_collected = 0
-	await Game.main_scene.ui.create_done()
-	idea_changed.emit()
+	await action_done()
 	
 	sprite.play("CreateInit")
 	await sprite.animation_finished
@@ -126,6 +146,11 @@ func create():
 	
 	sprite.play("Idle")
 	stop(true)
+
+func action_done():
+	ideas_collected = 0
+	await Game.main_scene.ui.create_done()
+	idea_changed.emit()
 
 func stop(enable: bool = false):
 	set_physics_process(enable)

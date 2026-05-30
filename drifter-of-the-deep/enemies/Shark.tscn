@@ -1,3 +1,37 @@
 [gd_scene format=3 uid="uid://6odattmngp3b"]
 
+[ext_resource type="Script" uid="uid://b1luf7fbigafi" path="res://enemies/shark.gd" id="1_unn7w"]
+[ext_resource type="Texture2D" uid="uid://dyshtpgfc750e" path="res://assets/character/shark_spritesheet.png" id="2_bk1cn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hffo"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(0, 0, 600, 552)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bk1cn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hffo")
+}],
+"loop": true,
+"name": &"Bite",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Shark" type="Node2D" unique_id=121936113]
+script = ExtResource("1_unn7w")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
+sprite_frames = SubResource("SpriteFrames_bk1cn")
+animation = &"Bite"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=935117742]
+
+[node name="Timer" type="Timer" parent="." unique_id=310119908]
+wait_time = 6.0
+autostart = true

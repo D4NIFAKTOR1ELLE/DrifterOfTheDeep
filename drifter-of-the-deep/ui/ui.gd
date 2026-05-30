@@ -35,6 +35,7 @@ func update_bar1():
 		var tween: Tween = create_tween()
 		tween.tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
 		await Game.next_phase()
+		create_prompt.append_text("\n[[color=yellow]H[/color]] [color=yellow]HEAL[/color]")
 		objective.text = "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS."
 		player.creation_count = 0
 		var tween2: Tween = create_tween()
@@ -47,6 +48,7 @@ func update_bar2():
 		var tween: Tween = create_tween()
 		tween.tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
 		await Game.next_phase()
+		create_prompt.append_text("\n[[color=yellow]A[/color]] [color=yellow]ATTACK[/color]")
 		objective.text = "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK."
 		var tween2: Tween = create_tween()
 		tween2.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
@@ -58,12 +60,12 @@ func update_bar3():
 		Game.next_phase()
 
 func update_health():
-	health_bar.modulate = Color.WHITE
+	$Health.modulate = Color.WHITE
 	
 	health_bar.value = player.health
 	
 	var tween: Tween = create_tween()
-	tween.tween_property(health_bar, "modulate", Color.TRANSPARENT, 0.3)
+	tween.tween_property($Health, "modulate", Color.TRANSPARENT, 1.5).from(Color.WHITE)
  
 func update_idea():
 	idea_level.value = player.ideas_collected

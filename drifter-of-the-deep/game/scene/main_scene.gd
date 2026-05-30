@@ -3,7 +3,7 @@ extends Node2D
 class_name MainScene
 
 @onready var background: CanvasLayer = $Background
-@onready var ui: CanvasLayer = $UI
+@onready var ui: UI = $UI
 
 @onready var ideas: Node2D = $Ideas
 @onready var enemies: Node = $Enemies
