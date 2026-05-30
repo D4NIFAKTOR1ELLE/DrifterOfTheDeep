@@ -38,30 +38,32 @@ func respawn():
 func next_phase():
 	phase += 1
 	for enemy in main_scene.enemies.get_children():
-		enemy.queue_free()
+		if enemy is Enemy:
+			enemy.die()
+		else:
+			enemy.queue_free()
+	for idea in main_scene.ideas.get_children():
+		idea.die()
+
+	var tween: Tween = create_tween()
+	tween.tween_property(player, "rotation", deg_to_rad(180), 1)
+	await tween.finished
+	player.animation.play("descend")
 	
 	match phase:
 		2:
 			player.creation_changed.disconnect(main_scene.ui.update_bar1)
 			player.creation_changed.connect(main_scene.ui.update_bar2)
-			var tween: Tween = create_tween()
-			tween.tween_property(player, "rotation", deg_to_rad(180), 1)
-			await tween.finished
-			player.animation.play("descend")
 			
 			var tween2: Tween = create_tween()
-			tween2.tween_property(main_scene.background.bg_texture, "self_modulate", Color.CORNFLOWER_BLUE, 2)
+			tween2.tween_property(main_scene.background.bg_texture, "self_modulate", Color(0.291, 0.459, 0.528, 1.0), 2)
 			await player.animation.animation_finished
 		3:
 			player.creation_changed.disconnect(main_scene.ui.update_bar2)
 			player.creation_changed.connect(main_scene.ui.update_bar3)
 
-			var tween: Tween = create_tween()
-			tween.tween_property(player, "rotation", deg_to_rad(180), 1)			
-			player.animation.play("descend")
-
 			var tween2: Tween = create_tween()
-			tween2.tween_property(main_scene.background.bg_texture, "self_modulate", Color.DARK_BLUE, 2)
+			tween2.tween_property(main_scene.background.bg_texture, "self_modulate", Color(0.082, 0.287, 0.402, 1.0), 2)
 			await player.animation.animation_finished
 		_:
 			finish_game()

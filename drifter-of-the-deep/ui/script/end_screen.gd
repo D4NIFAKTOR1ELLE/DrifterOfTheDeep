@@ -6,9 +6,10 @@ var ornaments_collected
 func _ready() -> void:
 	set_process_input(false)
 
-	$RichTextLabel.hide()
-	$Quit.hide()
-	for element in $GridContainer.get_children():
+	$BG/Title.hide()
+	$BG/QuitMessage.hide()
+	$BG/ReturnToStart.hide()
+	for element in $BG/GridContainer.get_children():
 		element.hide()
 	
 	#completion_time = Globals.game.time_elapsed
@@ -16,10 +17,9 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(2).timeout
 
-	$RichTextLabel.show()
+	$BG/Title.show()
 
 	$GridContainer/CompletionTime.text = _format_seconds(completion_time)
-	$GridContainer/SecretsCollected.text = "%d / 3" % ornaments_collected
 	#$GridContainer/Deaths.text = "%d" % Globals.game.deaths
 	
 	await get_tree().create_timer(2).timeout
@@ -34,21 +34,15 @@ func _format_seconds(time : float) -> String:
 	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 
 func reveal():
-	for element in $GridContainer.get_children():
+	for element in $BG/GridContainer.get_children():
 		element.show()
 	
 		await get_tree().create_timer(1).timeout
 		
 	await get_tree().create_timer(1).timeout
-	$Quit.show()
+	$BG/QuitMessage.show()
+	$BG/ReturnToStart.show()
 	set_process_input(true)
-
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("controls"):
-		await next()
-
-func next():
-	get_tree().quit()
 
 func _on_return_to_start_pressed() -> void:
 	var new_start: CanvasLayer = Globals.start_screen.instantiate()
