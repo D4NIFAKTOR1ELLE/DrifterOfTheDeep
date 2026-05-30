@@ -11,11 +11,14 @@ var trajectory = 400
 var rotation_speed: float = PI / 1.5
 
 var health: int = 5
-var ideas_collected: int = 0
+var ideas_collected: int = 4
 var max_idea_level: int = 5
 var creation_count: int = 0
 
 var cooldown: bool = false
+
+var dash_velocity: Vector2
+var dash_remaining_distance: float
 
 signal health_changed
 signal idea_changed
@@ -23,8 +26,11 @@ signal idea_changed
 signal creation_changed
 
 func _physics_process(delta: float) -> void:
-	var rotation_direction = Input.get_axis("left", "right")
-	rotation += rotation_direction * rotation_speed * delta
+	if !cooldown:
+		dash_movement(delta)
+	else:
+		normal_movement(delta)
+	
 	move_and_slide()
 
 func _input(_event: InputEvent) -> void:
@@ -32,6 +38,24 @@ func _input(_event: InputEvent) -> void:
 		swim()
 	if Input.is_action_just_pressed("create") and ideas_collected >= max_idea_level:
 		create()
+
+func normal_movement(delta: float):
+	var rotation_direction = Input.get_axis("left", "right")
+	rotation += rotation_direction * rotation_speed * delta
+
+func dash_movement(delta: float):
+	var movement = dash_velocity * delta
+
+	dash_remaining_distance -= movement.length()
+
+	if dash_remaining_distance <= 0.0:
+		sprite.play("Idle")
+		await sprite.animation_finished
+		set_process_input(true)
+		cooldown = false
+		velocity = Vector2.ZERO
+
+	velocity = dash_velocity
 
 func swim():
 	if cooldown:
@@ -98,7 +122,7 @@ func create():
 	
 	var new_creation = Globals.creation.instantiate()
 	Game.main_scene.enemies.add_child(new_creation)
-	new_creation.global_position = Game.player.global_position
+	new_creation.global_position = Game.player.global_position + Vector2(0, 50)
 	
 	sprite.play("Idle")
 	stop(true)

@@ -2,11 +2,13 @@ extends TileMapLayer
 
 class_name MainScene
 
-@onready var background = $Background
-@onready var player = Game.player
-@onready var ideas = $Ideas
-@onready var ui = $UI
-@onready var enemies = $Enemies
+@onready var background: CanvasLayer = $Background
+@onready var ui: CanvasLayer = $UI
+
+@onready var ideas: Node2D = $Ideas
+@onready var enemies: Node = $Enemies
+
+@onready var player: Player = Game.player
 
 func random_idea_spawn():
 	var screen_rect: Rect2 = get_camera_rect()

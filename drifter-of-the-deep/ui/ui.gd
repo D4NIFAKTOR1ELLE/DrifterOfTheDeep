@@ -2,9 +2,10 @@ extends CanvasLayer
 
 class_name UI
 
-@onready var bar1 = $Container/Bar1
-@onready var bar2 = $Container/Bar2
-@onready var bar3 = $Container/Bar3
+@onready var bar1: ProgressBar = $Container/Bar1
+@onready var bar2: ProgressBar = $Container/Bar2
+@onready var bar3: ProgressBar = $Container/Bar3
+@onready var objective: RichTextLabel = $Objective
 
 @onready var health_bar: ProgressBar = $Health/ProgressBar
 @onready var idea_level: TextureProgressBar = $IdeaLevel
@@ -12,7 +13,7 @@ class_name UI
 
 @onready var player: Player = Game.player
 
-@onready var create_prompt_position: Vector2 = Vector2(488, 385)
+@onready var create_prompt_position: Vector2 = Vector2(488, 395)
 
 var create_bar_full: bool = false
 
@@ -31,13 +32,21 @@ func update_bar1():
 	bar1.value = player.creation_count
 	
 	if player.creation_count >= bar1.max_value:
-		Game.next_phase()
+		var tween: Tween = create_tween()
+		tween.tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
+		await Game.next_phase()
+		objective.text = "[[color=yellow]OBJECTIVE[/color]] CREATE 7 DRAWINGS."
+		tween.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
 func update_bar2():
 	bar2.value = player.creation_count
 	
 	if player.creation_count >= bar2.max_value:
-		Game.next_phase()
+		var tween: Tween = create_tween()
+		tween.tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
+		await Game.next_phase()
+		objective.text = "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK."
+		tween.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
 func update_bar3():
 	bar3.value = player.creation_count
@@ -46,8 +55,13 @@ func update_bar3():
 		Game.next_phase()
 
 func update_health():
+	health_bar.modulate = Color.WHITE
+	
 	health_bar.value = player.health
-
+	
+	var tween: Tween = create_tween()
+	tween.tween_property(health_bar, "modulate", Color.TRANSPARENT, 0.3)
+ 
 func update_idea():
 	idea_level.value = player.ideas_collected
 	
@@ -76,7 +90,7 @@ func create_done():
 	tween.tween_property(
 		create_prompt,
 		"global_position:y",
-		create_prompt_position.y - 20,
+		create_prompt_position.y,
 		0.5).from(create_prompt_position.y)
 	
 	await tween.finished

@@ -12,13 +12,13 @@ collision_mask = 2
 monitorable = false
 script = ExtResource("1_0ruvh")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1621434772]
-scale = Vector2(0.753, 0.8)
-texture = ExtResource("2_umbjf")
-
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=431168115]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ubcc3")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1621434772]
+scale = Vector2(0.753, 0.8)
+texture = ExtResource("2_umbjf")
 
 [node name="SelfDestructTimer" type="Timer" parent="." unique_id=1994374830]
 wait_time = 7.0

@@ -4,6 +4,9 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
+	Game.player.creation_count += 1
+	Game.player.creation_changed.emit()
+	
 	var rand = randf_range(0, 1)
 	
 	if rand < 0.3:
@@ -12,8 +15,6 @@ func _ready() -> void:
 		bad_creation()
 
 func normal_creation():
-	Game.player.creation_count += 1
-	Game.player.creation_changed.emit()
 	animation.play("normal_creation")
 	var tween: Tween = create_tween()
 	tween.tween_property(sprite, "self_modulate", Color(1, 1, 1, 5), 1)

@@ -3,7 +3,15 @@
 [ext_resource type="Script" uid="uid://br0idacnaumea" path="res://ui/ui.gd" id="1_xmm75"]
 [ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon2.png" id="2_hxwew"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qesnl"]
+bg_color = Color(0.1882353, 0.16470589, 0.21568628, 0.7607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxwew"]
+bg_color = Color(0.85, 0.73935837, 0.24650003, 1)
+
 [sub_resource type="Theme" id="Theme_xmm75"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_qesnl")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_hxwew")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6px5"]
 bg_color = Color(0.31090328, 0.11669334, 0.11272455, 1)
@@ -59,21 +67,27 @@ max_value = 4.0
 step = 1.0
 show_percentage = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=672988700]
+[node name="Objective" type="RichTextLabel" parent="." unique_id=672988700]
 anchors_preset = -1
-anchor_left = 0.21788195
-anchor_top = 0.050925925
-anchor_right = 0.7838542
-anchor_bottom = 0.10185185
-offset_bottom = 2.0
+anchor_left = 0.21614583
+anchor_top = 0.875
+anchor_right = 0.7821181
+anchor_bottom = 0.93209875
+offset_left = 16.0
+offset_top = -5.0
+offset_right = 16.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 24
-text = "OBJECTIVE"
+bbcode_enabled = true
+text = "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS."
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Health" type="TextureRect" parent="." unique_id=1529849385]
+modulate = Color(1, 1, 1, 0)
 clip_children = 1
 offset_left = 514.99994
 offset_top = 251.0
