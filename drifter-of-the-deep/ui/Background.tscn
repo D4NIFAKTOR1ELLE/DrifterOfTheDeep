@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bm20a7idyv6nv" path="res://ui/background.gd" id="1_tk0ko"]
 
 [sub_resource type="Gradient" id="Gradient_4gsak"]
-offsets = PackedFloat32Array(0, 0.44578314, 1)
-colors = PackedColorArray(0.080463715, 0.31034616, 0.4599493, 1, 0.19670144, 0.53481114, 0.6506278, 1, 0.7910783, 0.87337565, 0.75837463, 1)
+offsets = PackedFloat32Array(0, 0.20481928, 0.44578314, 0.7289157, 1)
+colors = PackedColorArray(0.07161193, 0.28723255, 0.42747438, 1, 0.13858257, 0.42257863, 0.55528855, 1, 0.28869748, 0.5419423, 0.51660365, 1, 0.5766637, 0.67492944, 0.5647755, 1, 0.7903061, 0.8732466, 0.76168793, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tk0ko"]
 gradient = SubResource("Gradient_4gsak")
@@ -15,11 +15,13 @@ layer = -3
 follow_viewport_enabled = true
 script = ExtResource("1_tk0ko")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1761083340]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1512730756]
 anchors_preset = -1
 anchor_left = -0.8645833
 anchor_top = -0.94753087
 anchor_right = 6.1527777
-anchor_bottom = 8.021605
+anchor_bottom = 7.1944447
+offset_right = 64.0
+offset_bottom = 64.0
 texture = SubResource("GradientTexture2D_tk0ko")
 metadata/_edit_use_anchors_ = true

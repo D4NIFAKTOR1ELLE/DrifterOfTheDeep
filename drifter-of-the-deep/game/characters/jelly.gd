@@ -8,12 +8,14 @@ class_name Player
 
 var movement_speed = 300.0
 var trajectory = 200
-var rotation_speed: float = PI / 1.5
+var rotation_speed: float = PI / 1.7
 
 const max_health: int = 5
 var health: int = 5
-var ideas_collected: int = 4
+
+var ideas_collected: int = 0
 var max_idea_level: int = 5
+
 var creation_count: int = 0
 
 var cooldown: bool = false
@@ -41,6 +43,7 @@ func _physics_process(delta: float) -> void:
 func end_swim() -> void:
 	cooldown = false
 	velocity = Vector2.ZERO
+	
 	sprite.play("Idle")
 
 func _input(_event: InputEvent) -> void:
@@ -68,7 +71,14 @@ func attack():
 	if Game.phase < 3 or Game.main_scene.ui.create_bar_full == false:
 		return
 	
+	stop(false)
+	
 	await action_done()
+	
+	animation.play("attack")
+	await animation.animation_finished
+
+	stop(true)
 
 func swim():
 	if cooldown:

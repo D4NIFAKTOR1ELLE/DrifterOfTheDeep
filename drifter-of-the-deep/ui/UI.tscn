@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://br0idacnaumea" path="res://ui/ui.gd" id="1_xmm75"]
 [ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon2.png" id="2_hxwew"]
 [ext_resource type="Theme" uid="uid://c17qqh4q77kn3" path="res://ui/theme/ui2.tres" id="2_u132g"]
+[ext_resource type="Gradient" uid="uid://m84gy3axqmyn" path="res://ui/theme/Rainbow.tres" id="4_u132g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6px5"]
 bg_color = Color(0.31090328, 0.11669334, 0.11272455, 1)
@@ -16,12 +17,8 @@ colors = PackedColorArray(0.12941177, 0.23921569, 0.36078432, 1, 0.20152658, 0.2
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_u132g"]
 gradient = SubResource("Gradient_hxwew")
 
-[sub_resource type="Gradient" id="Gradient_a6px5"]
-offsets = PackedFloat32Array(0, 0.16233766, 0.34415585, 0.5519481, 0.7467533, 0.8766234, 1)
-colors = PackedColorArray(1, 0.40724555, 0.33865184, 1, 1, 0.5687699, 0.25258493, 1, 1, 0.8862745, 0.2509804, 1, 0.58431375, 0.8862745, 0.2509804, 1, 0.58431375, 0.8862745, 0.8392157, 1, 0.58431375, 0.33333334, 0.8392157, 1, 1, 0.46101677, 0.3927373, 1)
-
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s15di"]
-gradient = SubResource("Gradient_a6px5")
+gradient = ExtResource("4_u132g")
 
 [node name="UI" type="CanvasLayer" unique_id=1479335240]
 script = ExtResource("1_xmm75")
@@ -110,6 +107,7 @@ texture_under = SubResource("GradientTexture1D_u132g")
 texture_progress = SubResource("GradientTexture2D_s15di")
 
 [node name="CreatePrompt" type="RichTextLabel" parent="." unique_id=1084711443]
+visible = false
 offset_left = 488.0
 offset_top = 395.0
 offset_right = 671.9998

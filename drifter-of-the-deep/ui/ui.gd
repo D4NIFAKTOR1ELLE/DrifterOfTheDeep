@@ -59,6 +59,7 @@ func update_bar3():
 	if player.creation_count >= bar3.max_value:
 		Game.next_phase()
 
+# TODO Make light energy increase
 func update_health():
 	$Health.modulate = Color.WHITE
 	

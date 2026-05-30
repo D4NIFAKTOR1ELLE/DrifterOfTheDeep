@@ -14,7 +14,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_5hffo")
 }],
 "loop": true,
-"name": &"Bite",
+"name": &"Intro",
 "speed": 5.0
 }, {
 "frames": [],
@@ -28,7 +28,7 @@ script = ExtResource("1_unn7w")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
 sprite_frames = SubResource("SpriteFrames_bk1cn")
-animation = &"Bite"
+animation = &"Intro"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=935117742]
 

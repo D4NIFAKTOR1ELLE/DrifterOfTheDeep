@@ -14,6 +14,8 @@ func start_game():
 	player.global_position = main_scene.get_node("Spawn").global_position
 	main_scene.get_node("Spawn").queue_free()
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
+	
+	Transition.animplayer.play("fade_out")
 
 func set_camera_limits(map: Control, camera: Camera2D):
 	if map == null:
