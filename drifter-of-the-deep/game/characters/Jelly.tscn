@@ -1,56 +1,160 @@
 [gd_scene format=3 uid="uid://cg4dvpg0ivema"]
 
-[ext_resource type="Script" uid="uid://cih5fmr52hpfi" path="res://game/characters/jelly.gd" id="1_ijgx5"]
+[ext_resource type="Script" uid="uid://lbyrlcurfm7g" path="res://game/characters/jelly.gd" id="1_ijgx5"]
+[ext_resource type="Script" uid="uid://cih5fmr52hpfi" path="res://game/characters/jelly_movement.gd" id="2_flwdq"]
 [ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="2_ii5tr"]
-[ext_resource type="PackedScene" uid="uid://cwulp5w7o7erw" path="res://game/characters/HealthBar.tscn" id="3_voh5p"]
+[ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon2.png" id="4_ett74"]
+[ext_resource type="Script" uid="uid://bgnwiewv37egj" path="res://game/characters/health.gd" id="4_flwdq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq5jx"]
 size = Vector2(62, 62)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voh5p"]
 atlas = ExtResource("2_ii5tr")
-region = Rect2(0, 0, 140, 140)
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flwdq"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(160, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ett74"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwpbl"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6k4r"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmro5"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrjon"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8rbj"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft17o"]
+atlas = ExtResource("2_ii5tr")
+region = Rect2(240, 0, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mq5jx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_voh5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flwdq")
+}],
+"loop": true,
+"name": &"Create",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ett74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwpbl")
+}],
+"loop": false,
+"name": &"CreateInit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ett74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6k4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmro5")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ett74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmro5")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 2.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrjon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8rbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft17o")
+}],
 "loop": true,
 "name": &"Swim",
 "speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"Tumble",
-"speed": 5.0
 }]
 
-[node name="Jelly" type="CharacterBody2D" unique_id=1163751745]
-collision_layer = 2
-collision_mask = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flwdq"]
+bg_color = Color(0.31090328, 0.11669334, 0.11272455, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ett74"]
+bg_color = Color(0.96132666, 0, 0.22230083, 1)
+
+[node name="Jelly" type="Node2D" unique_id=1052139 groups=["Player"]]
 script = ExtResource("1_ijgx5")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=2039568825]
+[node name="Jelly" type="CharacterBody2D" parent="." unique_id=1163751745 groups=["Player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_flwdq")
+
+[node name="Collision" type="CollisionShape2D" parent="Jelly" unique_id=2039568825]
 shape = SubResource("RectangleShape2D_mq5jx")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=10979587]
-scale = Vector2(0.5, 0.5)
+[node name="Sprite" type="AnimatedSprite2D" parent="Jelly" unique_id=10979587]
 sprite_frames = SubResource("SpriteFrames_mq5jx")
-animation = &"Idle"
+animation = &"Hurt"
+autoplay = "Idle"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=975648518]
+[node name="Camera2D" type="Camera2D" parent="Jelly" unique_id=975648518]
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1820523520]
+[node name="RayCast2D" type="RayCast2D" parent="Jelly" unique_id=1820523520]
 target_position = Vector2(76, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1317180509]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Jelly" unique_id=1317180509]
 
-[node name="TextureRect" parent="." unique_id=79594106 instance=ExtResource("3_voh5p")]
-offset_right = 51.0
+[node name="Health" type="TextureRect" parent="." unique_id=1448555679]
+clip_children = 1
+offset_left = -60.0
+offset_top = -59.0
+offset_right = 91.249985
+offset_bottom = -29.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_ett74")
+stretch_mode = 1
+script = ExtResource("4_flwdq")
+
+[node name="ProgressBar" type="ProgressBar" parent="Health" unique_id=506611054]
+layout_mode = 0
+offset_right = 151.24998
+offset_bottom = 31.0
+theme_override_styles/background = SubResource("StyleBoxFlat_flwdq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ett74")
+max_value = 5.0
+value = 5.0
+show_percentage = false

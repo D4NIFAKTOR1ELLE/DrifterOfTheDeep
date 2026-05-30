@@ -2,11 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://la4yi4akt601" path="res://ui/Background.tscn" id="1_4r676"]
 [ext_resource type="Script" uid="uid://3inh6h7nk50q" path="res://game/scene/main_scene.gd" id="1_srjx5"]
+[ext_resource type="PackedScene" uid="uid://cvbeb6cbn3xkg" path="res://ui/UI.tscn" id="3_uvcu7"]
 
 [node name="MainScene" type="TileMapLayer" unique_id=1575692685]
 script = ExtResource("1_srjx5")
 
 [node name="Background" parent="." unique_id=1199686135 instance=ExtResource("1_4r676")]
+
+[node name="UI" parent="." unique_id=1479335240 instance=ExtResource("3_uvcu7")]
 
 [node name="Ideas" type="Node2D" parent="." unique_id=1074232102]
 

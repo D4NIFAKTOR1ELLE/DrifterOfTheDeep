@@ -6,7 +6,6 @@ extends TileMapLayer
 
 func random_idea_spawn():
 	var screen_rect: Rect2 = player.get_camera_rect()
-	print(screen_rect)
 	for i in range(5):
 		var new_idea = Globals.idea.instantiate()
 		new_idea.global_position = Vector2(

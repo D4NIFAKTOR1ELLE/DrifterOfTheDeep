@@ -20,6 +20,7 @@ shape = SubResource("RectangleShape2D_ubcc3")
 
 [node name="SelfDestructTimer" type="Timer" parent="." unique_id=1994374830]
 wait_time = 7.0
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]
