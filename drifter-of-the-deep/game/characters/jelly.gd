@@ -85,12 +85,12 @@ func swim():
 		return
 
 	sprite.play("Swim")
-	$Sound.play()
 
 	cooldown = true
 
 	swim_direction = Vector2.UP.rotated(rotation)
 	swim_distance_remaining = trajectory
+	$Sound.play()
 
 func swim_movement(delta: float) -> void:
 	var frame_distance = movement_speed * delta

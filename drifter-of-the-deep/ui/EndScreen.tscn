@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_ys8tm"]
 [ext_resource type="Texture2D" uid="uid://14wllvnjfkkt" path="res://assets/background/end_screen.png" id="4_nqo7y"]
 
-[sub_resource type="Gradient" id="Gradient_akci1"]
+[sub_resource type="Gradient" id="Gradient_nqo7y"]
 offsets = PackedFloat32Array(0, 0.57831323)
 colors = PackedColorArray(0, 0, 0, 1, 0.02, 0.02, 0.02, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nqo7y"]
-gradient = SubResource("Gradient_akci1")
+gradient = SubResource("Gradient_nqo7y")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(1, 0.3478261)
 

@@ -1,89 +1,43 @@
 [gd_scene format=3 uid="uid://cmc52w0emhm64"]
 
-[ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="1_gqwjx"]
 [ext_resource type="Script" uid="uid://bytr1dsg0ft2g" path="res://ui/script/control_hint.gd" id="1_k0sq5"]
+[ext_resource type="Theme" uid="uid://331w4o5bi0og" path="res://theme.tres" id="2_k0sq5"]
 
 [node name="ControlHint" type="CanvasLayer" unique_id=907200057]
 layer = 2
 script = ExtResource("1_k0sq5")
 
-[node name="BG" type="ColorRect" parent="." unique_id=952443977]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1780514980]
 anchors_preset = -1
-anchor_left = 0.028645834
-anchor_top = 0.043209877
-anchor_right = 0.9730903
-anchor_bottom = 0.9521605
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="UpperTitle" type="RichTextLabel" parent="BG" unique_id=1699728261]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05974265
-anchor_top = 0.061120544
-anchor_right = 0.9402574
-anchor_bottom = 0.19354838
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 54
-bbcode_enabled = true
-text = "[color=yellow]CONTROLS[/color]"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="GridContainer" type="GridContainer" parent="BG" unique_id=1780514980]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.14430147
-anchor_top = 0.2614601
-anchor_right = 0.8556985
-anchor_bottom = 0.7724957
+anchor_left = 0.088541664
+anchor_top = 0.4027778
+anchor_right = 0.9041054
+anchor_bottom = 0.85825783
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_gqwjx")
-theme_override_constants/h_separation = 140
+theme = ExtResource("2_k0sq5")
+theme_override_constants/h_separation = 350
+theme_override_constants/v_separation = 40
 columns = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Control" type="Label" parent="BG/GridContainer" unique_id=1315382684]
+[node name="Control" type="Label" parent="GridContainer" unique_id=1315382684]
 layout_mode = 2
-text = "[KEY], [KEY]"
+text = "[LEFT ARROW],
+[RIGHT ARROW]"
 
-[node name="CName" type="Label" parent="BG/GridContainer" unique_id=1818822388]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "SAMPLE TEXT"
-
-[node name="Control2" type="Label" parent="BG/GridContainer" unique_id=511928063]
-layout_mode = 2
-text = "[KEY]"
-
-[node name="CName2" type="Label" parent="BG/GridContainer" unique_id=374615526]
+[node name="CName" type="Label" parent="GridContainer" unique_id=1818822388]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "MULTILINE
-SAMPLE TEXT"
+text = "TURN"
+horizontal_alignment = 2
 
-[node name="Control3" type="Label" parent="BG/GridContainer" unique_id=75597744]
+[node name="Control3" type="Label" parent="GridContainer" unique_id=75597744]
 layout_mode = 2
-text = "[LEFT MOUSE BUTTON]"
+text = "[SPACE]"
 
-[node name="CName3" type="Label" parent="BG/GridContainer" unique_id=301552103]
+[node name="CName3" type="Label" parent="GridContainer" unique_id=301552103]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "SAMPLE TEXT"
-
-[node name="ControlHintSubtext" type="RichTextLabel" parent="BG" unique_id=1433009108]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.15808824
-anchor_top = 0.78268254
-anchor_right = 0.8308824
-anchor_bottom = 0.91349155
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 31
-bbcode_enabled = true
-text = "PRESS [color=yellow][G][/color] TO HIDE/SHOW THIS PANEL."
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+text = "SWIM FORWARD"
+horizontal_alignment = 2

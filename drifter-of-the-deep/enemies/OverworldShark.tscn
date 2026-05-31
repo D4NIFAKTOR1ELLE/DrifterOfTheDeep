@@ -100,18 +100,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Collision:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_kj55e"]
 resource_name = "appear"
@@ -169,18 +157,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(0.50501955, 0, 0.065637626, 1), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qbwjg"]
 _data = {
@@ -204,6 +180,7 @@ metadata/_custom_type_script = "uid://btgrxvtuyis2l"
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2053282027]
 position = Vector2(2.5, 1)
 shape = SubResource("RectangleShape2D_psqmr")
+disabled = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
 sprite_frames = SubResource("SpriteFrames_bk1cn")
