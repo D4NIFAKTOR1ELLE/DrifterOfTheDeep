@@ -18,6 +18,7 @@ func  _on_body_entered(body: Node2D) -> void:
 		collect()
 
 func collect():
+	$Sound.play()
 	if player.ideas_collected < player.max_idea_level:
 		player.ideas_collected += 1
 		player.idea_changed.emit()

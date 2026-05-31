@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bpaa4kwk0hgvx" path="res://game/characters/jelly.gd" id="1_ijgx5"]
 [ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="2_ii5tr"]
 [ext_resource type="Gradient" uid="uid://m84gy3axqmyn" path="res://ui/theme/Rainbow.tres" id="3_voh5p"]
+[ext_resource type="AudioStream" uid="uid://dircssuwdeb1e" path="res://assets/se/floraphonic-underwater-movement-whoosh-1-186898.mp3" id="4_flwdq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ijgx5"]
 size = Vector2(62, 62)
@@ -368,6 +369,9 @@ offset_bottom = 32.0
 pivot_offset = Vector2(32, 32)
 texture = SubResource("GradientTexture2D_voh5p")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=121743431]
+[node name="Sound" type="AudioStreamPlayer" parent="." unique_id=121743431]
+stream = ExtResource("4_flwdq")
+volume_db = -10.0
+bus = &"JellySE"
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

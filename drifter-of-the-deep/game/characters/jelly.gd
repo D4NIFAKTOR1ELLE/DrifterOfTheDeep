@@ -85,6 +85,7 @@ func swim():
 		return
 
 	sprite.play("Swim")
+	$Sound.play()
 
 	cooldown = true
 

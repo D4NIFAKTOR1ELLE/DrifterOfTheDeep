@@ -4,7 +4,7 @@ class_name GoodFish
 
 func _ready():
 	var tween: Tween = create_tween()
-	tween.tween_property(self, "global_position:x", global_position.x - 700, 15)
+	tween.tween_property(self, "global_position:x", global_position.x + 700, 30)
 	await tween.finished
 	
 	var tween2: Tween = create_tween()

@@ -4,6 +4,8 @@
 [ext_resource type="TileSet" uid="uid://cu84twmhbfgc3" path="res://assets/collision.tres" id="1_k7ygh"]
 [ext_resource type="Script" uid="uid://3inh6h7nk50q" path="res://game/scene/main_scene.gd" id="1_srjx5"]
 [ext_resource type="PackedScene" uid="uid://cvbeb6cbn3xkg" path="res://ui/UI.tscn" id="3_uvcu7"]
+[ext_resource type="PackedScene" uid="uid://bdwv548gmi2q6" path="res://enemies/MSPaintFish.tscn" id="5_lo2xg"]
+[ext_resource type="AudioStream" uid="uid://2c7nfo7hcdsc" path="res://assets/music/tunetank-aerials-piano-ambient-music-412757.mp3" id="5_y45x4"]
 
 [node name="MainScene" type="Node2D" unique_id=237032981]
 script = ExtResource("1_srjx5")
@@ -21,11 +23,21 @@ tile_set = ExtResource("1_k7ygh")
 
 [node name="Enemies" type="Node" parent="." unique_id=1093655683]
 
+[node name="MSPaintFish" parent="." unique_id=605056912 instance=ExtResource("5_lo2xg")]
+position = Vector2(3147, 1940)
+
 [node name="Spawn" type="Marker2D" parent="." unique_id=771486536]
-position = Vector2(2945, 1685)
+position = Vector2(3147, 2109)
 
 [node name="Timer" type="Timer" parent="." unique_id=452056012]
 wait_time = 4.0
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1619061610]
+stream = ExtResource("5_y45x4")
+volume_db = -10.0
+pitch_scale = 0.6
+autoplay = true
+bus = &"Music2"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

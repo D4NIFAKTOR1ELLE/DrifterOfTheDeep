@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6e50iphxju6v"]
 
 [ext_resource type="Script" uid="uid://coytmrr57s8xe" path="res://ui/transition.gd" id="1_k0aut"]
+[ext_resource type="AudioStream" uid="uid://ek2jjt20vtkn" path="res://assets/music/freesound_community-underwater-loop-amb-6182.mp3" id="2_gxqwi"]
 
 [sub_resource type="Animation" id="Animation_bbqhf"]
 length = 0.001
@@ -70,3 +71,9 @@ color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1439488685]
 libraries/ = SubResource("AnimationLibrary_e6xs0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1765768086]
+stream = ExtResource("2_gxqwi")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
