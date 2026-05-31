@@ -152,7 +152,6 @@ func create():
 	
 	var new_creation = Globals.creation.instantiate()
 	Game.main_scene.enemies.add_child(new_creation)
-	new_creation.global_position = Game.player.global_position + Vector2(0, 50)
 	
 	sprite.play("Idle")
 	stop(true)

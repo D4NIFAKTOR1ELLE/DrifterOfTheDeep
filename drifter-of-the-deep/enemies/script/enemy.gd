@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var health: int = 3
-@export var movement_speed: float = 150.0
+@export var movement_speed: float = 120.0
 
 @onready var collision = $Collision
 @onready var sprite: AnimatedSprite2D = $Sprite

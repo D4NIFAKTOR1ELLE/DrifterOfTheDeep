@@ -43,7 +43,7 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-max_value = 10.0
+max_value = 5.0
 step = 1.0
 show_percentage = false
 
@@ -67,7 +67,7 @@ offset_right = 16.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[[color=yellow]OBJECTIVE[/color]] CREATE 3 DRAWINGS."
 horizontal_alignment = 1
@@ -112,6 +112,7 @@ offset_left = 488.0
 offset_top = 395.0
 offset_right = 671.9998
 offset_bottom = 478.0
+theme_override_font_sizes/normal_font_size = 19
 bbcode_enabled = true
 text = "[[color=yellow]D[/color]] [color=yellow]CREATE[/color]"
 scroll_active = false

@@ -96,6 +96,7 @@ _data = {
 }
 
 [node name="Creation" type="Node2D" unique_id=1998364267]
+z_index = -1
 script = ExtResource("1_ftqpe")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1962610253]

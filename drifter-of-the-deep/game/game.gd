@@ -18,8 +18,6 @@ func start_game():
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
 	
 	Transition.animplayer.play("fade_out")
-	phase = 2
-	Game.next_phase()
 
 func set_camera_limits(map: Control, camera: Camera2D):
 	if map == null:

@@ -4,6 +4,9 @@
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_tkj42"]
 [ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_ys8tm"]
 
+[sub_resource type="Theme" id="Theme_ys8tm"]
+Label/font_sizes/font_size = 34
+
 [node name="EndScreen" type="CanvasLayer" unique_id=64261227]
 script = ExtResource("1_tkj42")
 
@@ -23,14 +26,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03720872
 anchor_top = 0.08839201
-anchor_right = 0.59117246
+anchor_right = 0.47540137
 anchor_bottom = 0.30444136
 offset_left = 6.3541718
 offset_top = 7.8657417
 offset_right = 6.354187
 offset_bottom = 7.865738
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 62
 bbcode_enabled = true
 text = "YOU GOT YOUR INSPIRATION BACK!"
 vertical_alignment = 1
@@ -47,6 +50,8 @@ offset_left = 5.041687
 offset_top = 1.8703613
 offset_right = 5.041687
 offset_bottom = 1.8703613
+theme = SubResource("Theme_ys8tm")
+theme_override_constants/h_separation = 0
 columns = 2
 metadata/_edit_use_anchors_ = true
 
@@ -72,12 +77,12 @@ anchors_preset = -1
 anchor_left = 0.045183294
 anchor_top = 0.6950672
 anchor_right = 0.4970162
-anchor_bottom = 0.7991406
+anchor_bottom = 0.7593423
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/normal_font_size = 39
 bbcode_enabled = true
-text = "THANK YOU FOR PLAYING!"
+text = "THANK YOU FOR PLAYING"
 fit_content = true
 metadata/_edit_use_anchors_ = true
 
@@ -86,8 +91,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04203964
 anchor_top = 0.79233795
-anchor_right = 0.31287298
-anchor_bottom = 0.91579473
+anchor_right = 0.41799873
+anchor_bottom = 0.94779384
 offset_left = 1.6875
 offset_top = -7.0740967
 offset_right = 1.6875

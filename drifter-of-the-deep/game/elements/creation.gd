@@ -7,6 +7,10 @@ func _ready() -> void:
 	Game.player.creation_count += 1
 	Game.player.creation_changed.emit()
 	
+	global_position = Game.player.global_position
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "global_position:y", global_position.y - 150, 0.7)
+	
 	var rand = randf_range(0, 1)
 	
 	if rand < 0.3:
@@ -27,7 +31,7 @@ func normal_creation():
 
 	var tween2: Tween = create_tween()
 	tween2.tween_property(new_fish, "modulate", Color.WHITE, 1).from(Color(1, 1, 1, 5))
-	self.queue_free()
+	queue_free()
 
 func bad_creation():
 	animation.play("bad_creation")
@@ -42,4 +46,4 @@ func bad_creation():
 
 	var tween2: Tween = create_tween()
 	tween2.tween_property(new_fish, "modulate", Color.WHITE, 1).from(Color(1, 1, 1, 5))
-	self.queue_free()
+	queue_free()
