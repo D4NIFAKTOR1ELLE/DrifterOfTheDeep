@@ -3,17 +3,9 @@
 [ext_resource type="Script" uid="uid://br0idacnaumea" path="res://ui/ui.gd" id="1_xmm75"]
 [ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon2.png" id="2_hxwew"]
 [ext_resource type="Theme" uid="uid://c17qqh4q77kn3" path="res://ui/theme/ui2.tres" id="2_u132g"]
+[ext_resource type="Texture2D" uid="uid://jpl2ecenohdw" path="res://assets/background/padding.png" id="3_s15di"]
 [ext_resource type="Gradient" uid="uid://m84gy3axqmyn" path="res://ui/theme/Rainbow.tres" id="4_u132g"]
 [ext_resource type="PackedScene" uid="uid://cmc52w0emhm64" path="res://ui/ControlHint.tscn" id="5_a6px5"]
-
-[sub_resource type="Gradient" id="Gradient_akci1"]
-offsets = PackedFloat32Array(0, 0.57831323)
-colors = PackedColorArray(0.072581895, 0.26466238, 0.34017912, 1, 0.26119125, 0.404583, 0.4724847, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6px5"]
-gradient = SubResource("Gradient_akci1")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0.16521738)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6px5"]
 bg_color = Color(0.31090328, 0.11669334, 0.11272455, 1)
@@ -71,14 +63,18 @@ anchor_left = -0.011284722
 anchor_top = 0.5632716
 anchor_right = 1.0086806
 anchor_bottom = 1.0135031
-texture = SubResource("GradientTexture2D_a6px5")
+offset_left = 5.0
+offset_top = -361.0
+offset_right = 5.0
+offset_bottom = -4.75
+texture = ExtResource("3_s15di")
 metadata/_edit_use_anchors_ = true
 
 [node name="Objective" type="RichTextLabel" parent="." unique_id=672988700]
 anchors_preset = -1
-anchor_left = 0.21614583
+anchor_left = 0.12847222
 anchor_top = 0.875
-anchor_right = 0.7821181
+anchor_right = 0.8515625
 anchor_bottom = 0.93209875
 offset_left = 16.0
 offset_top = -5.0
@@ -88,7 +84,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[[color=yellow]OBJECTIVE[/color]] CREATE 3 DRAWINGS."
+text = "[[color=yellow]OBJECTIVE[/color]] COLLECT IDEAS TO CREATE 3 DRAWINGS."
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

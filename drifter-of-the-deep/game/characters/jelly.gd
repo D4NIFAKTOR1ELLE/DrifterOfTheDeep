@@ -68,8 +68,8 @@ func heal():
 	tween.tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 1, 0, 5))
 
 func attack():
-	#if Game.phase < 3 or Game.main_scene.ui.create_bar_full == false:
-		#return
+	if Game.phase < 3 or Game.main_scene.ui.create_bar_full == false:
+		return
 	
 	stop(false)
 	
@@ -157,15 +157,8 @@ func create():
 	sprite.play("Idle")
 	stop(true)
 
-#func invincibility_frames(duration: float = 0.8):
-	#animation.play("iframe")
-	#
-	#await Game.get_tree().create_timer(duration).timeout
-	#
-	#extra.play("RESET")
-	#invulnerable = false
-
 func action_done():
+	$Sound2.play()
 	ideas_collected = 0
 	await Game.main_scene.ui.create_done()
 	idea_changed.emit()

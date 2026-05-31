@@ -180,7 +180,6 @@ metadata/_custom_type_script = "uid://btgrxvtuyis2l"
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2053282027]
 position = Vector2(2.5, 1)
 shape = SubResource("RectangleShape2D_psqmr")
-disabled = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
 sprite_frames = SubResource("SpriteFrames_bk1cn")
