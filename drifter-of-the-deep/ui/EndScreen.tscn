@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://cxq0btv3whq5q" path="res://ui/script/end_screen.gd" id="1_tkj42"]
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_tkj42"]
 [ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_ys8tm"]
+[ext_resource type="Texture2D" uid="uid://14wllvnjfkkt" path="res://assets/background/end_screen.png" id="4_nqo7y"]
+
+[sub_resource type="Gradient" id="Gradient_akci1"]
+offsets = PackedFloat32Array(0, 0.57831323)
+colors = PackedColorArray(0, 0, 0, 1, 0.02, 0.02, 0.02, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nqo7y"]
+gradient = SubResource("Gradient_akci1")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 0.3478261)
 
 [sub_resource type="Theme" id="Theme_ys8tm"]
 Label/font_sizes/font_size = 34
@@ -19,6 +29,45 @@ anchor_bottom = 1.0185186
 offset_bottom = -6.1035156e-05
 theme = ExtResource("2_tkj42")
 texture = ExtResource("3_ys8tm")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="BG" unique_id=2028572507]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9576099
+anchor_top = 1.2927783
+anchor_right = 0.9576099
+anchor_bottom = 1.2927783
+offset_left = -1027.2764
+offset_top = -847.86865
+offset_right = 124.72363
+offset_bottom = -199.86859
+texture = ExtResource("4_nqo7y")
+
+[node name="BG2" type="TextureRect" parent="BG" unique_id=621659192]
+self_modulate = Color(1, 1, 1, 0.4392157)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011284722
+anchor_top = -0.013888889
+anchor_right = 1.0095487
+anchor_bottom = 1.0231482
+offset_left = 13.270833
+offset_top = 9.333333
+offset_right = 13.270874
+offset_bottom = 9.333313
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tkj42")
+texture = ExtResource("3_ys8tm")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="BG/BG2" unique_id=1530501955]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.7814626
+anchor_bottom = 1.0104166
+texture = SubResource("GradientTexture2D_nqo7y")
 metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="RichTextLabel" parent="BG" unique_id=1815335575]

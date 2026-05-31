@@ -10,6 +10,7 @@ func _ready() -> void:
 	global_position = Game.player.global_position
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "global_position:y", global_position.y - 150, 0.7)
+	await tween.finished
 	
 	var rand = randf_range(0, 1)
 	
