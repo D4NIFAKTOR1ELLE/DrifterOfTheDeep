@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://ccsabh3v0ytxr"]
+
+[ext_resource type="Script" uid="uid://cpkdivyk4e8fp" path="res://enemies/script/bad_ms_paint_fish.gd" id="1_6xjuj"]
+[ext_resource type="Texture2D" uid="uid://qkfjropqm243" path="res://assets/character/val_fish.png" id="2_6xjuj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
+size = Vector2(99, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3urpj"]
+atlas = ExtResource("2_6xjuj")
+region = Rect2(200, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7c6s"]
+atlas = ExtResource("2_6xjuj")
+region = Rect2(100, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hw6o"]
+atlas = ExtResource("2_6xjuj")
+region = Rect2(0, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbhv6"]
+atlas = ExtResource("2_6xjuj")
+region = Rect2(200, 0, 100, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_li5hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3urpj")
+}],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7c6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hw6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbhv6")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysxld"]
+size = Vector2(107, 80)
+
+[node name="BadValFish" type="CharacterBody2D" unique_id=605056912]
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_6xjuj")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_p6j3w")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1235028354]
+sprite_frames = SubResource("SpriteFrames_li5hk")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1999581520]
+collision_mask = 2
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1337240919]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ysxld")
+debug_color = Color(0.72276074, 0.44076014, 0.50562745, 0.41960785)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

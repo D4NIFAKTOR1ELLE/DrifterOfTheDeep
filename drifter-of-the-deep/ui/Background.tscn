@@ -11,7 +11,7 @@ gradient = SubResource("Gradient_4gsak")
 fill_from = Vector2(1, 1)
 
 [node name="Background" type="CanvasLayer" unique_id=1199686135]
-layer = -3
+layer = -1
 follow_viewport_enabled = true
 script = ExtResource("1_tk0ko")
 

@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cu84twmhbfgc3" path="res://assets/collision.tres" id="1_k7ygh"]
 [ext_resource type="Script" uid="uid://3inh6h7nk50q" path="res://game/scene/main_scene.gd" id="1_srjx5"]
 [ext_resource type="PackedScene" uid="uid://cvbeb6cbn3xkg" path="res://ui/UI.tscn" id="3_uvcu7"]
+[ext_resource type="PackedScene" uid="uid://c7youwn7210ly" path="res://enemies/OverworldShark.tscn" id="5_y45x4"]
 
 [node name="MainScene" type="Node2D" unique_id=237032981]
 script = ExtResource("1_srjx5")
@@ -27,5 +28,9 @@ position = Vector2(2945, 1685)
 [node name="Timer" type="Timer" parent="." unique_id=452056012]
 wait_time = 4.0
 autostart = true
+
+[node name="OverworldShark" parent="." unique_id=2101403335 instance=ExtResource("5_y45x4")]
+position = Vector2(1402, 358)
+movement_speed = 150.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

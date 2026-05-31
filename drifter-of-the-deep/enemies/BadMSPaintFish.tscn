@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvfnent70m2rl"]
 
-[ext_resource type="Script" uid="uid://cpkdivyk4e8fp" path="res://enemies/bad_ms_paint_fish.gd" id="1_p3cm1"]
+[ext_resource type="Script" uid="uid://cpkdivyk4e8fp" path="res://enemies/script/bad_ms_paint_fish.gd" id="1_p3cm1"]
 [ext_resource type="Texture2D" uid="uid://lj3yjjqmp3vl" path="res://assets/character/bad_ms_paint_fish.png" id="2_p3cm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]

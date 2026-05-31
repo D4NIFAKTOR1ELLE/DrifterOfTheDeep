@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://c7youwn7210ly"]
+
+[ext_resource type="Script" uid="uid://dx6odbbv4xvor" path="res://enemies/script/overworld_shark.gd" id="1_psqmr"]
+[ext_resource type="Texture2D" uid="uid://dkkap6jipdiyd" path="res://assets/character/overworld_shark_spritesheet.png" id="2_psqmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psqmr"]
+size = Vector2(693, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbwjg"]
+atlas = ExtResource("2_psqmr")
+region = Rect2(0, 0, 800, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bk1cn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbwjg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_psqmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qbwjg"]
+resource_name = "hurt"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.69999987, 0.90000004, 1.1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.50501955, 0, 0.065637626, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbwjg"]
+_data = {
+&"RESET": SubResource("Animation_psqmr"),
+&"hurt": SubResource("Animation_qbwjg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbwjg"]
+size = Vector2(757, 427)
+
+[node name="OverworldShark" type="CharacterBody2D" unique_id=2101403335]
+collision_layer = 4
+collision_mask = 10
+motion_mode = 1
+script = ExtResource("1_psqmr")
+movement_speed = 200.0
+metadata/_custom_type_script = "uid://btgrxvtuyis2l"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2053282027]
+position = Vector2(2.5, 1)
+shape = SubResource("RectangleShape2D_psqmr")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
+sprite_frames = SubResource("SpriteFrames_bk1cn")
+animation = &"Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=935117742]
+libraries/ = SubResource("AnimationLibrary_qbwjg")
+
+[node name="Timer" type="Timer" parent="." unique_id=310119908]
+wait_time = 6.0
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=177749648]
+collision_mask = 2
+
+[node name="AreaCollision" type="CollisionShape2D" parent="Hitbox" unique_id=159832497]
+position = Vector2(1.5, 2.5)
+shape = SubResource("RectangleShape2D_qbwjg")
+debug_color = Color(0.81111896, 0.36907896, 0.48572594, 0.41960785)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,27 +1,222 @@
 [gd_scene format=3 uid="uid://6odattmngp3b"]
 
-[ext_resource type="Script" uid="uid://b1luf7fbigafi" path="res://enemies/shark.gd" id="1_unn7w"]
+[ext_resource type="Script" uid="uid://b1luf7fbigafi" path="res://enemies/script/shark.gd" id="1_unn7w"]
 [ext_resource type="Texture2D" uid="uid://dyshtpgfc750e" path="res://assets/character/shark_spritesheet.png" id="2_bk1cn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk1cn"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(0, 0, 800, 552)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hffo"]
 atlas = ExtResource("2_bk1cn")
-region = Rect2(0, 0, 600, 552)
+region = Rect2(800, 0, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8230"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(1600, 0, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sc57"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(0, 552, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsfa3"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(2400, 0, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v13g1"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(3200, 0, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf4ti"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(800, 552, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4d4d"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(1600, 552, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc2ro"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(2400, 552, 800, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxwtt"]
+atlas = ExtResource("2_bk1cn")
+region = Rect2(3200, 552, 800, 552)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bk1cn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5hffo")
-}],
-"loop": true,
-"name": &"Intro",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_bk1cn")
 }, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hffo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8230")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sc57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsfa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v13g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sc57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf4ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4d4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc2ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxwtt")
+}],
+"loop": false,
+"name": &"Intro",
+"speed": 3.0
 }]
+
+[sub_resource type="Animation" id="Animation_5hffo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Intro"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bk1cn"]
+resource_name = "intro"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Intro"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.8, 1.2, 1.5, 1.6, 1.8000001, 1.9000001, 2.9, 3, 4.1, 4.5, 4.9, 5.2, 5.6000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 4, 5, 4, 5, 4, 6, 7, 8, 9, 10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 3.8, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.4, 5.5, 5.6, 5.7, 5.8, 5.8999996, 5.9000998, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 3.5, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.17453292519943295, 0.0, -0.12217304763960307, -0.12217305, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hffo"]
+_data = {
+&"RESET": SubResource("Animation_5hffo"),
+&"intro": SubResource("Animation_bk1cn")
+}
 
 [node name="Shark" type="Node2D" unique_id=121936113]
 script = ExtResource("1_unn7w")
@@ -31,7 +226,4 @@ sprite_frames = SubResource("SpriteFrames_bk1cn")
 animation = &"Intro"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=935117742]
-
-[node name="Timer" type="Timer" parent="." unique_id=310119908]
-wait_time = 6.0
-autostart = true
+libraries/ = SubResource("AnimationLibrary_5hffo")
