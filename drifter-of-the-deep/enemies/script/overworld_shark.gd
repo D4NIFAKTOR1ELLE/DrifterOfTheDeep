@@ -5,6 +5,15 @@ extends Enemy
 @onready var hitbox = $Hitbox
 @onready var timer = $Timer
 
+func _ready():
+	set_physics_process(false)
+	animation.play("appear")
+	await animation.animation_finished
+	sprite.play("Idle")
+	player.creation_changed.connect(Game.main_scene.ui.update_bar3)
+	Game.main_scene.overworld_shark = self
+	set_physics_process(true)
+
 func take_damage():
 	if dying:
 		return
@@ -12,6 +21,7 @@ func take_damage():
 	set_physics_process(false)
 
 	health = health - 1
+	Game.player.creation_changed.emit()
 
 	if health <= 0:
 		die()

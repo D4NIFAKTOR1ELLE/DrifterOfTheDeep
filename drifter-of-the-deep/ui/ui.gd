@@ -21,6 +21,7 @@ func initialise() -> void:
 	player.health_changed.connect(update_health)
 	player.idea_changed.connect(update_idea)
 	player.creation_changed.connect(update_bar1)
+	idea_level.max_value = player.max_idea_level
 
 func update_phase_bar(bar: ProgressBar, value: int):
 	bar.value = value
@@ -54,9 +55,9 @@ func update_bar2():
 		tween2.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
 func update_bar3():
-	bar3.value = player.creation_count
+	bar3.value = Game.main_scene.overworld_shark.health
 	
-	if player.creation_count >= bar3.max_value:
+	if bar3.value <= 0:
 		Game.next_phase()
 
 # TODO Make light energy increase
@@ -71,7 +72,7 @@ func update_health():
 func update_idea():
 	idea_level.value = player.ideas_collected
 	
-	if idea_level.value == idea_level.max_value:
+	if idea_level.value == player.max_idea_level:
 		create_ready()
 
 func create_ready():

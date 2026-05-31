@@ -14,8 +14,6 @@ func take_damage():
 	if dying:
 		return
 
-	sprite.play("Hurt")
-
 	health = health - 1
 	var tween: Tween = create_tween()
 	tween.tween_property(sprite, "self_modulate", Color.WHITE, 0.3).from(Color(0.631, 0.345, 0.325))

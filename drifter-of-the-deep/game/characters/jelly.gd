@@ -14,7 +14,7 @@ const max_health: int = 5
 var health: int = 5
 
 var ideas_collected: int = 0
-var max_idea_level: int = 5
+var max_idea_level: int = 4
 
 var creation_count: int = 0
 

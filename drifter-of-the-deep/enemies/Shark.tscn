@@ -132,7 +132,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -209,7 +209,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1, 3.5, 4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.17453292519943295, 0.0, -0.12217304763960307, -0.12217305, 0.0]
+"values": [0.17453292519943295, 0.0, -0.08726646259971647, -0.12217305, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5hffo"]
@@ -218,12 +218,19 @@ _data = {
 &"intro": SubResource("Animation_bk1cn")
 }
 
-[node name="Shark" type="Node2D" unique_id=121936113]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=2103410291]
+layer = -1
 script = ExtResource("1_unn7w")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
+[node name="Shark" type="Node2D" parent="." unique_id=121936113]
+z_index = -2
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Shark" unique_id=1403179126]
+visible = false
+position = Vector2(598, 400)
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_bk1cn")
 animation = &"Intro"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=935117742]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shark" unique_id=935117742]
 libraries/ = SubResource("AnimationLibrary_5hffo")

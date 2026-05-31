@@ -1,11 +1,6 @@
-extends Node2D
+extends CanvasLayer
 
-@onready var sprite: AnimatedSprite2D = $Sprite
-@onready var animation: AnimationPlayer = $AnimationPlayer
+class_name Shark
 
-@export var health: int = 5
-
-var dying: bool = false
-
-func intro():
-	animation.play("intro")
+@onready var sprite: AnimatedSprite2D = $Shark/Sprite
+@onready var animation: AnimationPlayer = $Shark/AnimationPlayer

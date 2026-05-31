@@ -16,6 +16,8 @@ func start_game():
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
 	
 	Transition.animplayer.play("fade_out")
+	phase = 2
+	Game.next_phase()
 
 func set_camera_limits(map: Control, camera: Camera2D):
 	if map == null:
@@ -62,11 +64,18 @@ func next_phase():
 			await player.animation.animation_finished
 		3:
 			player.creation_changed.disconnect(main_scene.ui.update_bar2)
-			player.creation_changed.connect(main_scene.ui.update_bar3)
 
 			var tween2: Tween = create_tween()
 			tween2.tween_property(main_scene.background.bg_texture, "self_modulate", Color(0.082, 0.287, 0.402, 1.0), 2)
 			await player.animation.animation_finished
+			
+			var shark: Shark = load("res://enemies/Shark.tscn").instantiate()
+			main_scene.add_child(shark)
+			shark.animation.play("intro")
+			await shark.animation.animation_finished
+			main_scene.overworld_shark = load("res://enemies/OverworldShark.tscn").instantiate()
+			main_scene.add_child(main_scene.overworld_shark)
+			main_scene.overworld_shark.global_position = player.global_position + Vector2(700, 700)
 		_:
 			finish_game()
 

@@ -10,6 +10,8 @@ class_name MainScene
 
 @onready var player: Player = Game.player
 
+var overworld_shark: CharacterBody2D
+
 func random_idea_spawn():
 	var screen_rect: Rect2 = get_camera_rect()
 	for i in range(8):
