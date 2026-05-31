@@ -3,6 +3,8 @@ extends Node
 var phase: int = 1
 var player: Player
 var main_scene: MainScene
+var time_elapsed: float = 0
+var deaths = 0
 
 func start_game():
 	player = load("res://game/characters/Jelly.tscn").instantiate()
@@ -34,6 +36,7 @@ func respawn():
 	for enemy in main_scene.enemies.get_children():
 		enemy.queue_free()
 	
+	deaths += 1
 	player.ideas_collected = 0
 	player.idea_changed.emit()
 	player.health = 5
@@ -76,11 +79,11 @@ func next_phase():
 			main_scene.overworld_shark = load("res://enemies/OverworldShark.tscn").instantiate()
 			main_scene.add_child(main_scene.overworld_shark)
 			main_scene.overworld_shark.global_position = player.global_position + Vector2(700, 700)
-		_:
-			finish_game()
 
 func finish_game():
+	set_physics_process(false)
 	Transition.fade_in()
+	await Transition.animplayer.animation_finished
 	
 	var new_end: CanvasLayer = Globals.end_screen.instantiate()
 	add_child(new_end)
@@ -88,3 +91,6 @@ func finish_game():
 	main_scene.queue_free()
 	
 	Transition.hide()
+
+func _physics_process(delta: float) -> void:
+	time_elapsed += delta

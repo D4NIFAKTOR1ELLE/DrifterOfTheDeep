@@ -37,6 +37,10 @@ folder_colors={
 
 Player=""
 
+[gui]
+
+theme/custom_font="uid://s64ctcb33fkv"
+
 [input]
 
 left={

@@ -1,32 +1,29 @@
 extends CanvasLayer
 
 var completion_time
-var ornaments_collected
 
 func _ready() -> void:
 	set_process_input(false)
 
-	$BG/Title.hide()
 	$BG/QuitMessage.hide()
 	$BG/ReturnToStart.hide()
 	for element in $BG/GridContainer.get_children():
 		element.hide()
 	
-	#completion_time = Globals.game.time_elapsed
-	#ornaments_collected = Globals.game.ornaments_collected
+	completion_time = Game.time_elapsed
 	
 	await get_tree().create_timer(2).timeout
 
 	$BG/Title.show()
 
-	$GridContainer/CompletionTime.text = _format_seconds(completion_time)
-	#$GridContainer/Deaths.text = "%d" % Globals.game.deaths
+	$BG/GridContainer/CompletionTime.text = _format_seconds(completion_time)
+	$BG/GridContainer/Deaths.text = "%d" % Game.deaths
 	
 	await get_tree().create_timer(2).timeout
 	
 	reveal()
 
-func _format_seconds(time : float) -> String:
+func _format_seconds(time: float) -> String:
 	var minutes := time / 60
 	var seconds := fmod(time, 60)
 	var milliseconds := fmod(time, 1) * 100

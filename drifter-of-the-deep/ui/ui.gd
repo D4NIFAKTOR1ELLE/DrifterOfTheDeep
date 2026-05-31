@@ -55,12 +55,11 @@ func update_bar2():
 		tween2.tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
 func update_bar3():
-	bar3.value = Game.main_scene.overworld_shark.health
+	bar3.value = 1 - Game.main_scene.overworld_shark.health
 	
-	if bar3.value <= 0:
+	if bar3.value >= bar3.max_value:
 		Game.next_phase()
 
-# TODO Make light energy increase
 func update_health():
 	$Health.modulate = Color.WHITE
 	

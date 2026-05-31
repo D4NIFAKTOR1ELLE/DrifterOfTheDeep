@@ -51,7 +51,7 @@ show_percentage = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-max_value = 4.0
+max_value = 5.0
 step = 1.0
 show_percentage = false
 
