@@ -55,6 +55,9 @@ func _input(_event: InputEvent) -> void:
 		heal()
 	if Input.is_action_just_pressed("attack"):
 		attack()
+	if Input.is_action_just_pressed("reload"):
+		await die()
+		Game.deaths = Game.deaths - 1
 
 func heal():
 	if Game.phase < 2 or Game.main_scene.ui.create_bar_full == false:

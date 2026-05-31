@@ -14,7 +14,6 @@ func start_game():
 	main_scene.add_child(player)
 	main_scene.ui.initialise()
 	player.global_position = main_scene.get_node("Spawn").global_position
-	main_scene.get_node("Spawn").queue_free()
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
 	
 	Transition.animplayer.play("fade_out")
@@ -34,6 +33,7 @@ func respawn():
 	for enemy in main_scene.enemies.get_children():
 		enemy.queue_free()
 	
+	player.global_position = main_scene.get_node("Spawn").global_position
 	deaths += 1
 	player.ideas_collected = 0
 	player.idea_changed.emit()

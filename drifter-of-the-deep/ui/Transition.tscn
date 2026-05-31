@@ -74,7 +74,7 @@ libraries/ = SubResource("AnimationLibrary_e6xs0")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1765768086]
 stream = ExtResource("2_gxqwi")
-volume_db = -20.0
+volume_db = -15.0
 autoplay = true
 bus = &"Music"
 parameters/looping = true
