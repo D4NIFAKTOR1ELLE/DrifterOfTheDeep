@@ -170,7 +170,7 @@ size = Vector2(757, 427)
 
 [node name="OverworldShark" type="CharacterBody2D" unique_id=2101403335]
 collision_layer = 4
-collision_mask = 10
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_psqmr")
 health = 5

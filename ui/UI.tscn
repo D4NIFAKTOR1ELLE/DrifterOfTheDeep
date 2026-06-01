@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon2.png" id="2_hxwew"]
 [ext_resource type="Theme" uid="uid://c17qqh4q77kn3" path="res://ui/theme/ui2.tres" id="2_u132g"]
 [ext_resource type="Texture2D" uid="uid://jpl2ecenohdw" path="res://assets/background/padding.png" id="3_s15di"]
-[ext_resource type="Gradient" uid="uid://m84gy3axqmyn" path="res://ui/theme/Rainbow.tres" id="4_u132g"]
 [ext_resource type="PackedScene" uid="uid://cmc52w0emhm64" path="res://ui/screens/ControlHint.tscn" id="5_a6px5"]
+[ext_resource type="PackedScene" uid="uid://6e50iphxju6v" path="res://ui/screens/Transition.tscn" id="6_s15di"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6px5"]
 bg_color = Color(0.31090328, 0.11669334, 0.11272455, 1)
@@ -19,8 +19,12 @@ colors = PackedColorArray(0.12941177, 0.23921569, 0.36078432, 1, 0.20152658, 0.2
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_u132g"]
 gradient = SubResource("Gradient_hxwew")
 
+[sub_resource type="Gradient" id="Gradient_a6px5"]
+offsets = PackedFloat32Array(0, 0.23493975, 0.5, 0.7012987, 0.85714287, 1)
+colors = PackedColorArray(1, 0.40724555, 0.33865184, 1, 1, 0.8862745, 0.2509804, 1, 0.58431375, 1, 0.8392157, 1, 0.54509807, 0.5411765, 0.8392157, 1, 0.8117647, 0.33333334, 0.8392157, 1, 0.99215686, 0.42745098, 0.61960787, 1)
+
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s15di"]
-gradient = ExtResource("4_u132g")
+gradient = SubResource("Gradient_a6px5")
 
 [node name="UI" type="CanvasLayer" unique_id=1479335240]
 script = ExtResource("1_xmm75")
@@ -57,29 +61,25 @@ max_value = 5.0
 step = 1.0
 show_percentage = false
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1308767320]
+[node name="ObjectiveCover" type="TextureRect" parent="." unique_id=1308767320]
+self_modulate = Color(0.24691772, 0.2646179, 0.33984375, 1)
 anchors_preset = -1
-anchor_left = -0.011284722
-anchor_top = 0.5632716
-anchor_right = 1.0086806
-anchor_bottom = 1.0135031
-offset_left = 5.0
-offset_top = -361.0
-offset_right = 5.0
-offset_bottom = -4.75
+anchor_left = -0.0069444445
+anchor_top = 0.2654321
+anchor_right = 1.0130209
+anchor_bottom = 1.0061729
+offset_bottom = -6.1035156e-05
 texture = ExtResource("3_s15di")
+expand_mode = 1
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Objective" type="RichTextLabel" parent="." unique_id=672988700]
 anchors_preset = -1
-anchor_left = 0.12847222
-anchor_top = 0.875
-anchor_right = 0.8515625
-anchor_bottom = 0.93209875
-offset_left = 16.0
-offset_top = -5.0
-offset_right = 16.0
-offset_bottom = -5.0
+anchor_left = 0.1423611
+anchor_top = 0.86728394
+anchor_right = 0.8654514
+anchor_bottom = 0.9243827
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 32
@@ -112,14 +112,19 @@ value = 5.0
 show_percentage = false
 
 [node name="IdeaLevel" type="TextureProgressBar" parent="." unique_id=1668198987]
-offset_left = 496.0
-offset_top = 376.0
-offset_right = 661.0
-offset_bottom = 382.0
+anchors_preset = -1
+anchor_left = 0.43055555
+anchor_top = 0.5802469
+anchor_right = 0.5737847
+anchor_bottom = 0.58950615
+mouse_filter = 2
 max_value = 5.0
+step = 0.01
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture1D_u132g")
 texture_progress = SubResource("GradientTexture2D_s15di")
+tint_under = Color(0.6265869, 0.6323948, 0.6796875, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CreatePrompt" type="RichTextLabel" parent="." unique_id=1084711443]
 visible = false
@@ -134,3 +139,6 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="ControlHint" parent="." unique_id=907200057 instance=ExtResource("5_a6px5")]
+visible = false
+
+[node name="Transition" parent="." unique_id=792298385 instance=ExtResource("6_s15di")]

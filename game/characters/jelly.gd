@@ -24,9 +24,8 @@ var swim_direction := Vector2.ZERO
 var swim_distance_remaining := 0.0
 
 signal health_changed
-signal idea_changed
-@warning_ignore("unused_signal")
 signal creation_changed
+signal idea_changed
 
 func _physics_process(delta: float) -> void:
 	if cooldown:
@@ -58,12 +57,21 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("reload"):
 		await die()
 		Game.deaths = Game.deaths - 1
+		sprite.modulate = Color.WHITE
+	if Input.is_action_just_pressed("j"):
+		sprite.modulate = Color.LAWN_GREEN
+	if Input.is_action_just_pressed("a"):
+		sprite.modulate = Color.MEDIUM_PURPLE
+	if Input.is_action_just_pressed("c"):
+		sprite.modulate = Color.DODGER_BLUE
+	if Input.is_action_just_pressed("v"):
+		sprite.modulate = Color.DARK_RED
 
 func heal():
-	if Game.phase < 2 or Game.main_scene.ui.create_bar_full == false:
+	if Game.phase < 2 or UI.create_bar_full == false:
 		return
 	
-	await action_done()
+	await UI.action_done()
 	
 	health = min(max_health, health + 1)
 	health_changed.emit()
@@ -71,12 +79,12 @@ func heal():
 	tween.tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 5, 0, 1))
 
 func attack():
-	if Game.phase < 3 or Game.main_scene.ui.create_bar_full == false:
+	if Game.phase < 3 or UI.create_bar_full == false:
 		return
 	
 	stop(false)
 	
-	await action_done()
+	await UI.action_done()
 	
 	animation.play("attack")
 	await animation.animation_finished
@@ -130,19 +138,19 @@ func take_damage(damage: int):
 
 func die():
 	stop(false)
-	Transition.fade_in()
-	await Transition.animplayer.animation_finished
+	UI.transition.fade_in()
+	await UI.transition.animplayer.animation_finished
 
 	await Game.respawn()
 
 	stop(true)
-	Transition.fade_out()
+	UI.transition.fade_out()
 
 func create():
 	end_swim()
 	stop(false)
 	
-	await action_done()
+	await UI.action_done()
 	
 	sprite.play("CreateInit")
 	await sprite.animation_finished
@@ -159,12 +167,6 @@ func create():
 	
 	sprite.play("Idle")
 	stop(true)
-
-func action_done():
-	$Sound2.play()
-	ideas_collected = 0
-	await Game.main_scene.ui.create_done()
-	idea_changed.emit()
 
 func stop(enable: bool = false):
 	set_physics_process(enable)

@@ -42,10 +42,10 @@ func reveal():
 	set_process_input(true)
 
 func _on_return_to_start_pressed() -> void:
-	Transition.fade_in()
+	UI.transition.fade_in()
 	var new_start: CanvasLayer = Globals.start_screen.instantiate()
 	Game.add_child(new_start)
 	
-	Transition.fade_out()
+	UI.transition.fade_out()
 	
 	queue_free()

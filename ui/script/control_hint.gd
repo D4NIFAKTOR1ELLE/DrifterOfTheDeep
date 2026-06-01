@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-func _ready():
+func start():
+	visible = true
 	await get_tree().create_timer(4).timeout
 	var tween: Tween = create_tween()
 	tween.tween_property($GridContainer, "modulate", Color.TRANSPARENT, 2)

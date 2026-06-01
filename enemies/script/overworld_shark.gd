@@ -10,7 +10,7 @@ func _ready():
 	animation.play("appear")
 	await animation.animation_finished
 	sprite.play("Idle")
-	player.creation_changed.connect(Game.main_scene.ui.update_bar3)
+	player.creation_changed.connect(UI.update_bar3)
 	Game.main_scene.overworld_shark = self
 	set_physics_process(true)
 

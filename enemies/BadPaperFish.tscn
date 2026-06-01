@@ -47,8 +47,8 @@ animations = [{
 size = Vector2(107, 75)
 
 [node name="BadPaperFish" type="CharacterBody2D" unique_id=605056912]
-collision_layer = 8
-collision_mask = 3
+collision_layer = 4
+collision_mask = 6
 script = ExtResource("1_ysxld")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
