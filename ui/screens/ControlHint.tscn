@@ -10,21 +10,20 @@ script = ExtResource("1_k0sq5")
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1780514980]
 anchors_preset = -1
 anchor_left = 0.088541664
-anchor_top = 0.4027778
+anchor_top = 0.32098764
 anchor_right = 0.9041054
-anchor_bottom = 0.85825783
+anchor_bottom = 0.6898148
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_k0sq5")
-theme_override_constants/h_separation = 350
+theme_override_constants/h_separation = 430
 theme_override_constants/v_separation = 40
 columns = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Label" parent="GridContainer" unique_id=1315382684]
 layout_mode = 2
-text = "[LEFT ARROW],
-[RIGHT ARROW]"
+text = "[←], [→]"
 
 [node name="CName" type="Label" parent="GridContainer" unique_id=1818822388]
 layout_mode = 2
@@ -40,4 +39,14 @@ text = "[SPACE]"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 text = "SWIM FORWARD"
+horizontal_alignment = 2
+
+[node name="Control4" type="Label" parent="GridContainer" unique_id=546773249]
+layout_mode = 2
+text = "[R]"
+
+[node name="CName4" type="Label" parent="GridContainer" unique_id=618595840]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "RELOAD"
 horizontal_alignment = 2

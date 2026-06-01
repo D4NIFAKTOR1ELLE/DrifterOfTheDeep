@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://c17qqh4q77kn3" path="res://ui/theme/ui2.tres" id="2_u132g"]
 [ext_resource type="Texture2D" uid="uid://jpl2ecenohdw" path="res://assets/background/padding.png" id="3_s15di"]
 [ext_resource type="Gradient" uid="uid://m84gy3axqmyn" path="res://ui/theme/Rainbow.tres" id="4_u132g"]
-[ext_resource type="PackedScene" uid="uid://cmc52w0emhm64" path="res://ui/ControlHint.tscn" id="5_a6px5"]
+[ext_resource type="PackedScene" uid="uid://cmc52w0emhm64" path="res://ui/screens/ControlHint.tscn" id="5_a6px5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6px5"]
 bg_color = Color(0.31090328, 0.11669334, 0.11272455, 1)
