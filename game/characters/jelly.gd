@@ -72,7 +72,7 @@ func heal():
 	if Game.phase < 2 or UI.create_bar_full == false:
 		return
 	
-	await UI.action_done()
+	await UI.action_done("heal")
 	
 	health = min(max_health, health + 1)
 	health_changed.emit()
@@ -87,7 +87,7 @@ func attack():
 	
 	stop(false)
 	
-	await UI.action_done()
+	await UI.action_done("attack")
 	
 	animation.play("attack")
 	await animation.animation_finished
@@ -155,7 +155,7 @@ func create():
 	end_swim()
 	stop(false)
 	
-	await UI.action_done()
+	await UI.action_done("create")
 	
 	sprite.play("CreateInit")
 	await sprite.animation_finished

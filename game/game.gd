@@ -16,9 +16,6 @@ func start_game():
 	player.global_position = main_scene.spawn.global_position
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
 	
-	Game.phase = 2
-	main_scene.next_phase()
-	
 	UI.initialise()
 
 func set_camera_limits(map: Control, camera: Camera2D):
@@ -37,6 +34,7 @@ func respawn():
 		if enemy.name != "OverworldShark":
 			enemy.queue_free()
 	
+	UI.create_done()
 	player.global_position = main_scene.spawn.global_position
 	deaths += 1
 	player.ideas_collected = 0

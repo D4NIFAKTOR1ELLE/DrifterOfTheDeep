@@ -99,10 +99,11 @@ func create_done():
 	create_prompt.set_visible(true)
 	create_bar_full = false
 
-func action_done():
+func action_done(specifier: String):
 	player.get_node("Sound2").play()
-	var tween: Tween = create_tween()
-	tween.tween_property(idea_level, "value", 0, 3.5).from(idea_level.max_value)
+	if specifier != "heal":
+		var tween: Tween = create_tween()
+		tween.tween_property(idea_level, "value", 0, 3.5).from(idea_level.max_value)
 	player.ideas_collected = 0
 	await create_done()
 	update_idea()

@@ -120,21 +120,6 @@ text = "ATTEMPTS"
 layout_mode = 2
 text = "0"
 
-[node name="QuitMessage" type="RichTextLabel" parent="BG" unique_id=360511587]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.045183294
-anchor_top = 0.6950672
-anchor_right = 0.4970162
-anchor_bottom = 0.7593423
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/normal_font_size = 39
-bbcode_enabled = true
-text = "THANK YOU FOR PLAYING"
-fit_content = true
-metadata/_edit_use_anchors_ = true
-
 [node name="ReturnToStart" type="Button" parent="BG" unique_id=1617985796]
 layout_mode = 1
 anchors_preset = -1
