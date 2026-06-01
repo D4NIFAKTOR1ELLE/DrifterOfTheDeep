@@ -68,7 +68,7 @@ func heal():
 	health = min(max_health, health + 1)
 	health_changed.emit()
 	var tween: Tween = create_tween()
-	tween.tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 1, 0, 5))
+	tween.tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 5, 0, 1))
 
 func attack():
 	if Game.phase < 3 or Game.main_scene.ui.create_bar_full == false:

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
-@onready var bg_texture: TextureRect = $TextureRect
+@onready var bg_texture: TextureRect = $BG
 @onready var sunlight: TextureRect = $Sunlight

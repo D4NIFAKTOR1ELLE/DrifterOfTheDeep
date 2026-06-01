@@ -16,37 +16,29 @@ anchor_bottom = 0.6898148
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_k0sq5")
-theme_override_constants/h_separation = 430
-theme_override_constants/v_separation = 40
 columns = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Control" type="Label" parent="GridContainer" unique_id=1315382684]
+[node name="Controls" type="RichTextLabel" parent="GridContainer" unique_id=637739802]
 layout_mode = 2
-text = "[←], [→]"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "[←], [→]
 
-[node name="CName" type="Label" parent="GridContainer" unique_id=1818822388]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "TURN"
-horizontal_alignment = 2
+[SPACE]
 
-[node name="Control3" type="Label" parent="GridContainer" unique_id=75597744]
-layout_mode = 2
-text = "[SPACE]"
+[R]"
+fit_content = true
+scroll_active = false
 
-[node name="CName3" type="Label" parent="GridContainer" unique_id=301552103]
+[node name="CNames" type="RichTextLabel" parent="GridContainer" unique_id=1341646007]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "SWIM FORWARD"
-horizontal_alignment = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+text = "TURN
 
-[node name="Control4" type="Label" parent="GridContainer" unique_id=546773249]
-layout_mode = 2
-text = "[R]"
+SWIM FORWARD
 
-[node name="CName4" type="Label" parent="GridContainer" unique_id=618595840]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-text = "RELOAD"
+RELOAD"
 horizontal_alignment = 2

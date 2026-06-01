@@ -189,32 +189,32 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Light:self_modulate")
+tracks/6/path = NodePath("Light:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Light:visible")
+tracks/7/path = NodePath("Light:color")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_flwdq"]
 resource_name = "attack"
-length = 2.0
-step = 0.05
+length = 1.6
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -222,7 +222,7 @@ tracks/0/path = NodePath("Area/AreaCollision:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.45),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(4, 4)]
@@ -234,7 +234,7 @@ tracks/1/path = NodePath("Area/AreaCollision:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.05, 1.65),
+"times": PackedFloat32Array(0.05, 1.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -246,34 +246,34 @@ tracks/2/path = NodePath("Light:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.7, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(4, 4)]
+"values": [Vector2(1, 1), Vector2(4, 4), Vector2(5, 5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Light:self_modulate")
+tracks/3/path = NodePath("Light:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.4),
+"times": PackedFloat32Array(0, 1.6),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"update": 1,
+"values": [true, false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Light:visible")
+tracks/4/path = NodePath("Light:color")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0, 0.7, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ii5tr"]
@@ -349,6 +349,7 @@ collision_mask = 4
 [node name="AreaCollision" type="CollisionShape2D" parent="Area" unique_id=1427602016]
 shape = SubResource("CircleShape2D_voh5p")
 disabled = true
+debug_color = Color(0, 0.6, 0.69803923, 0.18039216)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=158737799]
 sprite_frames = SubResource("SpriteFrames_ii5tr")
@@ -360,14 +361,10 @@ autoplay = "Idle"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236938901]
 libraries/ = SubResource("AnimationLibrary_voh5p")
 
-[node name="Light" type="TextureRect" parent="." unique_id=1802337140]
+[node name="Light" type="PointLight2D" parent="." unique_id=1379715932]
 visible = false
 modulate = Color(1, 1, 1, 0.52156866)
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-pivot_offset = Vector2(32, 32)
+color = Color(1, 1, 1, 0)
 texture = SubResource("GradientTexture2D_voh5p")
 
 [node name="Sound" type="AudioStreamPlayer" parent="." unique_id=121743431]

@@ -2,5 +2,6 @@
 
 [resource]
 default_font_size = 36
-GridContainer/constants/h_separation = 50
+GridContainer/constants/h_separation = 53
 Label/font_sizes/font_size = 44
+RichTextLabel/font_sizes/normal_font_size = 44
