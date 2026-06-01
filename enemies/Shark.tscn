@@ -223,7 +223,7 @@ z_index = -2
 script = ExtResource("1_unn7w")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
-position = Vector2(598, 400)
+position = Vector2(4, 53)
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_bk1cn")
 animation = &"Intro"

@@ -4,7 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dkkap6jipdiyd" path="res://assets/character/overworld_shark_spritesheet.png" id="2_psqmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psqmr"]
-size = Vector2(693, 340)
+size = Vector2(624, 340)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbwjg"]
+size = Vector2(737, 394)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psqmr"]
 atlas = ExtResource("2_psqmr")
@@ -67,34 +70,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("Sprite:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Idle"]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:visible")
+tracks/2/path = NodePath("Sprite:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -104,6 +95,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_kj55e"]
 resource_name = "appear"
 length = 2.0
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -111,22 +103,22 @@ tracks/0/path = NodePath("Sprite:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.89, 0.99, 1.1, 1.1999999, 1.3000001, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": []
+"values": [true, false, true, false, true, false, true, false, true, false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("Sprite:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.56666666),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Idle"]
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qbwjg"]
@@ -165,21 +157,26 @@ _data = {
 &"hurt": SubResource("Animation_qbwjg")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbwjg"]
-size = Vector2(757, 427)
-
 [node name="OverworldShark" type="CharacterBody2D" unique_id=2101403335]
 collision_layer = 4
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_psqmr")
 health = 5
-movement_speed = 200.0
+movement_speed = 190.0
 metadata/_custom_type_script = "uid://btgrxvtuyis2l"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2053282027]
-position = Vector2(2.5, 1)
+position = Vector2(22, 1)
 shape = SubResource("RectangleShape2D_psqmr")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=177749648]
+collision_mask = 2
+
+[node name="AreaCollision" type="CollisionShape2D" parent="Hitbox" unique_id=159832497]
+position = Vector2(11.5, 0)
+shape = SubResource("RectangleShape2D_qbwjg")
+debug_color = Color(0.81111896, 0.36907896, 0.48572594, 0.41960785)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1403179126]
 sprite_frames = SubResource("SpriteFrames_bk1cn")
@@ -191,13 +188,5 @@ libraries/ = SubResource("AnimationLibrary_qbwjg")
 [node name="Timer" type="Timer" parent="." unique_id=310119908]
 wait_time = 6.0
 autostart = true
-
-[node name="Hitbox" type="Area2D" parent="." unique_id=177749648]
-collision_mask = 2
-
-[node name="AreaCollision" type="CollisionShape2D" parent="Hitbox" unique_id=159832497]
-position = Vector2(1.5, 2.5)
-shape = SubResource("RectangleShape2D_qbwjg")
-debug_color = Color(0.81111896, 0.36907896, 0.48572594, 0.41960785)
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -5,6 +5,7 @@ class_name Player
 @onready var camera: Camera2D = $Camera2D
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var collision: CollisionShape2D = $Collision
 
 var movement_speed = 300.0
 var trajectory = 200
@@ -82,12 +83,16 @@ func attack():
 	if Game.phase < 3 or UI.create_bar_full == false:
 		return
 	
+	collision.set_deferred("disabled", true)
+	
 	stop(false)
 	
 	await UI.action_done()
 	
 	animation.play("attack")
 	await animation.animation_finished
+
+	collision.set_deferred("disabled", false)
 
 	stop(true)
 
@@ -110,9 +115,9 @@ func swim_movement(delta: float) -> void:
 
 	velocity = swim_direction * movement_speed
 
-	var collision = move_and_collide(velocity * delta)
+	var collider = move_and_collide(velocity * delta)
 
-	if collision:
+	if collider:
 		sprite.play("Hurt")
 		end_swim()
 		return

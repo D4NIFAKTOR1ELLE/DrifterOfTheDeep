@@ -3,8 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://la4yi4akt601" path="res://ui/Background.tscn" id="1_4r676"]
 [ext_resource type="TileSet" uid="uid://cu84twmhbfgc3" path="res://assets/collision.tres" id="1_k7ygh"]
 [ext_resource type="Script" uid="uid://3inh6h7nk50q" path="res://game/scene/main_scene.gd" id="1_srjx5"]
-[ext_resource type="PackedScene" uid="uid://6odattmngp3b" path="res://enemies/Shark.tscn" id="4_y45x4"]
-[ext_resource type="PackedScene" uid="uid://b0n28ivegjikm" path="res://game/characters/Jelly.tscn" id="5_lo2xg"]
 [ext_resource type="AudioStream" uid="uid://2c7nfo7hcdsc" path="res://assets/music/tunetank-aerials-piano-ambient-music-412757.mp3" id="5_y45x4"]
 
 [node name="MainScene" type="TileMapLayer" unique_id=2133395631]
@@ -20,18 +18,12 @@ z_index = -2
 
 [node name="Enemies" type="Node2D" parent="." unique_id=772926756]
 
-[node name="Shark" parent="Enemies" unique_id=2103410291 instance=ExtResource("4_y45x4")]
-layer = 0
-
 [node name="Spawn" type="Marker2D" parent="." unique_id=771486536]
 position = Vector2(3152, 3166)
 
 [node name="Timer" type="Timer" parent="." unique_id=452056012]
 wait_time = 3.0
 autostart = true
-
-[node name="Jelly" parent="." unique_id=1263766328 instance=ExtResource("5_lo2xg")]
-position = Vector2(546, 379)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1619061610]
 stream = ExtResource("5_y45x4")

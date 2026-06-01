@@ -31,6 +31,7 @@ func get_camera_rect() -> Rect2:
 func next_phase():
 	Game.phase += 1
 	timer.stop()
+	player.stop(false)
 	for enemy in enemies.get_children():
 		if enemy is Enemy:
 			enemy.die()
@@ -51,20 +52,25 @@ func next_phase():
 			await colour_transition(Color(0.45, 0.647, 0.73, 1.0), Color(1.0, 1.0, 1.0, 0.4),)
 			
 			timer.start()
+			player.stop(true)
 		3:
 			player.creation_changed.disconnect(UI.update_bar2)
 			
 			await colour_transition(Color(0.082, 0.287, 0.402, 1.0), Color(1.0, 1.0, 1.0, 0))
 			
+			var tween2: Tween = create_tween()
+			tween2.tween_property(UI.bar3, "value", UI.bar3.max_value, 3)
+			
 			var shark: Shark = load("res://enemies/Shark.tscn").instantiate()
 			enemies.add_child(shark)
+			shark.global_position = player.global_position
 			shark.animation.play("intro")
 			await shark.animation.animation_finished
+			player.stop(true)
 			overworld_shark = load("res://enemies/OverworldShark.tscn").instantiate()
 			enemies.add_child(overworld_shark)
-			overworld_shark.global_position = spawn.global_position
-			
-			timer.start()
+			overworld_shark.global_position = player.global_position + Vector2(700, 700)
+			timer.start(true)
 
 func colour_transition(colour: Color, alpha: Color):
 	player.animation.play("descend")

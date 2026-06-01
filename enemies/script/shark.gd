@@ -2,5 +2,5 @@ extends Node2D
 
 class_name Shark
 
-@onready var sprite: AnimatedSprite2D = $Shark/Sprite
-@onready var animation: AnimationPlayer = $Shark/AnimationPlayer
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var animation: AnimationPlayer = $AnimationPlayer

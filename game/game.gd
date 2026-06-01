@@ -7,13 +7,18 @@ var deaths = 0
 var phase = 1
 
 func start_game():
-	player = load("res://game/characters/Jelly.tscn").instantiate()
-	main_scene = load("res://game/scene/MainScene.tscn").instantiate()
+	UI.visible = true
+	player = Globals.jelly.instantiate()
+	main_scene = Globals.main_scene.instantiate()
 	
 	add_child(main_scene)
 	main_scene.add_child(player)
 	player.global_position = main_scene.spawn.global_position
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
+	
+	Game.phase = 2
+	main_scene.next_phase()
+	
 	UI.initialise()
 
 func set_camera_limits(map: Control, camera: Camera2D):
@@ -29,7 +34,8 @@ func set_camera_limits(map: Control, camera: Camera2D):
 
 func respawn():
 	for enemy in main_scene.enemies.get_children():
-		enemy.queue_free()
+		if enemy.name != "OverworldShark":
+			enemy.queue_free()
 	
 	player.global_position = main_scene.spawn.global_position
 	deaths += 1
@@ -39,9 +45,12 @@ func respawn():
 	player.health_changed.emit()
 
 func finish_game():
+	UI.visible = false
 	set_physics_process(false)
 	UI.transition.fade_in()
 	await UI.transition.animplayer.animation_finished
+	
+	await get_tree().create_timer(2).timeout
 	
 	var new_end: CanvasLayer = Globals.end_screen.instantiate()
 	add_child(new_end)
