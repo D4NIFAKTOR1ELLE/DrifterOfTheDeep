@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="ProjectTemplate"
+config/name="Drifter of the Deep"
 run/main_scene="uid://bpyhjseyq21qq"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0.13433838, 0.23692922, 0.27734375, 1)
 
 [audio]
 

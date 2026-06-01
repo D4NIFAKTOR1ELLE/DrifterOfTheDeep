@@ -54,6 +54,7 @@ func finish_game():
 	add_child(new_end)
 	
 	main_scene.queue_free()
+	Globals.reset_game()
 	
 	UI.transition.hide()
 

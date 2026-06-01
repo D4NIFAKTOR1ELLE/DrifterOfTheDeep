@@ -19,3 +19,7 @@ var normal_creations: Array = [
 	preload("res://enemies/MSPaintFish.tscn"),
 	preload("res://enemies/ValFish.tscn")
 ]
+
+func reset_game():
+	Game.phase = 1
+	UI.objective.text = "[[color=yellow]OBJECTIVE[/color]] COLLECT IDEAS TO CREATE 3 DRAWINGS."

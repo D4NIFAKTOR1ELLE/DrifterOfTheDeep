@@ -34,28 +34,21 @@ metadata/_edit_use_anchors_ = true
 [node name="TextureRect" type="TextureRect" parent="BG" unique_id=2028572507]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.9576099
-anchor_top = 1.2927783
-anchor_right = 0.9576099
-anchor_bottom = 1.2927783
-offset_left = -1027.2764
-offset_top = -847.86865
-offset_right = 124.72363
-offset_bottom = -199.86859
+anchor_left = 0.08184143
+anchor_top = 0.025411062
+anchor_right = 1.0639386
+anchor_bottom = 0.994021
 texture = ExtResource("4_nqo7y")
+metadata/_edit_use_anchors_ = true
 
 [node name="BG2" type="TextureRect" parent="BG" unique_id=621659192]
 self_modulate = Color(1, 1, 1, 0.4392157)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.011284722
-anchor_top = -0.013888889
-anchor_right = 1.0095487
-anchor_bottom = 1.0231482
-offset_left = 13.270833
-offset_top = 9.333333
-offset_right = 13.270874
-offset_bottom = 9.333313
+anchor_left = 2.8861454e-05
+anchor_top = 6.228106e-05
+anchor_right = 1.0208622
+anchor_bottom = 1.0370994
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_tkj42")
@@ -123,14 +116,10 @@ text = "0"
 [node name="ReturnToStart" type="Button" parent="BG" unique_id=1617985796]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.04203964
-anchor_top = 0.79233795
-anchor_right = 0.41799873
-anchor_bottom = 0.94779384
-offset_left = 1.6875
-offset_top = -7.0740967
-offset_right = 1.6875
-offset_bottom = -7.0740967
+anchor_left = 0.043478258
+anchor_top = 0.78176385
+anchor_right = 0.41943735
+anchor_bottom = 0.93721974
 text = "RETURN TO START"
 metadata/_edit_use_anchors_ = true
 

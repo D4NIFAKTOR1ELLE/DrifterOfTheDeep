@@ -2,22 +2,27 @@ extends CanvasLayer
 
 var completion_time
 
+@onready var return_to_start: Button = $BG/ReturnToStart
+@onready var grid_container: GridContainer = $BG/GridContainer
+@onready var title: RichTextLabel = $BG/Title
+@onready var completion: Label = $BG/GridContainer/CompletionTime
+@onready var deaths: Label = $BG/GridContainer/Deaths
+
 func _ready() -> void:
 	set_process_input(false)
 
-	$BG/QuitMessage.hide()
-	$BG/ReturnToStart.hide()
-	for element in $BG/GridContainer.get_children():
+	return_to_start.hide()
+	for element in grid_container.get_children():
 		element.hide()
 	
 	completion_time = Game.time_elapsed
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 
-	$BG/Title.show()
+	title.show()
 
-	$BG/GridContainer/CompletionTime.text = _format_seconds(completion_time)
-	$BG/GridContainer/Deaths.text = "%d" % Game.deaths
+	completion.text = _format_seconds(completion_time)
+	deaths.text = "%d" % Game.deaths
 	
 	await get_tree().create_timer(2).timeout
 	
@@ -31,14 +36,13 @@ func _format_seconds(time: float) -> String:
 	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 
 func reveal():
-	for element in $BG/GridContainer.get_children():
+	for element in grid_container.get_children():
 		element.show()
 	
 		await get_tree().create_timer(1).timeout
 		
 	await get_tree().create_timer(1).timeout
-	$BG/QuitMessage.show()
-	$BG/ReturnToStart.show()
+	return_to_start.show()
 	set_process_input(true)
 
 func _on_return_to_start_pressed() -> void:
