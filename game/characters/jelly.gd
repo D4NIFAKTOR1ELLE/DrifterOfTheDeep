@@ -25,7 +25,9 @@ var swim_direction := Vector2.ZERO
 var swim_distance_remaining := 0.0
 
 signal health_changed
+@warning_ignore("unused_signal")
 signal creation_changed
+@warning_ignore("unused_signal")
 signal idea_changed
 
 func _physics_process(delta: float) -> void:
@@ -46,27 +48,29 @@ func end_swim() -> void:
 	
 	sprite.play("Idle")
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("swim"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("swim"):
 		swim()
-	if Input.is_action_just_pressed("create") and ideas_collected >= max_idea_level:
+	if event.is_action_pressed("create") and ideas_collected >= max_idea_level:
 		create()
-	if Input.is_action_just_pressed("heal"):
+	if event.is_action_pressed("heal"):
 		heal()
-	if Input.is_action_just_pressed("attack"):
+	if event.is_action_pressed("attack"):
 		attack()
-	if Input.is_action_just_pressed("reload"):
+	if event.is_action_pressed("reload"):
 		await die()
 		Game.deaths = Game.deaths - 1
 		sprite.modulate = Color.WHITE
-	if Input.is_action_just_pressed("j"):
+	if event.is_action_pressed("j"):
 		sprite.modulate = Color.LAWN_GREEN
-	if Input.is_action_just_pressed("a"):
-		sprite.modulate = Color.MEDIUM_PURPLE
-	if Input.is_action_just_pressed("c"):
+	if event.is_action_pressed("a"):
+		sprite.modulate = Color.BEIGE
+	if event.is_action_pressed("c"):
 		sprite.modulate = Color.DODGER_BLUE
-	if Input.is_action_just_pressed("v"):
+	if event.is_action_pressed("v"):
 		sprite.modulate = Color.DARK_RED
+	if event.is_action_pressed("m"):
+		sprite.modulate = Color.MEDIUM_PURPLE
 
 func heal():
 	if Game.phase < 2 or UI.create_bar_full == false:
@@ -174,8 +178,9 @@ func create():
 	stop(true)
 
 func stop(enable: bool = false):
-	set_physics_process(enable)
-	set_process_input(enable)
+	if !Game.main_scene.scene_transition:
+		set_physics_process(enable)
+		set_process_input(enable)
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:

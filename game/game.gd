@@ -3,8 +3,8 @@ extends Node
 var player: Player
 var main_scene: MainScene
 var time_elapsed: float = 0
-var deaths = 0
-var phase = 1
+var deaths: int = 0
+var phase: int = 1
 
 func start_game():
 	UI.visible = true

@@ -11,6 +11,7 @@ class_name MainScene
 @onready var player: Player = Game.player
 
 var overworld_shark: CharacterBody2D
+var scene_transition: bool = false
 
 func random_idea_spawn():
 	var screen_rect: Rect2 = get_camera_rect()
@@ -29,9 +30,10 @@ func get_camera_rect() -> Rect2:
 	return Rect2(pos - half_size, pos + half_size)
 
 func next_phase():
+	player.stop(false)
+	scene_transition = true
 	Game.phase += 1
 	timer.stop()
-	player.stop(false)
 	for enemy in enemies.get_children():
 		if enemy is Enemy:
 			enemy.die()
@@ -52,7 +54,6 @@ func next_phase():
 			await colour_transition(Color(0.45, 0.647, 0.73, 1.0), Color(1.0, 1.0, 1.0, 0.4),)
 			
 			timer.start()
-			player.stop(true)
 		3:
 			player.creation_changed.disconnect(UI.update_bar2)
 			
@@ -66,11 +67,13 @@ func next_phase():
 			shark.global_position = player.global_position
 			shark.animation.play("intro")
 			await shark.animation.animation_finished
-			player.stop(true)
 			overworld_shark = load("res://enemies/OverworldShark.tscn").instantiate()
 			enemies.add_child(overworld_shark)
 			overworld_shark.global_position = player.global_position + Vector2(700, 700)
 			timer.start(true)
+	
+	scene_transition = false
+	player.stop(true)
 
 func colour_transition(colour: Color, alpha: Color):
 	player.animation.play("descend")
