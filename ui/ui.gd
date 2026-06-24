@@ -91,9 +91,6 @@ func create_done():
 	tween.tween_property(
 		create_prompt, "self_modulate", Color.TRANSPARENT, 0.5
 	).from(Color.WHITE)
-	tween.tween_property(
-		create_prompt, "global_position:y", create_prompt_position.y, 0.5
-	).from(create_prompt_position.y)
 	
 	await tween.finished
 	create_prompt.set_visible(true)
