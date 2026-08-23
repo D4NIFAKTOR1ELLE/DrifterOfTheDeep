@@ -14,12 +14,12 @@ script = ExtResource("1_srjx5")
 [node name="Background" parent="." unique_id=20666422 instance=ExtResource("1_4r676")]
 z_index = -2
 
-[node name="Ideas" type="Node2D" parent="." unique_id=1074232102]
+[node name="Ideas" type="Node" parent="." unique_id=523257558]
 
-[node name="Enemies" type="Node2D" parent="." unique_id=772926756]
+[node name="Enemies" type="Node" parent="." unique_id=1421116671]
 
 [node name="Spawn" type="Marker2D" parent="." unique_id=771486536]
-position = Vector2(3152, 3166)
+position = Vector2(3186, 3778)
 
 [node name="Timer" type="Timer" parent="." unique_id=452056012]
 wait_time = 3.0

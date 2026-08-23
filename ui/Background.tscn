@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://bm20a7idyv6nv" path="res://ui/background.gd" id="1_tk0ko"]
 [ext_resource type="Texture2D" uid="uid://durfuyy6mggt7" path="res://assets/background/background.png" id="2_yhyie"]
 [ext_resource type="Texture2D" uid="uid://byib3o7hoxa1n" path="res://assets/background/sunlight.png" id="3_8qoeo"]
+[ext_resource type="Texture2D" uid="uid://dfob5wspha4fd" path="res://assets/background/parallax_middle.png" id="5_72xnu"]
+[ext_resource type="Texture2D" uid="uid://cxt8q4d35maj0" path="res://assets/background/parallax_front.png" id="6_xda7n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4818f"]
 blend_mode = 2
@@ -28,23 +30,52 @@ self_modulate = Color(0.16862746, 0.48235294, 0.5019608, 0.078431375)
 material = SubResource("CanvasItemMaterial_4818f")
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.98961055
-anchor_top = -0.8972928
-anchor_right = 0.14813386
-anchor_bottom = 0.22004804
-offset_left = 5981.1387
-offset_top = 3741.211
-offset_right = 5981.137
-offset_bottom = 3741.2095
+anchor_left = -0.13700001
+anchor_top = -0.11800001
+anchor_right = 1.001
+anchor_bottom = 1.0
+offset_left = 1.7810669
+offset_top = 2.1640625
+offset_right = -0.013183594
+offset_bottom = -1.0
 texture = ExtResource("2_yhyie")
 metadata/_edit_use_anchors_ = true
 
 [node name="Sunlight" type="TextureRect" parent="." unique_id=362450794]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.005561101
-anchor_top = -0.16652772
-anchor_right = 0.8685185
-anchor_bottom = 0.9660564
+anchor_left = 0.021103665
+anchor_top = -0.12150896
+anchor_right = 0.8164837
+anchor_bottom = 0.9352102
 texture = ExtResource("3_8qoeo")
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1915914007]
+scroll_scale = Vector2(0.3, 0.02)
+repeat_size = Vector2(900, 0)
+repeat_times = 3
+
+[node name="ParallaxMiddle" type="TextureRect" parent="Parallax2D" unique_id=1751706556]
+modulate = Color(1, 1, 1, 0.43529412)
+offset_top = 139.0
+offset_right = 900.0
+offset_bottom = 738.0
+texture = ExtResource("5_72xnu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=178266253]
+scroll_scale = Vector2(0.5, 0.01)
+repeat_size = Vector2(1152, 0)
+repeat_times = 4
+
+[node name="ParallaxFront" type="TextureRect" parent="Parallax2D2" unique_id=290908749]
+self_modulate = Color(1, 1, 1, 0.5372549)
+offset_top = 43.0
+offset_right = 1152.0
+offset_bottom = 691.0
+texture = ExtResource("6_xda7n")
+expand_mode = 1
+stretch_mode = 5

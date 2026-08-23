@@ -1,23 +1,18 @@
 extends Area2D
 
-@onready var sprite = $Sprite
+@onready var sprite: Sprite2D = $Sprite
 @onready var collision: CollisionShape2D = $Collision
 
 @onready var player: Player = Game.player
 
-func _ready():
-	var tween: Tween = create_tween()
-	tween.tween_property(
-		sprite,
-		"self_modulate",
-		Color.WHITE,
-		0.2).from(Color.TRANSPARENT)
+func _ready() -> void:
+	create_tween().tween_property(sprite, "self_modulate", Color.WHITE, 0.2).from(Color.TRANSPARENT)
 
 func  _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		collect()
 
-func collect():
+func collect() -> void:
 	$Sound.play()
 	if player.ideas_collected < player.max_idea_level:
 		player.ideas_collected += 1
@@ -26,7 +21,7 @@ func collect():
 	await die()
 	queue_free()
 
-func die():
+func die() -> void:
 	collision.set_deferred("disabled", true)
 	var tween: Tween = create_tween().set_parallel(true)
 	tween.tween_property(sprite, "scale", Vector2(1.3, 1.3), 0.3)

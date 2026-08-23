@@ -10,6 +10,7 @@ func start_game():
 	UI.visible = true
 	player = Globals.jelly.instantiate()
 	main_scene = Globals.main_scene.instantiate()
+	main_scene.player = player
 	
 	add_child(main_scene)
 	main_scene.add_child(player)

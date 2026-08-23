@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	if cooldown:
 		swim_movement(delta)
 	else:
-		var rotation_direction = Input.get_axis("left", "right")
+		var rotation_direction: float = Input.get_axis("left", "right")
 		rotation += rotation_direction * rotation_speed * delta
 	
 	move_and_slide()
@@ -72,7 +72,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("m"):
 		sprite.modulate = Color.MEDIUM_PURPLE
 
-func heal():
+func heal() -> void:
 	if Game.phase < 2 or UI.create_bar_full == false:
 		return
 	
@@ -83,7 +83,7 @@ func heal():
 	var tween: Tween = create_tween()
 	tween.tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 5, 0, 1))
 
-func attack():
+func attack() -> void:
 	if Game.phase < 3 or UI.create_bar_full == false:
 		return
 	
@@ -100,7 +100,7 @@ func attack():
 
 	stop(true)
 
-func swim():
+func swim() -> void:
 	if cooldown:
 		return
 
@@ -131,7 +131,7 @@ func swim_movement(delta: float) -> void:
 	if swim_distance_remaining <= 0.0:
 		end_swim()
 
-func take_damage(damage: int):
+func take_damage(damage: int) -> void:
 	velocity = Vector2.ZERO
 	health = health - damage
 	health_changed.emit()
@@ -145,7 +145,7 @@ func take_damage(damage: int):
 	else:
 		sprite.play("Hurt")
 
-func die():
+func die() -> void:
 	stop(false)
 	UI.transition.fade_in()
 	await UI.transition.animplayer.animation_finished
@@ -155,7 +155,7 @@ func die():
 	stop(true)
 	UI.transition.fade_out()
 
-func create():
+func create() -> void:
 	end_swim()
 	stop(false)
 	
@@ -177,7 +177,10 @@ func create():
 	sprite.play("Idle")
 	stop(true)
 
-func stop(enable: bool = false):
+func iframes():
+	pass
+
+func stop(enable: bool = false) -> void:
 	if !Game.main_scene.scene_transition:
 		set_physics_process(enable)
 		set_process_input(enable)

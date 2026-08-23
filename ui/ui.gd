@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@onready var bar1: ProgressBar = $Container/Bar1
-@onready var bar2: ProgressBar = $Container/Bar2
-@onready var bar3: ProgressBar = $Container/Bar3
+@onready var bar1: ProgressBar = $ProgressBarsMask/Container/Bar1
+@onready var bar2: ProgressBar = $ProgressBarsMask/Container/Bar2
+@onready var bar3: ProgressBar = $ProgressBarsMask/Container/Bar3
 @onready var objective: RichTextLabel = $Objective
 
 @onready var health_box: TextureRect = $Health

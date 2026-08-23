@@ -3,8 +3,8 @@ extends Node2D
 class_name MainScene
 
 @onready var background: Control = $Background
-@onready var ideas: Node2D = $Ideas
-@onready var enemies: Node2D = $Enemies
+@onready var ideas: Node = $Ideas
+@onready var enemies: Node = $Enemies
 @onready var timer: Timer = $Timer
 @onready var spawn: Marker2D = $Spawn
 
@@ -13,23 +13,7 @@ class_name MainScene
 var overworld_shark: CharacterBody2D
 var scene_transition: bool = false
 
-func random_idea_spawn():
-	var screen_rect: Rect2 = get_camera_rect()
-	for i in range(6):
-		var new_idea = Globals.idea.instantiate()
-		new_idea.global_position = Vector2(
-			randf_range(screen_rect.position.x, screen_rect.end.x),
-			randf_range(screen_rect.position.y, screen_rect.end.y)
-		)
-		
-		ideas.add_child(new_idea)
-
-func get_camera_rect() -> Rect2:
-	var pos = player.camera.get_target_position()
-	var half_size = player.camera.get_viewport_rect().size * 0.5
-	return Rect2(pos - half_size, pos + half_size)
-
-func next_phase():
+func next_phase() -> void:
 	player.stop(false)
 	scene_transition = true
 	Game.phase += 1
@@ -51,16 +35,15 @@ func next_phase():
 			player.creation_changed.disconnect(UI.update_bar1)
 			player.creation_changed.connect(UI.update_bar2)
 			
-			await colour_transition(Color(0.45, 0.647, 0.73, 1.0), Color(1.0, 1.0, 1.0, 0.4),)
+			await background.colour_transition(player, Color(0.45, 0.647, 0.73, 1.0), Color(1.0, 1.0, 1.0, 0.4),)
 			
 			timer.start()
 		3:
 			player.creation_changed.disconnect(UI.update_bar2)
 			
-			await colour_transition(Color(0.082, 0.287, 0.402, 1.0), Color(1.0, 1.0, 1.0, 0))
+			await background.colour_transition(player, Color(0.082, 0.287, 0.402, 1.0), Color(1.0, 1.0, 1.0, 0))
 			
-			var tween2: Tween = create_tween()
-			tween2.tween_property(UI.bar3, "value", UI.bar3.max_value, 3)
+			create_tween().tween_property(UI.bar3, "value", UI.bar3.max_value, 3)
 			
 			var shark: Shark = load("res://enemies/Shark.tscn").instantiate()
 			enemies.add_child(shark)
@@ -75,18 +58,27 @@ func next_phase():
 	scene_transition = false
 	player.stop(true)
 
-func colour_transition(colour: Color, alpha: Color):
-	player.animation.play("descend")
-	var tween: Tween = create_tween().set_parallel(true)
-	tween.tween_property(background.bg_texture, "self_modulate", colour, 2)
-	tween.tween_property(background.sunlight, "self_modulate", alpha, 2)
-	await player.animation.animation_finished
-
 func _on_timer_timeout() -> void:
-	await random_idea_spawn()
-	
-	timer.start()
+	random_idea_spawn()
 
 func _on_child_exiting_tree(node: Node) -> void:
 	if node.name == "OverworldShark":
 		Game.finish_game()
+
+func get_camera_rect() -> Rect2:
+	var pos: Vector2 = player.camera.get_target_position()
+	var half_size: Vector2 = player.camera.get_viewport_rect().size * 0.5
+	return Rect2(pos - half_size, pos + half_size)
+
+func random_idea_spawn() -> void:
+	var screen_rect: Rect2 = get_camera_rect()
+	for i: int in range(6):
+		var new_idea: Area2D = Globals.idea.instantiate()
+		new_idea.global_position = Vector2(
+			randf_range(screen_rect.position.x, screen_rect.end.x),
+			randf_range(screen_rect.position.y, screen_rect.end.y)
+		)
+		
+		ideas.add_child(new_idea)
+	
+	timer.start()
