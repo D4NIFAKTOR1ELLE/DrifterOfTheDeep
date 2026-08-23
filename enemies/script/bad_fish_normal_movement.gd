@@ -1,6 +1,6 @@
 extends Enemy
 
-@onready var player = Game.player
+@onready var player: Player = Game.player
 
 func _physics_process(_delta: float) -> void:
 	look_at(player.global_position)

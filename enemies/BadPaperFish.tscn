@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b74lxhfbxh6vf"]
 
-[ext_resource type="Script" uid="uid://bp1y0rd1g003t" path="res://enemies/script/bad_paper_fish.gd" id="1_ysxld"]
+[ext_resource type="Script" uid="uid://bp1y0rd1g003t" path="res://enemies/script/bad_fish_normal_movement.gd" id="1_ysxld"]
 [ext_resource type="Texture2D" uid="uid://xmqiroh0dgmh" path="res://assets/character/bad_paper_fish.png" id="2_ysxld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
