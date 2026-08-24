@@ -3,19 +3,39 @@
 [ext_resource type="Script" uid="uid://cxq0btv3whq5q" path="res://ui/script/end_screen.gd" id="1_tkj42"]
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_tkj42"]
 [ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_ys8tm"]
-[ext_resource type="Texture2D" uid="uid://14wllvnjfkkt" path="res://assets/background/end_screen.png" id="4_nqo7y"]
-
-[sub_resource type="Gradient" id="Gradient_nqo7y"]
-offsets = PackedFloat32Array(0, 0.57831323)
-colors = PackedColorArray(0, 0, 0, 1, 0.02, 0.02, 0.02, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nqo7y"]
-gradient = SubResource("Gradient_nqo7y")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(1, 0.3478261)
+[ext_resource type="Texture2D" uid="uid://c53dwts5hwhs5" path="res://assets/background/parallax_middle_colour.png" id="4_vv6ak"]
+[ext_resource type="Texture2D" uid="uid://ewcxu12ipugb" path="res://assets/background/parallax_front_colour.png" id="5_xylaj"]
+[ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="6_xylaj"]
 
 [sub_resource type="Theme" id="Theme_ys8tm"]
 Label/font_sizes/font_size = 34
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk2s0"]
+atlas = ExtResource("6_xylaj")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i6n0"]
+atlas = ExtResource("6_xylaj")
+region = Rect2(160, 80, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hvmog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk2s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i6n0")
+}],
+"loop": true,
+"name": &"Goodbye",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Sleepy",
+"speed": 5.0
+}]
 
 [node name="EndScreen" type="CanvasLayer" unique_id=64261227]
 script = ExtResource("1_tkj42")
@@ -31,45 +51,41 @@ theme = ExtResource("2_tkj42")
 texture = ExtResource("3_ys8tm")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="BG" unique_id=2028572507]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.08184143
-anchor_top = 0.025411062
-anchor_right = 1.0639386
-anchor_bottom = 0.994021
-texture = ExtResource("4_nqo7y")
-metadata/_edit_use_anchors_ = true
+[node name="Parallax2D" type="Parallax2D" parent="BG" unique_id=172230816]
+scroll_offset = Vector2(10, 10)
+repeat_size = Vector2(1455, 0)
+autoscroll = Vector2(10, 0)
+repeat_times = 3
 
-[node name="BG2" type="TextureRect" parent="BG" unique_id=621659192]
-self_modulate = Color(1, 1, 1, 0.4392157)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 2.8861454e-05
-anchor_top = 6.228106e-05
-anchor_right = 1.0208622
-anchor_bottom = 1.0370994
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_tkj42")
-texture = ExtResource("3_ys8tm")
-metadata/_edit_use_anchors_ = true
+[node name="ParallaxMiddle" type="TextureRect" parent="BG/Parallax2D" unique_id=846465735]
+offset_left = 1305.0
+offset_top = -51.0
+offset_right = 2760.0
+offset_bottom = 686.0
+texture = ExtResource("4_vv6ak")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="BG/BG2" unique_id=1530501955]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.7814626
-anchor_bottom = 1.0104166
-texture = SubResource("GradientTexture2D_nqo7y")
-metadata/_edit_use_anchors_ = true
+[node name="Parallax2D2" type="Parallax2D" parent="BG" unique_id=1568633880]
+repeat_size = Vector2(1309, 0)
+autoscroll = Vector2(20, 0)
+repeat_times = 2
+
+[node name="ParallaxFront" type="TextureRect" parent="BG/Parallax2D2" unique_id=648415943]
+offset_top = -13.0
+offset_right = 1309.0
+offset_bottom = 813.0
+texture = ExtResource("5_xylaj")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Title" type="RichTextLabel" parent="BG" unique_id=1815335575]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03720872
-anchor_top = 0.08839201
-anchor_right = 0.47540137
-anchor_bottom = 0.30444136
+anchor_top = 0.07792864
+anchor_right = 0.95110464
+anchor_bottom = 0.29397798
 offset_left = 6.3541718
 offset_top = 7.8657417
 offset_right = 6.354187
@@ -78,10 +94,12 @@ grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 62
 bbcode_enabled = true
 text = "YOU GOT YOUR INSPIRATION BACK!"
+horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="GridContainer" type="GridContainer" parent="BG" unique_id=1727580139]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03918015
@@ -112,6 +130,11 @@ text = "ATTEMPTS"
 [node name="Deaths" type="Label" parent="BG/GridContainer" unique_id=936380102]
 layout_mode = 2
 text = "0"
+
+[node name="Jelly" type="AnimatedSprite2D" parent="BG" unique_id=996224415]
+position = Vector2(583.1206, 302.87833)
+sprite_frames = SubResource("SpriteFrames_hvmog")
+animation = &"Goodbye"
 
 [node name="ReturnToStart" type="Button" parent="BG" unique_id=1617985796]
 layout_mode = 1

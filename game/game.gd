@@ -23,7 +23,7 @@ func set_camera_limits(map: Control, camera: Camera2D):
 	if map == null:
 		return
 	
-	var map_limits = map.get_rect()
+	var map_limits: Rect2i = map.get_rect()
 	
 	camera.set_limit(SIDE_LEFT, map_limits.position.x)
 	camera.set_limit(SIDE_RIGHT, map_limits.end.x)

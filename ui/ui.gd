@@ -43,7 +43,7 @@ func update_bar2() -> void:
 	if player.creation_count >= bar2.max_value:
 		ui_next_phase("\n[[color=yellow]A[/color]] [color=yellow]ATTACK[/color]", "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK.")
 
-func update_bar3():
+func update_bar3() -> void:
 	bar3.value = Game.main_scene.overworld_shark.health
 	
 	if bar3.value >= bar3.max_value:
@@ -57,7 +57,7 @@ func ui_next_phase(create_prompt_text: String, objective_text: String) -> void:
 	player.creation_count = 0
 	create_tween().tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
-func update_health():
+func update_health() -> void:
 	health_box.modulate = Color.WHITE
 	
 	health_bar.value = player.health
@@ -70,14 +70,14 @@ func update_idea():
 	if idea_level.value == player.max_idea_level:
 		create_ready()
 
-func create_ready():
+func create_ready() -> void:
 	if create_bar_full:
 		return
 	create_bar_full = true
 	create_prompt.set_visible(true)
 	create_tween().set_parallel(true).tween_property(create_prompt, "self_modulate", Color.WHITE, 0.2).from(Color.TRANSPARENT)
 
-func create_done():
+func create_done() -> void:
 	var tween: Tween = create_tween().set_parallel(true)
 	tween.tween_property(create_prompt, "self_modulate", Color.TRANSPARENT, 0.5).from(Color.WHITE)
 	
@@ -85,7 +85,7 @@ func create_done():
 	create_prompt.set_visible(true)
 	create_bar_full = false
 
-func action_done(specifier: String):
+func action_done(specifier: String) -> void:
 	player.get_node("Sound2").play()
 	if specifier != "heal":
 		create_tween().tween_property(idea_level, "value", 0, 3.5).from(idea_level.max_value)

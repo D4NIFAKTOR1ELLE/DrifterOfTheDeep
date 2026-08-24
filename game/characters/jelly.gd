@@ -7,22 +7,21 @@ class_name Player
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var collision: CollisionShape2D = $Collision
 
-var movement_speed = 300.0
-var trajectory = 200
+var movement_speed: float = 300.0
+var trajectory: float = 200
 var rotation_speed: float = PI / 1.7
 
 const max_health: int = 5
 var health: int = 5
-
 var ideas_collected: int = 0
 var max_idea_level: int = 4
-
 var creation_count: int = 0
 
 var cooldown: bool = false
+var invulnerable: bool = false
 
-var swim_direction := Vector2.ZERO
-var swim_distance_remaining := 0.0
+var swim_direction: Vector2 = Vector2.ZERO
+var swim_distance_remaining: float = 0.0
 
 signal health_changed
 @warning_ignore("unused_signal")
@@ -87,18 +86,14 @@ func attack() -> void:
 	if Game.phase < 3 or UI.create_bar_full == false:
 		return
 	
-	collision.set_deferred("disabled", true)
-	
 	stop(false)
 	
 	await UI.action_done("attack")
 	
 	animation.play("attack")
 	await animation.animation_finished
-
-	collision.set_deferred("disabled", false)
-
-	stop(true)
+	
+	invulnerable = true
 
 func swim() -> void:
 	if cooldown:
@@ -113,13 +108,10 @@ func swim() -> void:
 	$Sound.play()
 
 func swim_movement(delta: float) -> void:
-	var frame_distance = movement_speed * delta
-
-	frame_distance = min(frame_distance, swim_distance_remaining)
-
+	var frame_distance: float = min(movement_speed * delta, swim_distance_remaining)
 	velocity = swim_direction * movement_speed
 
-	var collider = move_and_collide(velocity * delta)
+	var collider: KinematicCollision2D = move_and_collide(velocity * delta)
 
 	if collider:
 		sprite.play("Hurt")
@@ -132,13 +124,13 @@ func swim_movement(delta: float) -> void:
 		end_swim()
 
 func take_damage(damage: int) -> void:
+	if invulnerable:
+		return
+	
 	velocity = Vector2.ZERO
 	health = health - damage
 	health_changed.emit()
-	var tween: Tween = create_tween()
-	tween.tween_property(sprite,
-		"self_modulate",
-		Color.WHITE, 0.3).from(Color(0.631, 0.345, 0.325))
+	create_tween().tween_property(sprite, "self_modulate", Color.WHITE, 0.3).from(Color(0.631, 0.345, 0.325))
 
 	if health <= 0:
 		die()
@@ -171,14 +163,11 @@ func create() -> void:
 	
 	await tween.finished
 	
-	var new_creation = Globals.creation.instantiate()
+	var new_creation: Node2D = Globals.creation.instantiate()
 	Game.main_scene.enemies.add_child(new_creation)
 	
 	sprite.play("Idle")
 	stop(true)
-
-func iframes():
-	pass
 
 func stop(enable: bool = false) -> void:
 	if !Game.main_scene.scene_transition:
