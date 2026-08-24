@@ -35,39 +35,27 @@ func update_bar1() -> void:
 	bar1.value = player.creation_count
 	
 	if player.creation_count >= bar1.max_value:
-		create_tween().tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
-		await Game.main_scene.next_phase()
-		create_prompt.append_text("\n[[color=yellow]H[/color]] [color=yellow]HEAL[/color]")
-		objective.text = "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS."
-		player.creation_count = 0
-		create_tween().tween_property(objective, "self_modulate", Color.WHITE, 0.7)
-
-func update_bar(bar: ProgressBar) -> void:
-	bar1.value = player.creation_count
-	
-	if player.creation_count >= bar1.max_value:
-		create_tween().tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
-		await Game.main_scene.next_phase()
-		create_prompt.append_text("\n[[color=yellow]H[/color]] [color=yellow]HEAL[/color]")
-		objective.text = "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS."
-		player.creation_count = 0
-		create_tween().tween_property(objective, "self_modulate", Color.WHITE, 0.7)
+		ui_next_phase("\n[[color=yellow]H[/color]] [color=yellow]HEAL[/color]", "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS.")
 
 func update_bar2() -> void:
 	bar2.value = player.creation_count
 	
 	if player.creation_count >= bar2.max_value:
-		create_tween().tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
-		await Game.main_scene.next_phase()
-		create_prompt.append_text("\n[[color=yellow]A[/color]] [color=yellow]ATTACK[/color]")
-		objective.text = "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK."
-		create_tween().tween_property(objective, "self_modulate", Color.WHITE, 0.7)
+		ui_next_phase("\n[[color=yellow]A[/color]] [color=yellow]ATTACK[/color]", "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK.")
 
 func update_bar3():
 	bar3.value = Game.main_scene.overworld_shark.health
 	
 	if bar3.value >= bar3.max_value:
 		Game.next_phase()
+
+func ui_next_phase(create_prompt_text: String, objective_text: String) -> void:
+	create_tween().tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
+	await Game.main_scene.next_phase()
+	create_prompt.append_text(create_prompt_text)
+	objective.text = objective_text
+	player.creation_count = 0
+	create_tween().tween_property(objective, "self_modulate", Color.WHITE, 0.7)
 
 func update_health():
 	health_box.modulate = Color.WHITE
@@ -91,9 +79,7 @@ func create_ready():
 
 func create_done():
 	var tween: Tween = create_tween().set_parallel(true)
-	tween.tween_property(
-		create_prompt, "self_modulate", Color.TRANSPARENT, 0.5
-	).from(Color.WHITE)
+	tween.tween_property(create_prompt, "self_modulate", Color.TRANSPARENT, 0.5).from(Color.WHITE)
 	
 	await tween.finished
 	create_prompt.set_visible(true)

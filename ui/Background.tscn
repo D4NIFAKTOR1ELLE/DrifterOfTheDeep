@@ -58,10 +58,10 @@ repeat_size = Vector2(900, 0)
 repeat_times = 3
 
 [node name="ParallaxMiddle" type="TextureRect" parent="Parallax2D" unique_id=1751706556]
-modulate = Color(1, 1, 1, 0.43529412)
-offset_top = 139.0
+self_modulate = Color(0.65, 0.65, 0.65, 0.5254902)
+offset_top = 206.0
 offset_right = 900.0
-offset_bottom = 738.0
+offset_bottom = 805.0
 texture = ExtResource("5_72xnu")
 expand_mode = 1
 stretch_mode = 5
@@ -69,13 +69,12 @@ stretch_mode = 5
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=178266253]
 scroll_scale = Vector2(0.5, 0.01)
 repeat_size = Vector2(1152, 0)
-repeat_times = 4
+repeat_times = 3
 
 [node name="ParallaxFront" type="TextureRect" parent="Parallax2D2" unique_id=290908749]
-self_modulate = Color(1, 1, 1, 0.5372549)
-offset_top = 43.0
+offset_top = 117.0
 offset_right = 1152.0
-offset_bottom = 691.0
+offset_bottom = 765.0
 texture = ExtResource("6_xda7n")
 expand_mode = 1
 stretch_mode = 5
