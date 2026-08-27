@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://durfuyy6mggt7" path="res://assets/background/background.png" id="2_yhyie"]
 [ext_resource type="Texture2D" uid="uid://byib3o7hoxa1n" path="res://assets/background/sunlight.png" id="3_8qoeo"]
 [ext_resource type="Texture2D" uid="uid://dfob5wspha4fd" path="res://assets/background/parallax_middle.png" id="5_72xnu"]
+[ext_resource type="Texture2D" uid="uid://kdd1jumfxeiy" path="res://assets/background/parallax_back.png" id="5_xda7n"]
 [ext_resource type="Texture2D" uid="uid://cxt8q4d35maj0" path="res://assets/background/parallax_front.png" id="6_xda7n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4818f"]
@@ -41,16 +42,19 @@ offset_bottom = -1.0
 texture = ExtResource("2_yhyie")
 metadata/_edit_use_anchors_ = true
 
-[node name="Sunlight" type="TextureRect" parent="." unique_id=362450794]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.021103665
-anchor_top = -0.12150896
-anchor_right = 0.8164837
-anchor_bottom = 0.9352102
-texture = ExtResource("3_8qoeo")
-metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1974936344]
+scroll_scale = Vector2(0.1, 0.02)
+repeat_size = Vector2(955, 0)
+repeat_times = 3
+
+[node name="ParallaxBack" type="TextureRect" parent="Parallax2D3" unique_id=1720611753]
+self_modulate = Color(0.65, 0.65, 0.65, 0.5254902)
+offset_top = 82.0
+offset_right = 955.0
+offset_bottom = 805.0
+texture = ExtResource("5_xda7n")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1915914007]
 scroll_scale = Vector2(0.3, 0.02)
@@ -58,7 +62,7 @@ repeat_size = Vector2(900, 0)
 repeat_times = 3
 
 [node name="ParallaxMiddle" type="TextureRect" parent="Parallax2D" unique_id=1751706556]
-self_modulate = Color(0.65, 0.65, 0.65, 0.5254902)
+self_modulate = Color(0.84, 0.84, 0.84, 1)
 offset_top = 206.0
 offset_right = 900.0
 offset_bottom = 805.0
@@ -78,3 +82,16 @@ offset_bottom = 765.0
 texture = ExtResource("6_xda7n")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Sunlight" type="TextureRect" parent="." unique_id=362450794]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.021103665
+anchor_top = -0.12150896
+anchor_right = 0.8164837
+anchor_bottom = 0.9352102
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_8qoeo")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true

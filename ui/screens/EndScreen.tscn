@@ -55,7 +55,7 @@ metadata/_edit_use_anchors_ = true
 scroll_offset = Vector2(10, 10)
 repeat_size = Vector2(1455, 0)
 autoscroll = Vector2(10, 0)
-repeat_times = 3
+repeat_times = 2
 
 [node name="ParallaxMiddle" type="TextureRect" parent="BG/Parallax2D" unique_id=846465735]
 offset_left = 1305.0
