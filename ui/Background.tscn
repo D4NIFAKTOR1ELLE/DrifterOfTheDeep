@@ -2,14 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://beelbswun6okh" path="res://assets/background/Background.tres" id="1_t378h"]
 [ext_resource type="Script" uid="uid://bm20a7idyv6nv" path="res://ui/background.gd" id="1_tk0ko"]
-[ext_resource type="Texture2D" uid="uid://durfuyy6mggt7" path="res://assets/background/background.png" id="2_yhyie"]
 [ext_resource type="Texture2D" uid="uid://byib3o7hoxa1n" path="res://assets/background/sunlight.png" id="3_8qoeo"]
 [ext_resource type="Texture2D" uid="uid://dfob5wspha4fd" path="res://assets/background/parallax_middle.png" id="5_72xnu"]
 [ext_resource type="Texture2D" uid="uid://kdd1jumfxeiy" path="res://assets/background/parallax_back.png" id="5_xda7n"]
 [ext_resource type="Texture2D" uid="uid://cxt8q4d35maj0" path="res://assets/background/parallax_front.png" id="6_xda7n"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4818f"]
-blend_mode = 2
 
 [node name="Background" type="Control" unique_id=1173368978]
 layout_mode = 3
@@ -26,28 +22,12 @@ offset_right = 7024.0
 offset_bottom = 4807.0
 texture = ExtResource("1_t378h")
 
-[node name="Texture" type="TextureRect" parent="." unique_id=865903764]
-self_modulate = Color(0.16862746, 0.48235294, 0.5019608, 0.078431375)
-material = SubResource("CanvasItemMaterial_4818f")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.13700001
-anchor_top = -0.11800001
-anchor_right = 1.001
-anchor_bottom = 1.0
-offset_left = 1.7810669
-offset_top = 2.1640625
-offset_right = -0.013183594
-offset_bottom = -1.0
-texture = ExtResource("2_yhyie")
-metadata/_edit_use_anchors_ = true
-
-[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1974936344]
+[node name="Parallax" type="Parallax2D" parent="." unique_id=1974936344]
 scroll_scale = Vector2(0.1, 0.02)
 repeat_size = Vector2(955, 0)
 repeat_times = 3
 
-[node name="ParallaxBack" type="TextureRect" parent="Parallax2D3" unique_id=1720611753]
+[node name="ParallaxBack" type="TextureRect" parent="Parallax" unique_id=1720611753]
 self_modulate = Color(0.65, 0.65, 0.65, 0.5254902)
 offset_top = 82.0
 offset_right = 955.0
@@ -56,12 +36,12 @@ texture = ExtResource("5_xda7n")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1915914007]
+[node name="Parallax2" type="Parallax2D" parent="." unique_id=1915914007]
 scroll_scale = Vector2(0.3, 0.02)
 repeat_size = Vector2(900, 0)
 repeat_times = 3
 
-[node name="ParallaxMiddle" type="TextureRect" parent="Parallax2D" unique_id=1751706556]
+[node name="ParallaxMiddle" type="TextureRect" parent="Parallax2" unique_id=1751706556]
 self_modulate = Color(0.84, 0.84, 0.84, 1)
 offset_top = 206.0
 offset_right = 900.0
@@ -70,15 +50,16 @@ texture = ExtResource("5_72xnu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=178266253]
+[node name="Parallax3" type="Parallax2D" parent="." unique_id=178266253]
 scroll_scale = Vector2(0.5, 0.01)
 repeat_size = Vector2(1152, 0)
 repeat_times = 3
 
-[node name="ParallaxFront" type="TextureRect" parent="Parallax2D2" unique_id=290908749]
-offset_top = 117.0
-offset_right = 1152.0
-offset_bottom = 765.0
+[node name="ParallaxFront" type="TextureRect" parent="Parallax3" unique_id=290908749]
+offset_left = 56.0
+offset_top = 120.0
+offset_right = 1208.0
+offset_bottom = 768.0
 texture = ExtResource("6_xda7n")
 expand_mode = 1
 stretch_mode = 5

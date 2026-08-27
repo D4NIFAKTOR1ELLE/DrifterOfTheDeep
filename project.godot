@@ -23,8 +23,8 @@ buses/default_bus_layout="uid://bkw7yik0lgqsm"
 [autoload]
 
 Globals="*uid://ph5dai27j4pt"
-UI="*uid://cvbeb6cbn3xkg"
 Game="*uid://duluw257fmxly"
+Transition="*uid://6e50iphxju6v"
 
 [display]
 

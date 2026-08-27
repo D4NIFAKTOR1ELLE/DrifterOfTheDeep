@@ -10,7 +10,8 @@ func _ready():
 	animation.play("appear")
 	await animation.animation_finished
 	sprite.play("Idle")
-	player.creation_changed.connect(UI.update_bar3)
+	global_position = player.movement.global_position + Vector2(700, 700)
+	player.creation_changed.connect(Game.ui.update_bar3)
 	Game.main_scene.overworld_shark = self
 	set_physics_process(true)
 
@@ -52,8 +53,8 @@ func die():
 	queue_free()
 
 func _physics_process(_delta: float) -> void:
-	look_at(player.global_position)
-	velocity = position.direction_to(player.global_position) * movement_speed
+	look_at(player.movement.global_position)
+	velocity = position.direction_to(player.movement.global_position) * movement_speed
 	move_and_slide()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

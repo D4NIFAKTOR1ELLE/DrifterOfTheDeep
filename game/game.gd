@@ -1,23 +1,27 @@
 extends Node
 
 var player: Player
-var main_scene: MainScene
 var time_elapsed: float = 0
 var deaths: int = 0
 var phase: int = 1
 
+var main_scene: MainScene
+var ui: UI
+
 func start_game():
-	UI.visible = true
 	player = Globals.jelly.instantiate()
+	ui = Globals.ui.instantiate()
 	main_scene = Globals.main_scene.instantiate()
+	ui.player = player
 	main_scene.player = player
 	
+	add_child(ui)
 	add_child(main_scene)
+	
+	ui.initialise()
 	main_scene.add_child(player)
 	player.global_position = main_scene.spawn.global_position
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
-	
-	UI.initialise()
 
 func set_camera_limits(map: Control, camera: Camera2D):
 	if map == null:
@@ -35,7 +39,7 @@ func respawn():
 		if enemy.name != "OverworldShark":
 			enemy.queue_free()
 	
-	UI.create_done()
+	ui.create_done()
 	player.global_position = main_scene.spawn.global_position
 	deaths += 1
 	player.ideas_collected = 0
@@ -44,10 +48,10 @@ func respawn():
 	player.health_changed.emit()
 
 func finish_game():
-	UI.visible = false
-	set_physics_process(false)
-	UI.transition.fade_in()
-	await UI.transition.animplayer.animation_finished
+	ui.queue_free()
+	set_process(false)
+	Transition.fade_in()
+	await Transition.animplayer.animation_finished
 	
 	await get_tree().create_timer(2).timeout
 	
@@ -55,9 +59,8 @@ func finish_game():
 	add_child(new_end)
 	
 	main_scene.queue_free()
-	Globals.reset_game()
 	
-	UI.transition.hide()
+	Transition.hide()
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	time_elapsed += delta

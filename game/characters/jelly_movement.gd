@@ -57,6 +57,11 @@ func swim_movement(delta: float) -> void:
 	if swim_distance_remaining <= 0.0:
 		end_swim()
 
+func stop(enable: bool = false) -> void:
+	if !Game.main_scene.scene_transition:
+		set_physics_process(enable)
+		set_process_input(enable)
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("swim"):
 		swim()

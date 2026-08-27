@@ -7,6 +7,8 @@ var main_scene: PackedScene = preload("res://game/scene/MainScene.tscn")
 var idea: PackedScene = preload("res://game/elements/Idea.tscn")
 var creation: PackedScene = preload("res://game/elements/Creation.tscn")
 var control_hint: PackedScene = preload("res://ui/screens/ControlHint.tscn")
+var shark: PackedScene = preload("res://enemies/Shark.tscn")
+var ui: PackedScene = preload("res://ui/UI.tscn")
 
 var bad_creations: Array = [
 	preload("res://enemies/BadPaperFish.tscn"),
@@ -19,7 +21,3 @@ var normal_creations: Array = [
 	preload("res://enemies/MSPaintFish.tscn"),
 	preload("res://enemies/ValFish.tscn")
 ]
-
-func reset_game():
-	Game.phase = 1
-	UI.objective.text = "[[color=yellow]OBJECTIVE[/color]] COLLECT IDEAS TO CREATE 3 DRAWINGS."

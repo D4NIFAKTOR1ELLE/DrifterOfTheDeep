@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c53dwts5hwhs5" path="res://assets/background/parallax_middle_colour.png" id="4_vv6ak"]
 [ext_resource type="Texture2D" uid="uid://cxuwb5u5aek3o" path="res://assets/background/parallax_back_colour.png" id="4_xk2s0"]
 [ext_resource type="Texture2D" uid="uid://ewcxu12ipugb" path="res://assets/background/parallax_front_colour.png" id="5_xylaj"]
+[ext_resource type="Texture2D" uid="uid://byib3o7hoxa1n" path="res://assets/background/sunlight.png" id="6_xk2s0"]
 [ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="6_xylaj"]
 
 [sub_resource type="Gradient" id="Gradient_p5me2"]
@@ -16,9 +17,6 @@ gradient = SubResource("Gradient_p5me2")
 fill = 1
 fill_from = Vector2(0.51304346, 0)
 fill_to = Vector2(0.5304348, 0.9652174)
-
-[sub_resource type="Theme" id="Theme_ys8tm"]
-Label/font_sizes/font_size = 34
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xk2s0"]
 atlas = ExtResource("6_xylaj")
@@ -46,6 +44,9 @@ animations = [{
 "name": &"Sleepy",
 "speed": 5.0
 }]
+
+[sub_resource type="Theme" id="Theme_ys8tm"]
+Label/font_sizes/font_size = 34
 
 [node name="EndScreen" type="CanvasLayer" unique_id=64261227]
 script = ExtResource("1_tkj42")
@@ -76,6 +77,7 @@ texture = ExtResource("4_xk2s0")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Parallax2D" type="Parallax2D" parent="BG" unique_id=172230816]
 scroll_offset = Vector2(-1445, -9)
@@ -92,6 +94,7 @@ texture = ExtResource("4_vv6ak")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Parallax2D2" type="Parallax2D" parent="BG" unique_id=1568633880]
 scroll_offset = Vector2(0, -11)
@@ -106,6 +109,23 @@ offset_bottom = 813.0
 texture = ExtResource("5_xylaj")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Sunlight" type="TextureRect" parent="BG" unique_id=1448465754]
+self_modulate = Color(1, 1, 1, 0.6862745)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.006820121
+anchor_top = 0.0119581465
+anchor_right = 0.97527707
+anchor_bottom = 1.3597931
+texture = ExtResource("6_xk2s0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Jelly" type="AnimatedSprite2D" parent="BG" unique_id=996224415]
+position = Vector2(583.1206, 302.87833)
+sprite_frames = SubResource("SpriteFrames_hvmog")
+animation = &"Goodbye"
 
 [node name="Title" type="RichTextLabel" parent="BG" unique_id=1815335575]
 layout_mode = 1
@@ -157,11 +177,6 @@ text = "ATTEMPTS"
 [node name="Deaths" type="Label" parent="BG/GridContainer" unique_id=936380102]
 layout_mode = 2
 text = "0"
-
-[node name="Jelly" type="AnimatedSprite2D" parent="BG" unique_id=996224415]
-position = Vector2(583.1206, 302.87833)
-sprite_frames = SubResource("SpriteFrames_hvmog")
-animation = &"Goodbye"
 
 [node name="ReturnToStart" type="Button" parent="BG" unique_id=1617985796]
 layout_mode = 1

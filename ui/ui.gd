@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name UI
+
 @onready var bar1: TextureProgressBar = $Container/Bar1
 @onready var bar2: TextureProgressBar = $Container/Bar2
 @onready var bar3: TextureProgressBar = $Container/Bar3
@@ -13,13 +15,11 @@ extends CanvasLayer
 @onready var player: Player
 
 @onready var create_prompt_position: Vector2 = Vector2(488, 395)
-@onready var transition: CanvasLayer = $Transition
 @onready var control_hint: CanvasLayer = $ControlHint
 
 var create_bar_full: bool = false
 
 func initialise() -> void:
-	player = Game.player
 	player.health_changed.connect(update_health)
 	player.idea_changed.connect(update_idea)
 	player.creation_changed.connect(update_bar1)
@@ -35,13 +35,13 @@ func update_bar1() -> void:
 	bar1.value = player.creation_count
 	
 	if player.creation_count >= bar1.max_value:
-		ui_next_phase("\n[[color=yellow]H[/color]] [color=yellow]HEAL[/color]", "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS.")
+		ui_next_phase("\n[[color=yellow]H[/color]] [color=yellow]HEAL[/color]", "[[color=yellow]OBJECTIVE[/color]] CREATE 5 DRAWINGS.", bar1)
 
 func update_bar2() -> void:
 	bar2.value = player.creation_count
 	
 	if player.creation_count >= bar2.max_value:
-		ui_next_phase("\n[[color=yellow]A[/color]] [color=yellow]ATTACK[/color]", "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK.")
+		ui_next_phase("\n[[color=yellow]A[/color]] [color=yellow]ATTACK[/color]", "[[color=yellow]OBJECTIVE[/color]] GET RID OF YOUR ART BLOCK.", bar2)
 
 func update_bar3() -> void:
 	bar3.value = Game.main_scene.overworld_shark.health
@@ -49,7 +49,8 @@ func update_bar3() -> void:
 	if bar3.value >= bar3.max_value:
 		Game.next_phase()
 
-func ui_next_phase(create_prompt_text: String, objective_text: String) -> void:
+func ui_next_phase(create_prompt_text: String, objective_text: String, bar: TextureProgressBar) -> void:
+	create_tween().tween_property(bar, "self_modulate", Color(1.0, 1.0, 1.0, 0.396), 0.5)
 	create_tween().tween_property(objective, "self_modulate", Color.TRANSPARENT, 0.3)
 	await Game.main_scene.next_phase()
 	create_prompt.append_text(create_prompt_text)

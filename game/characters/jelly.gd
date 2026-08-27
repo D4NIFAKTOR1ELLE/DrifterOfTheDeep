@@ -34,22 +34,22 @@ func _input(event: InputEvent) -> void:
 		sprite.modulate = Color.WHITE
 
 func heal() -> void:
-	if Game.phase < 2 or UI.create_bar_full == false:
+	if Game.phase < 2 or Game.ui.create_bar_full == false:
 		return
 	
-	await UI.action_done("heal")
+	await Game.ui.action_done("heal")
 	
 	health = min(max_health, health + 1)
 	health_changed.emit()
 	create_tween().tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 5, 0, 1))
 
 func attack() -> void:
-	if Game.phase < 3 or UI.create_bar_full == false:
+	if Game.phase < 3 or Game.ui.create_bar_full == false:
 		return
 	
-	stop(false)
+	movement.stop(false)
 	
-	await UI.action_done("attack")
+	await Game.ui.action_done("attack")
 	
 	animation.play("attack")
 	await animation.animation_finished
@@ -71,20 +71,20 @@ func take_damage(damage: int) -> void:
 		sprite.play("Hurt")
 
 func die() -> void:
-	stop(false)
-	UI.transition.fade_in()
-	await UI.transition.animplayer.animation_finished
+	movement.stop(false)
+	Transition.fade_in()
+	await Transition.animplayer.animation_finished
 
 	await Game.respawn()
 
-	stop(true)
-	UI.transition.fade_out()
+	movement.stop(true)
+	Transition.fade_out()
 
 func create() -> void:
 	movement.end_swim()
-	stop(false)
+	movement.stop(false)
 	
-	await UI.action_done("create")
+	await Game.ui.action_done("create")
 	
 	sprite.play("CreateInit")
 	await sprite.animation_finished
@@ -100,12 +100,7 @@ func create() -> void:
 	Game.main_scene.enemies.add_child(new_creation)
 	
 	sprite.play("Idle")
-	stop(true)
-
-func stop(enable: bool = false) -> void:
-	if !Game.main_scene.scene_transition:
-		set_physics_process(enable)
-		set_process_input(enable)
+	movement.stop(true)
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body is Enemy:

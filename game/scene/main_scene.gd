@@ -32,27 +32,24 @@ func next_phase() -> void:
 	
 	match Game.phase:
 		2:
-			player.creation_changed.disconnect(UI.update_bar1)
-			player.creation_changed.connect(UI.update_bar2)
+			player.creation_changed.disconnect(Game.ui.update_bar1)
+			player.creation_changed.connect(Game.ui.update_bar2)
 			
 			await background.colour_transition(player, Color(0.45, 0.647, 0.73, 1.0), Color(1.0, 1.0, 1.0, 0.4),)
 			
 			timer.start()
 		3:
-			player.creation_changed.disconnect(UI.update_bar2)
+			player.creation_changed.disconnect(Game.ui.update_bar2)
 			
 			await background.colour_transition(player, Color(0.082, 0.287, 0.402, 1.0), Color(1.0, 1.0, 1.0, 0))
 			
-			create_tween().tween_property(UI.bar3, "value", UI.bar3.max_value, 3)
+			create_tween().tween_property(Game.ui.bar3, "value", Game.ui.bar3.max_value, 3)
 			
-			var shark: Shark = load("res://enemies/Shark.tscn").instantiate()
+			var shark: Shark = Globals.shark.instantiate()
 			enemies.add_child(shark)
-			shark.global_position = player.global_position
-			shark.animation.play("intro")
 			await shark.animation.animation_finished
 			overworld_shark = load("res://enemies/OverworldShark.tscn").instantiate()
 			enemies.add_child(overworld_shark)
-			overworld_shark.global_position = player.global_position + Vector2(700, 700)
 			timer.start(true)
 	
 	scene_transition = false
