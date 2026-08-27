@@ -48,19 +48,19 @@ func respawn():
 	player.health_changed.emit()
 
 func finish_game():
+	player.movement.stop(false)
 	ui.queue_free()
 	set_process(false)
-	Transition.fade_in()
+	Transition.animplayer.play("fade_in_white")
 	await Transition.animplayer.animation_finished
 	
 	await get_tree().create_timer(2).timeout
 	
-	var new_end: CanvasLayer = Globals.end_screen.instantiate()
-	add_child(new_end)
+	add_child(Globals.end_screen.instantiate())
 	
 	main_scene.queue_free()
 	
-	Transition.hide()
+	Transition.animplayer.play("fade_out_white")
 
 func _process(delta: float) -> void:
 	time_elapsed += delta

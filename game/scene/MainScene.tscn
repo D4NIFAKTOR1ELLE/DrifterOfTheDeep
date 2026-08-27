@@ -19,7 +19,7 @@ z_index = -2
 [node name="Enemies" type="Node" parent="." unique_id=1421116671]
 
 [node name="Spawn" type="Marker2D" parent="." unique_id=771486536]
-position = Vector2(3186, 3778)
+position = Vector2(3116, 2105)
 
 [node name="Timer" type="Timer" parent="." unique_id=452056012]
 wait_time = 3.0

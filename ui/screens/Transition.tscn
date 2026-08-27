@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(1, 0.9779663, 0.92578125, 1)]
+"values": [Color(0, 0, 0, 0), Color(1, 0.9764706, 0.9254902, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4ciay"]
@@ -67,12 +67,29 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lonsi"]
+resource_name = "fade_out_white"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.9764706, 0.9254902, 1), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e6xs0"]
 _data = {
 &"RESET": SubResource("Animation_bbqhf"),
 &"fade_in": SubResource("Animation_srgsg"),
 &"fade_in_white": SubResource("Animation_dwxgj"),
-&"fade_out": SubResource("Animation_4ciay")
+&"fade_out": SubResource("Animation_4ciay"),
+&"fade_out_white": SubResource("Animation_lonsi")
 }
 
 [node name="Transition" type="CanvasLayer" unique_id=792298385]
