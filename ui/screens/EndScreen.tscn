@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_tkj42"]
 [ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_ys8tm"]
 [ext_resource type="Texture2D" uid="uid://c53dwts5hwhs5" path="res://assets/background/parallax_middle_colour.png" id="4_vv6ak"]
+[ext_resource type="Texture2D" uid="uid://cxuwb5u5aek3o" path="res://assets/background/parallax_back_colour.png" id="4_xk2s0"]
 [ext_resource type="Texture2D" uid="uid://ewcxu12ipugb" path="res://assets/background/parallax_front_colour.png" id="5_xylaj"]
 [ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="6_xylaj"]
 
@@ -50,6 +51,19 @@ offset_bottom = -6.1035156e-05
 theme = ExtResource("2_tkj42")
 texture = ExtResource("3_ys8tm")
 metadata/_edit_use_anchors_ = true
+
+[node name="Parallax2D3" type="Parallax2D" parent="BG" unique_id=336195152]
+scroll_scale = Vector2(0.1, 0.02)
+repeat_size = Vector2(1183, 0)
+repeat_times = 3
+
+[node name="ParallaxBack" type="TextureRect" parent="BG/Parallax2D3" unique_id=204406417]
+offset_top = -200.0
+offset_right = 1183.0
+offset_bottom = 805.0
+texture = ExtResource("4_xk2s0")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Parallax2D" type="Parallax2D" parent="BG" unique_id=172230816]
 scroll_offset = Vector2(10, 10)
@@ -139,9 +153,9 @@ animation = &"Goodbye"
 [node name="ReturnToStart" type="Button" parent="BG" unique_id=1617985796]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.043478258
+anchor_left = 0.31543052
 anchor_top = 0.78176385
-anchor_right = 0.41943735
+anchor_right = 0.6913896
 anchor_bottom = 0.93721974
 text = "RETURN TO START"
 metadata/_edit_use_anchors_ = true
