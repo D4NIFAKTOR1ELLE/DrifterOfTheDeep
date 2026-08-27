@@ -2,11 +2,20 @@
 
 [ext_resource type="Script" uid="uid://cxq0btv3whq5q" path="res://ui/script/end_screen.gd" id="1_tkj42"]
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_tkj42"]
-[ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_ys8tm"]
 [ext_resource type="Texture2D" uid="uid://c53dwts5hwhs5" path="res://assets/background/parallax_middle_colour.png" id="4_vv6ak"]
 [ext_resource type="Texture2D" uid="uid://cxuwb5u5aek3o" path="res://assets/background/parallax_back_colour.png" id="4_xk2s0"]
 [ext_resource type="Texture2D" uid="uid://ewcxu12ipugb" path="res://assets/background/parallax_front_colour.png" id="5_xylaj"]
 [ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="6_xylaj"]
+
+[sub_resource type="Gradient" id="Gradient_p5me2"]
+offsets = PackedFloat32Array(0.012048192, 0.46385542, 1)
+colors = PackedColorArray(1, 0.98098963, 0.71484375, 1, 0.79296875, 0.7396331, 0.55755615, 1, 0.43151855, 0.7890625, 0.7890625, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xylaj"]
+gradient = SubResource("Gradient_p5me2")
+fill = 1
+fill_from = Vector2(0.51304346, 0)
+fill_to = Vector2(0.5304348, 0.9652174)
 
 [sub_resource type="Theme" id="Theme_ys8tm"]
 Label/font_sizes/font_size = 34
@@ -49,13 +58,15 @@ anchor_right = 1.0095487
 anchor_bottom = 1.0185186
 offset_bottom = -6.1035156e-05
 theme = ExtResource("2_tkj42")
-texture = ExtResource("3_ys8tm")
+texture = SubResource("GradientTexture2D_xylaj")
 metadata/_edit_use_anchors_ = true
 
 [node name="Parallax2D3" type="Parallax2D" parent="BG" unique_id=336195152]
 scroll_scale = Vector2(0.1, 0.02)
+scroll_offset = Vector2(0, -38)
 repeat_size = Vector2(1183, 0)
-repeat_times = 3
+autoscroll = Vector2(2, 0)
+repeat_times = 2
 
 [node name="ParallaxBack" type="TextureRect" parent="BG/Parallax2D3" unique_id=204406417]
 offset_top = -200.0
@@ -64,11 +75,12 @@ offset_bottom = 805.0
 texture = ExtResource("4_xk2s0")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Parallax2D" type="Parallax2D" parent="BG" unique_id=172230816]
-scroll_offset = Vector2(10, 10)
+scroll_offset = Vector2(-1445, -9)
 repeat_size = Vector2(1455, 0)
-autoscroll = Vector2(10, 0)
+autoscroll = Vector2(6, 0)
 repeat_times = 2
 
 [node name="ParallaxMiddle" type="TextureRect" parent="BG/Parallax2D" unique_id=846465735]
@@ -79,10 +91,12 @@ offset_bottom = 686.0
 texture = ExtResource("4_vv6ak")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Parallax2D2" type="Parallax2D" parent="BG" unique_id=1568633880]
+scroll_offset = Vector2(0, -11)
 repeat_size = Vector2(1309, 0)
-autoscroll = Vector2(20, 0)
+autoscroll = Vector2(10, 0)
 repeat_times = 2
 
 [node name="ParallaxFront" type="TextureRect" parent="BG/Parallax2D2" unique_id=648415943]
@@ -113,19 +127,18 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="GridContainer" type="GridContainer" parent="BG" unique_id=1727580139]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.03918015
+anchor_left = 0.09885619
 anchor_top = 0.42022368
-anchor_right = 0.51999855
+anchor_right = 0.919828
 anchor_bottom = 0.58913255
 offset_left = 5.041687
 offset_top = 1.8703613
 offset_right = 5.041687
 offset_bottom = 1.8703613
 theme = SubResource("Theme_ys8tm")
-theme_override_constants/h_separation = 0
+theme_override_constants/h_separation = 400
 columns = 2
 metadata/_edit_use_anchors_ = true
 

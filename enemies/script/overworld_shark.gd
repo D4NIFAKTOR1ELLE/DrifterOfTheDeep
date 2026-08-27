@@ -57,5 +57,5 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body.is_in_group("Player"):
 		player.take_damage(1)

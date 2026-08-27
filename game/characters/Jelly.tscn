@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpaa4kwk0hgvx" path="res://game/characters/jelly.gd" id="1_ijgx5"]
 [ext_resource type="Texture2D" uid="uid://dr8vm08geo3ip" path="res://assets/character/jelly_spritesheet.png" id="2_ii5tr"]
+[ext_resource type="Script" uid="uid://douuhnre3sjvg" path="res://game/characters/jelly_movement.gd" id="2_jwpbl"]
 [ext_resource type="Gradient" uid="uid://m84gy3axqmyn" path="res://ui/theme/Rainbow.tres" id="3_voh5p"]
 [ext_resource type="AudioStream" uid="uid://dircssuwdeb1e" path="res://assets/se/floraphonic-underwater-movement-whoosh-1-186898.mp3" id="4_flwdq"]
 [ext_resource type="AudioStream" uid="uid://ckbw6qrx3bl50" path="res://assets/se/stereogenicstudio-swish-swoosh-woosh-sfx-47-357152.mp3" id="5_ett74"]
@@ -111,6 +112,12 @@ animations = [{
 "name": &"Swim",
 "speed": 5.0
 }]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_voh5p"]
+gradient = ExtResource("3_voh5p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.85, 0.85)
 
 [sub_resource type="Animation" id="Animation_voh5p"]
 length = 0.001
@@ -338,57 +345,55 @@ _data = {
 &"descend": SubResource("Animation_ii5tr")
 }
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_voh5p"]
-gradient = ExtResource("3_voh5p")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.85, 0.85)
+[node name="PlayerJelly" type="Node2D" unique_id=1627309307]
+script = ExtResource("1_ijgx5")
 
-[node name="Jelly" type="CharacterBody2D" unique_id=1263766328 groups=["Player"]]
+[node name="Jelly" type="CharacterBody2D" parent="." unique_id=1263766328 groups=["Player"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 15
 motion_mode = 1
 wall_min_slide_angle = 0.5235988
 floor_constant_speed = true
-script = ExtResource("1_ijgx5")
+script = ExtResource("2_jwpbl")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=798104385]
+[node name="Collision" type="CollisionShape2D" parent="Jelly" unique_id=798104385]
 shape = SubResource("RectangleShape2D_ijgx5")
 
-[node name="Area" type="Area2D" parent="." unique_id=1484485184]
+[node name="Area" type="Area2D" parent="Jelly" unique_id=1484485184]
 collision_layer = 8
 collision_mask = 4
 
-[node name="AreaCollision" type="CollisionShape2D" parent="Area" unique_id=1427602016]
+[node name="AreaCollision" type="CollisionShape2D" parent="Jelly/Area" unique_id=1427602016]
 shape = SubResource("CircleShape2D_voh5p")
 disabled = true
 debug_color = Color(0, 0.6, 0.69803923, 0.18039216)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=158737799]
+[node name="Sprite" type="AnimatedSprite2D" parent="Jelly" unique_id=158737799]
 sprite_frames = SubResource("SpriteFrames_ii5tr")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=174476708]
+[node name="Camera2D" type="Camera2D" parent="Jelly" unique_id=174476708]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236938901]
-libraries/ = SubResource("AnimationLibrary_voh5p")
-
-[node name="Light" type="PointLight2D" parent="." unique_id=1379715932]
+[node name="Light" type="PointLight2D" parent="Jelly" unique_id=1379715932]
 visible = false
 modulate = Color(1, 1, 1, 0.52156866)
 color = Color(1, 1, 1, 0)
 texture = SubResource("GradientTexture2D_voh5p")
 
-[node name="Sound" type="AudioStreamPlayer" parent="." unique_id=121743431]
+[node name="Sound" type="AudioStreamPlayer" parent="Jelly" unique_id=121743431]
 stream = ExtResource("4_flwdq")
 volume_db = -20.0
 bus = &"JellySE"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236938901]
+root_node = NodePath("../Jelly")
+libraries/ = SubResource("AnimationLibrary_voh5p")
 
 [node name="Sound2" type="AudioStreamPlayer" parent="." unique_id=1389879428]
 stream = ExtResource("5_ett74")
 volume_db = -30.0
 bus = &"JellySE"
 
-[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+[connection signal="body_entered" from="Jelly/Area" to="." method="_on_area_body_entered"]

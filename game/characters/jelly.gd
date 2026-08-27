@@ -1,15 +1,11 @@
-extends CharacterBody2D
+extends Node2D
 
 class_name Player
 
-@onready var camera: Camera2D = $Camera2D
-@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var camera: Camera2D = $Jelly/Camera2D
+@onready var sprite: AnimatedSprite2D = $Jelly/Sprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var collision: CollisionShape2D = $Collision
-
-var movement_speed: float = 300.0
-var trajectory: float = 200
-var rotation_speed: float = PI / 1.7
+@onready var movement: CharacterBody2D = $Jelly
 
 const max_health: int = 5
 var health: int = 5
@@ -17,11 +13,7 @@ var ideas_collected: int = 0
 var max_idea_level: int = 4
 var creation_count: int = 0
 
-var cooldown: bool = false
 var invulnerable: bool = false
-
-var swim_direction: Vector2 = Vector2.ZERO
-var swim_distance_remaining: float = 0.0
 
 signal health_changed
 @warning_ignore("unused_signal")
@@ -29,27 +21,7 @@ signal creation_changed
 @warning_ignore("unused_signal")
 signal idea_changed
 
-func _physics_process(delta: float) -> void:
-	if cooldown:
-		swim_movement(delta)
-	else:
-		var rotation_direction: float = Input.get_axis("left", "right")
-		rotation += rotation_direction * rotation_speed * delta
-	
-	move_and_slide()
-
-	if cooldown and get_slide_collision_count() > 0:
-		end_swim()
-
-func end_swim() -> void:
-	cooldown = false
-	velocity = Vector2.ZERO
-	
-	sprite.play("Idle")
-
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("swim"):
-		swim()
 	if event.is_action_pressed("create") and ideas_collected >= max_idea_level:
 		create()
 	if event.is_action_pressed("heal"):
@@ -60,16 +32,6 @@ func _input(event: InputEvent) -> void:
 		await die()
 		Game.deaths = Game.deaths - 1
 		sprite.modulate = Color.WHITE
-	if event.is_action_pressed("j"):
-		sprite.modulate = Color.LAWN_GREEN
-	if event.is_action_pressed("a"):
-		sprite.modulate = Color.BEIGE
-	if event.is_action_pressed("c"):
-		sprite.modulate = Color.DODGER_BLUE
-	if event.is_action_pressed("v"):
-		sprite.modulate = Color.DARK_RED
-	if event.is_action_pressed("m"):
-		sprite.modulate = Color.MEDIUM_PURPLE
 
 func heal() -> void:
 	if Game.phase < 2 or UI.create_bar_full == false:
@@ -79,8 +41,7 @@ func heal() -> void:
 	
 	health = min(max_health, health + 1)
 	health_changed.emit()
-	var tween: Tween = create_tween()
-	tween.tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 5, 0, 1))
+	create_tween().tween_property(sprite, "self_modulate", Color.WHITE, 1.5).from(Color(0, 5, 0, 1))
 
 func attack() -> void:
 	if Game.phase < 3 or UI.create_bar_full == false:
@@ -95,39 +56,11 @@ func attack() -> void:
 	
 	invulnerable = true
 
-func swim() -> void:
-	if cooldown:
-		return
-
-	sprite.play("Swim")
-
-	cooldown = true
-
-	swim_direction = Vector2.UP.rotated(rotation)
-	swim_distance_remaining = trajectory
-	$Sound.play()
-
-func swim_movement(delta: float) -> void:
-	var frame_distance: float = min(movement_speed * delta, swim_distance_remaining)
-	velocity = swim_direction * movement_speed
-
-	var collider: KinematicCollision2D = move_and_collide(velocity * delta)
-
-	if collider:
-		sprite.play("Hurt")
-		end_swim()
-		return
-
-	swim_distance_remaining -= frame_distance
-
-	if swim_distance_remaining <= 0.0:
-		end_swim()
-
 func take_damage(damage: int) -> void:
 	if invulnerable:
 		return
 	
-	velocity = Vector2.ZERO
+	movement.velocity = Vector2.ZERO
 	health = health - damage
 	health_changed.emit()
 	create_tween().tween_property(sprite, "self_modulate", Color.WHITE, 0.3).from(Color(0.631, 0.345, 0.325))
@@ -148,7 +81,7 @@ func die() -> void:
 	UI.transition.fade_out()
 
 func create() -> void:
-	end_swim()
+	movement.end_swim()
 	stop(false)
 	
 	await UI.action_done("create")
@@ -157,7 +90,7 @@ func create() -> void:
 	await sprite.animation_finished
 	
 	var tween: Tween = create_tween()
-	tween.tween_property(self, "rotation", 0, 3)
+	tween.tween_property(movement, "rotation", 0, 3)
 	
 	sprite.play("Create")
 	

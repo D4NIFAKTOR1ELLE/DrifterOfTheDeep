@@ -27,7 +27,7 @@ func next_phase() -> void:
 		idea.die()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(player, "rotation", deg_to_rad(180), 1)
+	tween.tween_property(player.movement, "rotation", deg_to_rad(180), 1)
 	await tween.finished
 	
 	match Game.phase:
