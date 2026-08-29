@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bpyhjseyq21qq"]
 
 [ext_resource type="Script" uid="uid://b8r1u5mofr2w4" path="res://ui/script/start_screen.gd" id="1_3wdbh"]
-[ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_qb2by"]
-[ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/Gradient.tres" id="3_8jjoq"]
+[ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/StartScreen.tres" id="2_qb2by"]
+[ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/IntroBGGradient.tres" id="3_8jjoq"]
 [ext_resource type="Texture2D" uid="uid://byib3o7hoxa1n" path="res://assets/background/sunlight.png" id="4_lfmp1"]
 [ext_resource type="Texture2D" uid="uid://qb3pp4te20xc" path="res://assets/background/start_screen.png" id="5_w3ph6"]
 
@@ -40,33 +40,17 @@ rotation = 0.107017025
 texture = ExtResource("4_lfmp1")
 
 [node name="StartScreen" type="TextureRect" parent="BG" unique_id=1440551026]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.011054422
 anchor_top = 0.013392857
 anchor_right = 0.99064624
 anchor_bottom = 0.9776786
 texture = ExtResource("5_w3ph6")
 
-[node name="BG2" type="TextureRect" parent="BG" unique_id=947902917]
-self_modulate = Color(1, 1, 1, 0.4392157)
+[node name="TextureRect" type="TextureRect" parent="BG" unique_id=1240564964]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.011284722
-anchor_top = -0.013888889
-anchor_right = 1.0095487
-anchor_bottom = 1.0231482
-offset_left = 13.270833
-offset_top = 9.333333
-offset_right = 13.270874
-offset_bottom = 9.333313
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_qb2by")
-texture = ExtResource("3_8jjoq")
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect" type="TextureRect" parent="BG" unique_id=1240564964]
-layout_mode = 0
 anchor_right = 0.7814626
 anchor_bottom = 1.0104166
 texture = SubResource("GradientTexture2D_e2gjh")

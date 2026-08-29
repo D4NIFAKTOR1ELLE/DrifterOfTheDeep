@@ -22,6 +22,7 @@ func start_game():
 	main_scene.add_child(player)
 	player.global_position = main_scene.spawn.global_position
 	set_camera_limits(main_scene.background.bg_texture, player.camera)
+	ui.control_hint.start()
 
 func set_camera_limits(map: Control, camera: Camera2D):
 	if map == null:

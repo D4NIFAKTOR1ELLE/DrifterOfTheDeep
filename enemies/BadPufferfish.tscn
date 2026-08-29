@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://dqboiona4hx4a" path="res://enemies/script/bad_pufferfish.gd" id="1_8sl7e"]
 [ext_resource type="Texture2D" uid="uid://dl5skgdyciv52" path="res://assets/character/bad_pufferfish.png" id="2_wsc35"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsc35"]
+size = Vector2(180, 180)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
 size = Vector2(48, 40)
 
@@ -95,6 +98,14 @@ animations = [{
 collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_8sl7e")
+movement_speed = 110.0
+
+[node name="Radius" type="Area2D" parent="." unique_id=97289324]
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="Radius" unique_id=588744895]
+shape = SubResource("RectangleShape2D_wsc35")
+debug_color = Color(0.7, 0.5483333, 0, 0.22745098)
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
 shape = SubResource("RectangleShape2D_p6j3w")
@@ -113,4 +124,6 @@ animation = &"IdleDown"
 autoplay = "IdleDown"
 metadata/_edit_lock_ = true
 
+[connection signal="body_entered" from="Radius" to="." method="_on_radius_body_entered"]
+[connection signal="body_exited" from="Radius" to="." method="_on_radius_body_exited"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

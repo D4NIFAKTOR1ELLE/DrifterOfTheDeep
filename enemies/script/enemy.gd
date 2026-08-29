@@ -24,6 +24,7 @@ func take_damage():
 func die():
 	dying = true
 	
+	set_physics_process(false)
 	var tween: Tween = create_tween().set_loops(4)
 	tween.tween_property(sprite, "visible", false, 0.1).from(true)
 	tween.tween_interval(0.1)

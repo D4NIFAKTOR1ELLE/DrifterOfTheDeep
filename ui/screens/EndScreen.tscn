@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://df381vs45dp1s"]
 
 [ext_resource type="Script" uid="uid://cxq0btv3whq5q" path="res://ui/script/end_screen.gd" id="1_tkj42"]
-[ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/ui_default.tres" id="2_tkj42"]
+[ext_resource type="Theme" uid="uid://wr2rrvrkxvp0" path="res://ui/screens/EndScreen.tres" id="2_xk2s0"]
 [ext_resource type="Texture2D" uid="uid://c53dwts5hwhs5" path="res://assets/background/parallax_middle_colour.png" id="4_vv6ak"]
 [ext_resource type="Texture2D" uid="uid://cxuwb5u5aek3o" path="res://assets/background/parallax_back_colour.png" id="4_xk2s0"]
 [ext_resource type="Texture2D" uid="uid://ewcxu12ipugb" path="res://assets/background/parallax_front_colour.png" id="5_xylaj"]
@@ -45,9 +45,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Theme" id="Theme_ys8tm"]
-Label/font_sizes/font_size = 34
-
 [node name="EndScreen" type="CanvasLayer" unique_id=64261227]
 script = ExtResource("1_tkj42")
 
@@ -58,7 +55,7 @@ anchor_top = -0.013888889
 anchor_right = 1.0095487
 anchor_bottom = 1.0185186
 offset_bottom = -6.1035156e-05
-theme = ExtResource("2_tkj42")
+theme = ExtResource("2_xk2s0")
 texture = SubResource("GradientTexture2D_xylaj")
 metadata/_edit_use_anchors_ = true
 
@@ -126,6 +123,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(583.1206, 302.87833)
 sprite_frames = SubResource("SpriteFrames_hvmog")
 animation = &"Goodbye"
+autoplay = "Goodbye"
 
 [node name="Title" type="RichTextLabel" parent="BG" unique_id=1815335575]
 layout_mode = 1
@@ -141,7 +139,7 @@ offset_bottom = 7.865738
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 62
 bbcode_enabled = true
-text = "YOU GOT YOUR INSPIRATION BACK!"
+text = "YOU GOT YOUR INSPIRATION BACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -151,14 +149,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.09885619
 anchor_top = 0.42022368
-anchor_right = 0.919828
+anchor_right = 0.717782
 anchor_bottom = 0.58913255
 offset_left = 5.041687
 offset_top = 1.8703613
 offset_right = 5.041687
 offset_bottom = 1.8703613
-theme = SubResource("Theme_ys8tm")
-theme_override_constants/h_separation = 400
 columns = 2
 metadata/_edit_use_anchors_ = true
 

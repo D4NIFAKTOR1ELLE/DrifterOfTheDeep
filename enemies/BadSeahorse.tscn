@@ -73,6 +73,7 @@ size = Vector2(80, 118)
 collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_phuul")
+movement_speed = 140.0
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
 position = Vector2(0, -7)
@@ -83,13 +84,18 @@ sprite_frames = SubResource("SpriteFrames_xmce0")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1999581520]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1999581520]
 collision_mask = 2
 monitorable = false
 
-[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1337240919]
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1337240919]
 position = Vector2(1, -7)
 shape = SubResource("RectangleShape2D_ysxld")
 debug_color = Color(0.72276074, 0.44076014, 0.50562745, 0.41960785)
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[node name="DashTimer" type="Timer" parent="." unique_id=1858144796]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
