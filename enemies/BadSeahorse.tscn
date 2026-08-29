@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://jaurk2coxayu"]
+
+[ext_resource type="Script" uid="uid://daj0tqs5oyg4e" path="res://enemies/script/bad_seahorse.gd" id="1_phuul"]
+[ext_resource type="Texture2D" uid="uid://b057ubnk0x1fs" path="res://assets/character/bad_seahorse.png" id="2_phuul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
+size = Vector2(62, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8jjd"]
+atlas = ExtResource("2_phuul")
+region = Rect2(100, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqk6o"]
+atlas = ExtResource("2_phuul")
+region = Rect2(100, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jucfe"]
+atlas = ExtResource("2_phuul")
+region = Rect2(0, 0, 100, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nogdh"]
+atlas = ExtResource("2_phuul")
+region = Rect2(200, 0, 100, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xmce0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8jjd")
+}],
+"loop": false,
+"name": &"Drop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqk6o")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jucfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nogdh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqk6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nogdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jucfe")
+}],
+"loop": true,
+"name": &"Swim",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysxld"]
+size = Vector2(80, 118)
+
+[node name="BadSeahorse" type="CharacterBody2D" unique_id=605056912]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_phuul")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_p6j3w")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1235028354]
+sprite_frames = SubResource("SpriteFrames_xmce0")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1999581520]
+collision_mask = 2
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1337240919]
+position = Vector2(1, -7)
+shape = SubResource("RectangleShape2D_ysxld")
+debug_color = Color(0.72276074, 0.44076014, 0.50562745, 0.41960785)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

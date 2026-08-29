@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5cplpu3okqej"]
 
 [ext_resource type="Texture2D" uid="uid://u1jnos06vlpj" path="res://assets/character/paper_fish.png" id="1_gxv2x"]
-[ext_resource type="Script" uid="uid://cy43mo5luccj5" path="res://enemies/good_fish.gd" id="1_piwuu"]
+[ext_resource type="Script" uid="uid://cy43mo5luccj5" path="res://enemies/script/good_fish.gd" id="1_piwuu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_piwuu"]
 atlas = ExtResource("1_gxv2x")
@@ -25,7 +25,7 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="BadPaperFish" type="CharacterBody2D" unique_id=605056912]
+[node name="PaperFish" type="CharacterBody2D" unique_id=605056912]
 collision_layer = 8
 collision_mask = 3
 motion_mode = 1

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvfnent70m2rl"]
 
-[ext_resource type="Script" uid="uid://bp1y0rd1g003t" path="res://enemies/script/bad_fish_normal_movement.gd" id="1_p3cm1"]
+[ext_resource type="Script" uid="uid://bp1y0rd1g003t" path="res://enemies/script/bad_fish.gd" id="1_p3cm1"]
 [ext_resource type="Texture2D" uid="uid://lj3yjjqmp3vl" path="res://assets/character/bad_ms_paint_fish.png" id="2_p3cm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
@@ -60,13 +60,13 @@ sprite_frames = SubResource("SpriteFrames_li5hk")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1999581520]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1999581520]
 collision_mask = 2
 monitorable = false
 
-[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1337240919]
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1337240919]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_ysxld")
 debug_color = Color(0.72276074, 0.44076014, 0.50562745, 0.41960785)
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

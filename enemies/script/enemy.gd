@@ -4,8 +4,7 @@ class_name Enemy
 
 @export var health: int = 3
 @export var movement_speed: float = 120.0
-
-@onready var collision = $Collision
+@onready var player: Player = Game.player
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 var dying: bool = false
@@ -15,8 +14,7 @@ func take_damage():
 		return
 
 	health = health - 1
-	var tween: Tween = create_tween()
-	tween.tween_property(sprite, "self_modulate", Color.WHITE, 0.3).from(Color(0.631, 0.345, 0.325))
+	create_tween().tween_property(sprite, "self_modulate", Color.WHITE, 0.3).from(Color(0.631, 0.345, 0.325))
 
 	if health <= 0:
 		die()
@@ -32,3 +30,7 @@ func die():
 	await tween.finished
 	
 	queue_free()
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		Game.player.take_damage(1)

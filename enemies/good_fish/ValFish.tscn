@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clc77uksttp1x"]
 
-[ext_resource type="Script" uid="uid://cy43mo5luccj5" path="res://enemies/good_fish.gd" id="1_4ur01"]
+[ext_resource type="Script" uid="uid://cy43mo5luccj5" path="res://enemies/script/good_fish.gd" id="1_4ur01"]
 [ext_resource type="Texture2D" uid="uid://dmp1gm3hci8bm" path="res://assets/character/bad_val_fish.png" id="1_o7qhs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ur01"]

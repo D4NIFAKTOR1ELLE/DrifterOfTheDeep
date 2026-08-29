@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://d332qe4maoabv"]
+
+[ext_resource type="Script" uid="uid://dqboiona4hx4a" path="res://enemies/script/bad_pufferfish.gd" id="1_8sl7e"]
+[ext_resource type="Texture2D" uid="uid://dl5skgdyciv52" path="res://assets/character/bad_pufferfish.png" id="2_wsc35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
+size = Vector2(48, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysxld"]
+size = Vector2(58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mscd2"]
+atlas = ExtResource("2_wsc35")
+region = Rect2(300, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38er0"]
+atlas = ExtResource("2_wsc35")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xel30"]
+atlas = ExtResource("2_wsc35")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47wi1"]
+atlas = ExtResource("2_wsc35")
+region = Rect2(0, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kl8i"]
+atlas = ExtResource("2_wsc35")
+region = Rect2(150, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvi85"]
+atlas = ExtResource("2_wsc35")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsc35"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mscd2")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38er0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xel30")
+}],
+"loop": true,
+"name": &"IdleDown",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47wi1")
+}],
+"loop": false,
+"name": &"IdlePuff",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kl8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvi85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xel30")
+}],
+"loop": false,
+"name": &"PuffDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38er0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvi85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47wi1")
+}],
+"loop": false,
+"name": &"PuffUp",
+"speed": 8.0
+}]
+
+[node name="BadPufferfish" type="CharacterBody2D" unique_id=605056912]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_8sl7e")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
+shape = SubResource("RectangleShape2D_p6j3w")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1999581520]
+collision_mask = 2
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1337240919]
+shape = SubResource("RectangleShape2D_ysxld")
+debug_color = Color(0.72276074, 0.44076014, 0.50562745, 0.41960785)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1235028354]
+sprite_frames = SubResource("SpriteFrames_wsc35")
+animation = &"IdleDown"
+autoplay = "IdleDown"
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -13,11 +13,13 @@ var ui: PackedScene = preload("res://ui/UI.tscn")
 var bad_creations: Array = [
 	preload("res://enemies/BadPaperFish.tscn"),
 	preload("res://enemies/BadMSPaintFish.tscn"),
-	preload("res://enemies/BadValFish.tscn")
+	preload("res://enemies/BadValFish.tscn"),
+	preload("res://enemies/BadPufferfish.tscn"),
+	preload("res://enemies/BadSeahorse.tscn")
 ]
 
 var normal_creations: Array = [
-	preload("res://enemies/PaperFish.tscn"),
-	preload("res://enemies/MSPaintFish.tscn"),
-	preload("res://enemies/ValFish.tscn")
+	preload("res://enemies/good_fish/PaperFish.tscn"),
+	preload("res://enemies/good_fish/MSPaintFish.tscn"),
+	preload("res://enemies/good_fish/ValFish.tscn")
 ]

@@ -1,7 +1,6 @@
 extends Enemy
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var player: Player = Game.player
 @onready var hitbox = $Hitbox
 @onready var timer = $Timer
 
