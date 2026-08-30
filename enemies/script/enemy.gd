@@ -34,4 +34,4 @@ func die():
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		Game.player.take_damage(1)
+		player.take_damage(1)

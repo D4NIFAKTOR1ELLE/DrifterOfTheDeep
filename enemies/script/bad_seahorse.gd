@@ -3,22 +3,40 @@ extends Enemy
 @onready var dash_timer: Timer = $DashTimer
 
 var direction: Vector2 = Vector2.ZERO
+var movement_type: String = "normal_movement"
+var callable: Callable = Callable(self, movement_type)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	callable.call(delta)
+
+func normal_movement(_delta: float) -> void:
 	velocity = direction.normalized() * movement_speed
 	
 	move_and_slide()
 
-func _on_dash_timer_timeout() -> void:
-	direction = position.direction_to(player.movement.global_position)
+func dash_movement(_delta: float) -> void:
+	velocity = Vector2.DOWN * 30
 	
-	set_physics_process(false)
-	await get_tree().create_timer(2).timeout
-	set_physics_process(true)
-	
-	var dir: Vector2 = (player.movement.global_position - global_position).normalized()
+	move_and_slide()
 
-	if dir.x > 0:
-		sprite.set_flip_h(false)
-	else:
-		sprite.set_flip_h(true)
+func _on_dash_timer_timeout() -> void:
+	movement_type = "dash_movement" if movement_type == "normal_movement" else "normal_movement"
+	callable = Callable(self, movement_type)
+	
+	match movement_type:
+		"normal_movement":
+			direction = position.direction_to(player.movement.global_position)
+			var dir: Vector2 = (player.movement.global_position - global_position).normalized()
+
+			if dir.x > 0:
+				sprite.set_flip_h(false)
+			else:
+				sprite.set_flip_h(true)
+			
+			dash_timer.set_wait_time(2)
+			dash_timer.start()
+		"dash_movement":
+			direction = Vector2.ZERO
+			
+			dash_timer.set_wait_time(3)
+			dash_timer.start()

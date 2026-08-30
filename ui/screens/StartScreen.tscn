@@ -3,56 +3,44 @@
 [ext_resource type="Script" uid="uid://b8r1u5mofr2w4" path="res://ui/script/start_screen.gd" id="1_3wdbh"]
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/StartScreen.tres" id="2_qb2by"]
 [ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/IntroBGGradient.tres" id="3_8jjoq"]
-[ext_resource type="Texture2D" uid="uid://byib3o7hoxa1n" path="res://assets/background/sunlight.png" id="4_lfmp1"]
 [ext_resource type="Texture2D" uid="uid://qb3pp4te20xc" path="res://assets/background/start_screen.png" id="5_w3ph6"]
 
 [sub_resource type="Gradient" id="Gradient_akci1"]
-offsets = PackedFloat32Array(0, 0.57831323)
-colors = PackedColorArray(0, 0, 0, 1, 0.02, 0.02, 0.02, 0)
+offsets = PackedFloat32Array(0, 0.61333334)
+colors = PackedColorArray(0.15, 0.22833332, 0.25, 1, 0.21600002, 0.3288, 0.36, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_e2gjh"]
 gradient = SubResource("Gradient_akci1")
 fill_from = Vector2(0, 1)
+fill_to = Vector2(0.4813084, 0.1495327)
 
 [node name="StartScreen" type="CanvasLayer" unique_id=39087477]
 script = ExtResource("1_3wdbh")
 
 [node name="BG" type="TextureRect" parent="." unique_id=432075248]
 anchors_preset = -1
-anchor_left = -0.011284722
-anchor_top = -0.013888889
-anchor_right = 1.0095487
-anchor_bottom = 1.0231482
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_qb2by")
 texture = ExtResource("3_8jjoq")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="BG" unique_id=479751795]
-self_modulate = Color(1, 1, 1, 0.5294118)
-layout_mode = 0
-offset_left = 153.0
-offset_top = -159.0
-offset_right = 1531.7933
-offset_bottom = 658.3987
-rotation = 0.107017025
-texture = ExtResource("4_lfmp1")
-
 [node name="StartScreen" type="TextureRect" parent="BG" unique_id=1440551026]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.011054422
-anchor_top = 0.013392857
-anchor_right = 0.99064624
-anchor_bottom = 0.9776786
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource("5_w3ph6")
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="BG" unique_id=1240564964]
+[node name="DarkOverlay" type="TextureRect" parent="BG" unique_id=1240564964]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.7814626
-anchor_bottom = 1.0104166
+anchor_right = 0.78146267
+anchor_bottom = 0.99957377
+offset_bottom = 0.2800293
 texture = SubResource("GradientTexture2D_e2gjh")
 metadata/_edit_use_anchors_ = true
 

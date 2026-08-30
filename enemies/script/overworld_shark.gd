@@ -1,7 +1,6 @@
 extends Enemy
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var hitbox = $Hitbox
 @onready var timer = $Timer
 
 func _ready():

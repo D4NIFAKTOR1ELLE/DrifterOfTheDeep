@@ -14,7 +14,7 @@ var overworld_shark: CharacterBody2D
 var scene_transition: bool = false
 
 func next_phase() -> void:
-	player.stop(false)
+	player.movement.stop(false)
 	scene_transition = true
 	Game.phase += 1
 	timer.stop()
@@ -53,7 +53,7 @@ func next_phase() -> void:
 			timer.start(true)
 	
 	scene_transition = false
-	player.stop(true)
+	player.movement.stop(true)
 
 func _on_timer_timeout() -> void:
 	random_idea_spawn()

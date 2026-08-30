@@ -162,7 +162,7 @@ collision_layer = 4
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_psqmr")
-health = 4
+health = 5
 movement_speed = 190.0
 metadata/_custom_type_script = "uid://btgrxvtuyis2l"
 
@@ -170,10 +170,10 @@ metadata/_custom_type_script = "uid://btgrxvtuyis2l"
 position = Vector2(22, 1)
 shape = SubResource("RectangleShape2D_psqmr")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=177749648]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=177749648]
 collision_mask = 2
 
-[node name="AreaCollision" type="CollisionShape2D" parent="Hitbox" unique_id=159832497]
+[node name="AreaCollision" type="CollisionShape2D" parent="Hurtbox" unique_id=159832497]
 position = Vector2(11.5, 0)
 shape = SubResource("RectangleShape2D_qbwjg")
 debug_color = Color(0.81111896, 0.36907896, 0.48572594, 0.41960785)
@@ -189,4 +189,4 @@ libraries/ = SubResource("AnimationLibrary_qbwjg")
 wait_time = 6.0
 autostart = true
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

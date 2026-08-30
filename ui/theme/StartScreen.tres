@@ -1,16 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://67pcyqoapf05"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yf1k"]
-bg_color = Color(0.010371592, 0.048845608, 0.08435162, 0.49411765)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.66957426, 0.6731916, 0.42870522, 1)
+[ext_resource type="StyleBox" uid="uid://jqh1khgg8jp6" path="res://ui/theme/ButtonStyleboxHover.tres" id="1_ipl0m"]
+[ext_resource type="StyleBox" uid="uid://bxrlwoqrbnm0h" path="res://ui/theme/ButtonStylebox.tres" id="1_l3oug"]
 
 [resource]
 Button/font_sizes/font_size = 40
-Button/styles/normal = SubResource("StyleBoxFlat_6yf1k")
+Button/styles/focus = ExtResource("1_ipl0m")
+Button/styles/hover = ExtResource("1_ipl0m")
+Button/styles/normal = ExtResource("1_l3oug")
 GridContainer/constants/h_separation = 130
 GridContainer/constants/v_separation = 30
 Label/font_sizes/font_size = 28

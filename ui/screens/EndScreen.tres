@@ -1,12 +1,14 @@
 [gd_resource type="Theme" format=3 uid="uid://wr2rrvrkxvp0"]
 
+[ext_resource type="StyleBox" uid="uid://jqh1khgg8jp6" path="res://ui/theme/ButtonStyleboxHover.tres" id="1_mvrg7"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yf1k"]
 bg_color = Color(0.21600002, 0.3288, 0.36, 0.68235296)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.93, 0.91326, 0.5952, 1)
+border_color = Color(0.92941177, 0.9137255, 0.59607846, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_rkmap"]
 variation_embolden = 0.67
@@ -16,6 +18,8 @@ variation_embolden = 0.4
 
 [resource]
 Button/font_sizes/font_size = 40
+Button/styles/focus = ExtResource("1_mvrg7")
+Button/styles/hover = ExtResource("1_mvrg7")
 Button/styles/normal = SubResource("StyleBoxFlat_6yf1k")
 GridContainer/constants/h_separation = 300
 GridContainer/constants/v_separation = 30

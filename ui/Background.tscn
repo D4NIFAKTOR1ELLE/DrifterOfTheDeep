@@ -74,12 +74,9 @@ stretch_mode = 5
 [node name="Sunlight" type="TextureRect" parent="." unique_id=362450794]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.021103665
+anchor_left = 0.021816626
 anchor_top = -0.12150896
-anchor_right = 0.8164837
-anchor_bottom = 0.9352102
-offset_right = 1152.0
-offset_bottom = 648.0
+anchor_right = 0.81691146
+anchor_bottom = 0.82492703
 texture = ExtResource("3_8qoeo")
 metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true

@@ -45,9 +45,6 @@ func update_bar2() -> void:
 
 func update_bar3() -> void:
 	bar3.value = Game.main_scene.overworld_shark.health
-	
-	if bar3.value >= bar3.max_value:
-		Game.next_phase()
 
 func ui_next_phase(create_prompt_text: String, objective_text: String, bar: TextureProgressBar) -> void:
 	create_tween().tween_property(bar, "self_modulate", Color(1.0, 1.0, 1.0, 0.396), 0.5)
