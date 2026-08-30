@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmc52w0emhm64"]
 
 [ext_resource type="Script" uid="uid://bytr1dsg0ft2g" path="res://ui/script/control_hint.gd" id="1_k0sq5"]
-[ext_resource type="Theme" uid="uid://331w4o5bi0og" path="res://theme.tres" id="2_k0sq5"]
+[ext_resource type="Theme" uid="uid://331w4o5bi0og" path="res://ui/theme/ControlHint.tres" id="2_k0sq5"]
 
 [node name="ControlHint" type="CanvasLayer" unique_id=907200057]
 layer = 2
