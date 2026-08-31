@@ -12,7 +12,7 @@ func _ready() -> void:
 	set_process_input(false)
 
 	return_to_start.hide()
-	for element in grid_container.get_children():
+	for element: Label in grid_container.get_children():
 		element.hide()
 	
 	completion_time = Game.time_elapsed

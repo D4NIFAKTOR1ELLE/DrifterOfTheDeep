@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkkap6jipdiyd" path="res://assets/character/overworld_shark_spritesheet.png" id="2_psqmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psqmr"]
-size = Vector2(624, 340)
+size = Vector2(624, 315)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbwjg"]
 size = Vector2(737, 394)
@@ -233,7 +233,7 @@ movement_speed = 190.0
 metadata/_custom_type_script = "uid://btgrxvtuyis2l"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2053282027]
-position = Vector2(22, 1)
+position = Vector2(22, -4.5)
 shape = SubResource("RectangleShape2D_psqmr")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=177749648]

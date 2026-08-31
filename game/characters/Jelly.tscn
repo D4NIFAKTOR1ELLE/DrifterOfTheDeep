@@ -375,6 +375,7 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="Jelly" unique_id=174476708]
+limit_enabled = false
 
 [node name="Light" type="PointLight2D" parent="Jelly" unique_id=1379715932]
 visible = false

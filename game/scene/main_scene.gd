@@ -10,6 +10,8 @@ class_name MainScene
 
 @onready var player: Player = Game.player
 
+var bounding_rectangle: Rect2 = Rect2(Vector2(200, 200), Vector2(5906, 3726))
+
 var overworld_shark: CharacterBody2D
 var scene_transition: bool = false
 
@@ -35,7 +37,7 @@ func next_phase() -> void:
 		3:
 			player.creation_changed.disconnect(Game.ui.update_bar2)
 			
-			await background.colour_transition(player, Color(0.082, 0.287, 0.402, 1.0), Color(1.0, 1.0, 1.0, 0))
+			await background.colour_transition(player, Color(0.112, 0.358, 0.496), Color(1.0, 1.0, 1.0, 0))
 			
 			create_tween().tween_property(Game.ui.bar3, "value", Game.ui.bar3.max_value, 3)
 			
@@ -61,18 +63,13 @@ func kill_entities() -> void:
 func _on_idea_spawn_timer_timeout() -> void:
 	random_idea_spawn()
 
-func get_camera_rect() -> Rect2:
-	var pos: Vector2 = player.camera.get_target_position()
-	var half_size: Vector2 = player.camera.get_viewport_rect().size * 0.5
-	return Rect2(pos - half_size, pos + half_size)
-
 func random_idea_spawn() -> void:
-	var screen_rect: Rect2 = get_camera_rect()
+	idea_spawn_timer.stop()
 	for i: int in range(6):
 		var new_idea: Area2D = Globals.idea.instantiate()
-		new_idea.global_position = Vector2(
-			randf_range(screen_rect.position.x, screen_rect.end.x),
-			randf_range(screen_rect.position.y, screen_rect.end.y)
+		new_idea.position = Vector2(
+			randf_range(bounding_rectangle.position.x, bounding_rectangle.size.x),
+			randf_range(bounding_rectangle.position.y, bounding_rectangle.size.y)
 		)
 		
 		ideas.add_child(new_idea)

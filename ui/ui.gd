@@ -16,14 +16,17 @@ class_name UI
 
 @onready var create_prompt_position: Vector2 = Vector2(488, 395)
 @onready var control_hint: CanvasLayer = $ControlHint
+@onready var bubble_timer: Timer = $BubbleTimer
 
 var create_bar_full: bool = false
+var bubbles: PackedScene = load("res://ui/Bubbles.tscn")
 
 func initialise() -> void:
 	player.health_changed.connect(update_health)
 	player.idea_changed.connect(update_idea)
 	player.creation_changed.connect(update_bar1)
 	idea_level.max_value = player.max_idea_level
+	bubble_timer.start()
 
 func update_phase_bar(bar: ProgressBar, value: int) -> void:
 	bar.value = value
@@ -90,3 +93,17 @@ func action_done(specifier: String) -> void:
 	player.ideas_collected = 0
 	await create_done()
 	update_idea()
+
+func _on_bubble_timer_timeout() -> void:
+	bubble_timer.stop()
+	bubble_timer.wait_time = randi_range(4, 7)
+	var bubbles_instance: AnimatedSprite2D = bubbles.instantiate()
+	var viewport_rect: Rect2 = player.get_viewport_rect()
+	
+	bubbles_instance.global_position = Vector2(
+		randf_range(0, viewport_rect.end.x),
+		randf_range(0, viewport_rect.end.y)
+	)
+
+	add_child(bubbles_instance)
+	bubble_timer.start()

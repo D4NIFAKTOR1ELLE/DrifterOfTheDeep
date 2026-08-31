@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dhltxvwdbeg8t" path="res://assets/background/start_screen_bg.png" id="3_3wdbh"]
 [ext_resource type="Texture2D" uid="uid://6b1gjburgyyk" path="res://assets/background/start_screen_paper.png" id="4_qb2by"]
 [ext_resource type="Texture2D" uid="uid://cnhlkdl85roa6" path="res://assets/background/start_screen_jelly.png" id="5_8jjoq"]
+[ext_resource type="Texture2D" uid="uid://b16jqf6yx8np0" path="res://assets/background/bubbles.png" id="6_qb2by"]
 
 [sub_resource type="Gradient" id="Gradient_akci1"]
 offsets = PackedFloat32Array(0.1, 0.61333334)
@@ -15,14 +16,54 @@ gradient = SubResource("Gradient_akci1")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.4813084, 0.1495327)
 
-[sub_resource type="Animation" id="Animation_3wdbh"]
-resource_name = "title"
-step = 0.1
+[sub_resource type="AtlasTexture" id="AtlasTexture_sre86"]
+atlas = ExtResource("6_qb2by")
+region = Rect2(0, 0, 90, 130)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb2by"]
-_data = {
-&"title": SubResource("Animation_3wdbh")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_huij3"]
+atlas = ExtResource("6_qb2by")
+region = Rect2(90, 0, 90, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqm6v"]
+atlas = ExtResource("6_qb2by")
+region = Rect2(180, 0, 90, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xoox"]
+atlas = ExtResource("6_qb2by")
+region = Rect2(270, 0, 90, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr0wh"]
+atlas = ExtResource("6_qb2by")
+region = Rect2(360, 0, 90, 130)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8jjoq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sre86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huij3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqm6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xoox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr0wh")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Default",
+"speed": 3.0
+}]
 
 [node name="StartScreen" type="CanvasLayer" unique_id=39087477]
 script = ExtResource("1_3wdbh")
@@ -38,7 +79,7 @@ texture = ExtResource("3_3wdbh")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="StartScreen" type="TextureRect" parent="BG" unique_id=1440551026]
+[node name="Paper" type="TextureRect" parent="BG" unique_id=1440551026]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.019965278
@@ -53,13 +94,13 @@ metadata/_edit_use_anchors_ = true
 [node name="DarkOverlay" type="TextureRect" parent="BG" unique_id=1240564964]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.78146267
-anchor_bottom = 0.99957377
+anchor_right = 0.9392361
+anchor_bottom = 1.118395
 offset_bottom = 0.2800293
 texture = SubResource("GradientTexture2D_e2gjh")
 metadata/_edit_use_anchors_ = true
 
-[node name="StartScreenJelly" type="TextureRect" parent="BG" unique_id=547317574]
+[node name="Jelly" type="TextureRect" parent="BG" unique_id=547317574]
 layout_mode = 0
 anchor_left = 0.6293403
 anchor_top = 0.11265432
@@ -70,6 +111,25 @@ texture = ExtResource("5_8jjoq")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
+
+[node name="Bubble1" type="AnimatedSprite2D" parent="BG" unique_id=26038315]
+position = Vector2(207.59998, 178.13995)
+sprite_frames = SubResource("SpriteFrames_8jjoq")
+animation = &"Default"
+
+[node name="Bubble2" type="AnimatedSprite2D" parent="BG" unique_id=1051855619]
+position = Vector2(549, 487)
+sprite_frames = SubResource("SpriteFrames_8jjoq")
+animation = &"Default"
+
+[node name="Bubble3" type="AnimatedSprite2D" parent="BG" unique_id=1772899870]
+position = Vector2(1028, 250)
+sprite_frames = SubResource("SpriteFrames_8jjoq")
+animation = &"Default"
+
+[node name="Timer" type="Timer" parent="BG" unique_id=384471843]
+wait_time = 2.0
+autostart = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BG" unique_id=1575589423]
 layout_mode = 1
@@ -87,6 +147,7 @@ OF THE DEEP"
 fit_content = true
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Options" type="VBoxContainer" parent="BG" unique_id=44366574]
 layout_mode = 1
@@ -112,7 +173,5 @@ anchor_bottom = 0.9464286
 text = "2026 - DANI-FAKTORIELLE"
 metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1162951277]
-libraries/ = SubResource("AnimationLibrary_qb2by")
-
+[connection signal="timeout" from="BG/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="BG/Options/Start" to="." method="_on_start_pressed"]

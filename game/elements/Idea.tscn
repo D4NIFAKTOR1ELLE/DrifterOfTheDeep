@@ -21,15 +21,10 @@ position = Vector2(5.9604645e-08, 1.1920929e-07)
 scale = Vector2(0.8015, 0.85)
 texture = ExtResource("2_umbjf")
 
-[node name="SelfDestructTimer" type="Timer" parent="." unique_id=1994374830]
-wait_time = 10.0
-autostart = true
-
-[node name="Sound" type="AudioStreamPlayer2D" parent="." unique_id=2014950438]
+[node name="Sound" type="AudioStreamPlayer" parent="." unique_id=2011112250]
 stream = ExtResource("3_6to5o")
 volume_db = -10.0
 pitch_scale = 1.5
 bus = &"NewSE"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]

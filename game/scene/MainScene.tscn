@@ -18,11 +18,16 @@ z_index = -2
 
 [node name="Enemies" type="Node" parent="." unique_id=1421116671]
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2087819666]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.82, 0.22959997, 0.22959997, 0.30588236)
+
 [node name="Spawn" type="Marker2D" parent="." unique_id=771486536]
 position = Vector2(3116, 2105)
 
 [node name="IdeaSpawnTimer" type="Timer" parent="." unique_id=452056012]
-wait_time = 3.0
+wait_time = 3.5
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1619061610]

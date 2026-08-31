@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvbeb6cbn3xkg"]
 
 [ext_resource type="Script" uid="uid://br0idacnaumea" path="res://ui/ui.gd" id="1_xmm75"]
-[ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon2.png" id="2_hxwew"]
+[ext_resource type="Texture2D" uid="uid://gkn7dubhgw2j" path="res://assets/elements/health_icon.png" id="2_hxwew"]
 [ext_resource type="Texture2D" uid="uid://b7mafuvs78dd1" path="res://assets/elements/progress_bars_mask.png" id="2_wf7rf"]
 [ext_resource type="Texture2D" uid="uid://3nrmkkff5l6l" path="res://assets/elements/progress_bars_front.png" id="4_8wtnh"]
 [ext_resource type="PackedScene" uid="uid://cmc52w0emhm64" path="res://ui/screens/ControlHint.tscn" id="5_a6px5"]
@@ -174,3 +174,8 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ControlHint" parent="." unique_id=907200057 instance=ExtResource("5_a6px5")]
+
+[node name="BubbleTimer" type="Timer" parent="." unique_id=994631002]
+wait_time = 5.0
+
+[connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]
