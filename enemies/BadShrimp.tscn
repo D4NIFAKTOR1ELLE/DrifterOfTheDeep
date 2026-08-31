@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://1m5265mxa8yt"]
+
+[ext_resource type="Script" uid="uid://cc7dmns3l7jgn" path="res://enemies/bad_shrimp.gd" id="1_h0431"]
+[ext_resource type="Texture2D" uid="uid://0h4i8w072rvk" path="res://assets/character/bad_shrimp.png" id="2_h0431"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h0431"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6j3w"]
+size = Vector2(91, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dxkj"]
+atlas = ExtResource("2_h0431")
+region = Rect2(133, 0, 133, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr3yu"]
+atlas = ExtResource("2_h0431")
+region = Rect2(133, 0, 133, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiwvd"]
+atlas = ExtResource("2_h0431")
+region = Rect2(0, 0, 133, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqlea"]
+atlas = ExtResource("2_h0431")
+region = Rect2(266, 0, 133, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_li5hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr3yu")
+}],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiwvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqlea")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysxld"]
+size = Vector2(110, 88)
+
+[node name="BadShrimp" type="CharacterBody2D" unique_id=605056912]
+material = SubResource("CanvasItemMaterial_h0431")
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_h0431")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=63024562]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_p6j3w")
+
+[node name="SpritePurple" type="Sprite2D" parent="." unique_id=1953672780]
+self_modulate = Color(1, 0, 1, 0.33333334)
+use_parent_material = true
+position = Vector2(-21, 0)
+texture = SubResource("AtlasTexture_3dxkj")
+
+[node name="SpriteYellow" type="Sprite2D" parent="." unique_id=9117860]
+self_modulate = Color(1, 1, 0, 0.33333334)
+use_parent_material = true
+position = Vector2(-21, 0)
+texture = SubResource("AtlasTexture_3dxkj")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1235028354]
+self_modulate = Color(0, 1, 1, 0.33333334)
+use_parent_material = true
+position = Vector2(-21, 0)
+sprite_frames = SubResource("SpriteFrames_li5hk")
+animation = &"Hurt"
+autoplay = "Idle"
+metadata/_edit_lock_ = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1999581520]
+collision_mask = 2
+monitorable = false
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1337240919]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ysxld")
+debug_color = Color(0.72276074, 0.44076014, 0.50562745, 0.41960785)
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
