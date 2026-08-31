@@ -5,7 +5,7 @@ class_name MainScene
 @onready var background: Control = $Background
 @onready var ideas: Node = $Ideas
 @onready var enemies: Node = $Enemies
-@onready var timer: Timer = $Timer
+@onready var idea_spawn_timer: Timer = $IdeaSpawnTimer
 @onready var spawn: Marker2D = $Spawn
 
 @onready var player: Player = Game.player
@@ -17,15 +17,9 @@ func next_phase() -> void:
 	player.movement.stop(false)
 	scene_transition = true
 	Game.phase += 1
-	timer.stop()
-	for enemy in enemies.get_children():
-		if enemy is Enemy:
-			enemy.die()
-		else:
-			enemy.queue_free()
-	for idea in ideas.get_children():
-		idea.die()
-
+	idea_spawn_timer.stop()
+	kill_entities()
+	
 	var tween: Tween = create_tween()
 	tween.tween_property(player.movement, "rotation", deg_to_rad(180), 1)
 	await tween.finished
@@ -37,7 +31,7 @@ func next_phase() -> void:
 			
 			await background.colour_transition(player, Color(0.45, 0.647, 0.73, 1.0), Color(1.0, 1.0, 1.0, 0.4),)
 			
-			timer.start()
+			idea_spawn_timer.start()
 		3:
 			player.creation_changed.disconnect(Game.ui.update_bar2)
 			
@@ -50,17 +44,22 @@ func next_phase() -> void:
 			await shark.animation.animation_finished
 			overworld_shark = load("res://enemies/OverworldShark.tscn").instantiate()
 			enemies.add_child(overworld_shark)
-			timer.start(true)
+			idea_spawn_timer.start(true)
 	
 	scene_transition = false
 	player.movement.stop(true)
 
-func _on_timer_timeout() -> void:
-	random_idea_spawn()
+func kill_entities() -> void:
+	for fish: Node2D in enemies.get_children():
+		if fish is Enemy:
+			fish.die()
+		else:
+			fish.queue_free()
+	for idea: Area2D in ideas.get_children():
+		idea.die()
 
-func _on_child_exiting_tree(node: Node) -> void:
-	if node.name == "OverworldShark":
-		Game.finish_game()
+func _on_idea_spawn_timer_timeout() -> void:
+	random_idea_spawn()
 
 func get_camera_rect() -> Rect2:
 	var pos: Vector2 = player.camera.get_target_position()
@@ -78,4 +77,4 @@ func random_idea_spawn() -> void:
 		
 		ideas.add_child(new_idea)
 	
-	timer.start()
+	idea_spawn_timer.start()

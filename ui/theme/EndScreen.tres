@@ -2,6 +2,9 @@
 
 [ext_resource type="StyleBox" uid="uid://jqh1khgg8jp6" path="res://ui/theme/ButtonStyleboxHover.tres" id="1_mvrg7"]
 
+[sub_resource type="FontVariation" id="FontVariation_h2fsh"]
+variation_embolden = 0.25
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6yf1k"]
 bg_color = Color(0.21600002, 0.3288, 0.36, 0.68235296)
 border_width_left = 5
@@ -18,6 +21,7 @@ variation_embolden = 0.4
 
 [resource]
 Button/font_sizes/font_size = 40
+Button/fonts/font = SubResource("FontVariation_h2fsh")
 Button/styles/focus = ExtResource("1_mvrg7")
 Button/styles/hover = ExtResource("1_mvrg7")
 Button/styles/normal = SubResource("StyleBoxFlat_6yf1k")

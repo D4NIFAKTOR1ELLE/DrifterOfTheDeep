@@ -2,17 +2,27 @@
 
 [ext_resource type="Script" uid="uid://b8r1u5mofr2w4" path="res://ui/script/start_screen.gd" id="1_3wdbh"]
 [ext_resource type="Theme" uid="uid://67pcyqoapf05" path="res://ui/theme/StartScreen.tres" id="2_qb2by"]
-[ext_resource type="Texture2D" uid="uid://cnxpw67vyycnh" path="res://ui/theme/IntroBGGradient.tres" id="3_8jjoq"]
-[ext_resource type="Texture2D" uid="uid://qb3pp4te20xc" path="res://assets/background/start_screen.png" id="5_w3ph6"]
+[ext_resource type="Texture2D" uid="uid://dhltxvwdbeg8t" path="res://assets/background/start_screen_bg.png" id="3_3wdbh"]
+[ext_resource type="Texture2D" uid="uid://6b1gjburgyyk" path="res://assets/background/start_screen_paper.png" id="4_qb2by"]
+[ext_resource type="Texture2D" uid="uid://cnhlkdl85roa6" path="res://assets/background/start_screen_jelly.png" id="5_8jjoq"]
 
 [sub_resource type="Gradient" id="Gradient_akci1"]
-offsets = PackedFloat32Array(0, 0.61333334)
+offsets = PackedFloat32Array(0.1, 0.61333334)
 colors = PackedColorArray(0.15, 0.22833332, 0.25, 1, 0.21600002, 0.3288, 0.36, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_e2gjh"]
 gradient = SubResource("Gradient_akci1")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0.4813084, 0.1495327)
+
+[sub_resource type="Animation" id="Animation_3wdbh"]
+resource_name = "title"
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb2by"]
+_data = {
+&"title": SubResource("Animation_3wdbh")
+}
 
 [node name="StartScreen" type="CanvasLayer" unique_id=39087477]
 script = ExtResource("1_3wdbh")
@@ -24,15 +34,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_qb2by")
-texture = ExtResource("3_8jjoq")
+texture = ExtResource("3_3wdbh")
+expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="StartScreen" type="TextureRect" parent="BG" unique_id=1440551026]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource("5_w3ph6")
+anchor_left = -0.019965278
+anchor_top = 0.25617284
+anchor_right = 0.9288194
+anchor_bottom = 1.1435186
+texture = ExtResource("4_qb2by")
+expand_mode = 1
+stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="DarkOverlay" type="TextureRect" parent="BG" unique_id=1240564964]
@@ -42,6 +57,18 @@ anchor_right = 0.78146267
 anchor_bottom = 0.99957377
 offset_bottom = 0.2800293
 texture = SubResource("GradientTexture2D_e2gjh")
+metadata/_edit_use_anchors_ = true
+
+[node name="StartScreenJelly" type="TextureRect" parent="BG" unique_id=547317574]
+layout_mode = 0
+anchor_left = 0.6293403
+anchor_top = 0.11265432
+anchor_right = 0.7552083
+anchor_bottom = 0.3271605
+offset_bottom = -1.5258789e-05
+texture = ExtResource("5_8jjoq")
+expand_mode = 1
+stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BG" unique_id=1575589423]
@@ -84,5 +111,8 @@ anchor_right = 0.35204083
 anchor_bottom = 0.9464286
 text = "2026 - DANI-FAKTORIELLE"
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1162951277]
+libraries/ = SubResource("AnimationLibrary_qb2by")
 
 [connection signal="pressed" from="BG/Options/Start" to="." method="_on_start_pressed"]

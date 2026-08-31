@@ -26,6 +26,18 @@ region = Rect2(80, 80, 80, 80)
 atlas = ExtResource("6_xylaj")
 region = Rect2(160, 80, 80, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvmog"]
+atlas = ExtResource("6_xylaj")
+region = Rect2(0, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lqy4"]
+atlas = ExtResource("6_xylaj")
+region = Rect2(80, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtxai"]
+atlas = ExtResource("6_xylaj")
+region = Rect2(160, 160, 80, 80)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hvmog"]
 animations = [{
 "frames": [{
@@ -36,13 +48,28 @@ animations = [{
 "texture": SubResource("AtlasTexture_1i6n0")
 }],
 "loop": true,
-"name": &"Goodbye",
+"name": &"Draw",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"Sleepy",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvmog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvmog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvmog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lqy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtxai")
+}],
+"loop": false,
+"name": &"Goodbye",
+"speed": 3.0
 }]
 
 [node name="EndScreen" type="CanvasLayer" unique_id=64261227]
@@ -122,8 +149,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Jelly" type="AnimatedSprite2D" parent="BG" unique_id=996224415]
 position = Vector2(583.1206, 302.87833)
 sprite_frames = SubResource("SpriteFrames_hvmog")
-animation = &"Goodbye"
-autoplay = "Goodbye"
+animation = &"Draw"
+autoplay = "Draw"
 
 [node name="Title" type="RichTextLabel" parent="BG" unique_id=1815335575]
 layout_mode = 1

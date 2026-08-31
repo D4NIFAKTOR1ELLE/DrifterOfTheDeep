@@ -23,6 +23,7 @@ func take_damage():
 
 func die():
 	dying = true
+	sprite.play("Hurt")
 	
 	set_physics_process(false)
 	var tween: Tween = create_tween().set_loops(4)

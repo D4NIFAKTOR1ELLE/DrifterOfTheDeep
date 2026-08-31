@@ -25,6 +25,7 @@ func _on_dash_timer_timeout() -> void:
 	
 	match movement_type:
 		"normal_movement":
+			sprite.play("Idle")
 			direction = position.direction_to(player.movement.global_position)
 			var dir: Vector2 = (player.movement.global_position - global_position).normalized()
 
@@ -36,6 +37,7 @@ func _on_dash_timer_timeout() -> void:
 			dash_timer.set_wait_time(2)
 			dash_timer.start()
 		"dash_movement":
+			sprite.play("Drop")
 			direction = Vector2.ZERO
 			
 			dash_timer.set_wait_time(3)

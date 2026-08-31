@@ -3,8 +3,12 @@
 [ext_resource type="StyleBox" uid="uid://jqh1khgg8jp6" path="res://ui/theme/ButtonStyleboxHover.tres" id="1_ipl0m"]
 [ext_resource type="StyleBox" uid="uid://bxrlwoqrbnm0h" path="res://ui/theme/ButtonStylebox.tres" id="1_l3oug"]
 
+[sub_resource type="FontVariation" id="FontVariation_ipl0m"]
+variation_embolden = 0.25
+
 [resource]
 Button/font_sizes/font_size = 40
+Button/fonts/font = SubResource("FontVariation_ipl0m")
 Button/styles/focus = ExtResource("1_ipl0m")
 Button/styles/hover = ExtResource("1_ipl0m")
 Button/styles/normal = ExtResource("1_l3oug")

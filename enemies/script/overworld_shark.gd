@@ -1,7 +1,7 @@
 extends Enemy
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var timer = $Timer
+@onready var timer: Timer = $Timer
 
 func _ready():
 	set_physics_process(false)
@@ -33,18 +33,8 @@ func take_damage():
 func die():
 	dying = true
 	
-	sprite.play("Hurt")
-	
-	var tween: Tween = create_tween().set_loops(4)
-	tween.tween_property(sprite, "visible", false, 0.1).from(true)
-	tween.tween_interval(0.1)
-	await tween.finished
-	
-	await get_tree().create_timer(1).timeout
-	
-	var tween2: Tween = create_tween()
-	tween2.tween_property(sprite, "self_modulate", Color.TRANSPARENT, 1)
-	await tween2.finished
+	animation.play("die")
+	await animation.animation_finished
 	
 	Game.finish_game()
 	

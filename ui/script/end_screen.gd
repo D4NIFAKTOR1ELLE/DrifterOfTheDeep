@@ -29,24 +29,26 @@ func _ready() -> void:
 	reveal()
 
 func _format_seconds(time: float) -> String:
-	var minutes := time / 60
-	var seconds := fmod(time, 60)
-	var milliseconds := fmod(time, 1) * 100
+	var minutes: float = time / 60
+	var seconds: float = fmod(time, 60)
+	var milliseconds: float = fmod(time, 1) * 100
 
 	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 
 func reveal():
-	for element in grid_container.get_children():
+	for element: Label in grid_container.get_children():
 		element.show()
 	
 		await get_tree().create_timer(1).timeout
 		
 	await get_tree().create_timer(1).timeout
+	$BG/Jelly.play("Goodbye")
 	return_to_start.show()
 	set_process_input(true)
 
 func _on_return_to_start_pressed() -> void:
 	Transition.fade_in()
+	await Transition.animplayer.animation_finished
 	var new_start: CanvasLayer = Globals.start_screen.instantiate()
 	Game.add_child(new_start)
 	

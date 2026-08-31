@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://la4yi4akt601" path="res://ui/Background.tscn" id="1_4r676"]
 [ext_resource type="TileSet" uid="uid://cu84twmhbfgc3" path="res://assets/collision.tres" id="1_k7ygh"]
 [ext_resource type="Script" uid="uid://3inh6h7nk50q" path="res://game/scene/main_scene.gd" id="1_srjx5"]
-[ext_resource type="PackedScene" uid="uid://jaurk2coxayu" path="res://enemies/BadSeahorse.tscn" id="4_y45x4"]
 [ext_resource type="AudioStream" uid="uid://2c7nfo7hcdsc" path="res://assets/music/tunetank-aerials-piano-ambient-music-412757.mp3" id="5_y45x4"]
 
 [node name="MainScene" type="TileMapLayer" unique_id=2133395631]
@@ -19,13 +18,10 @@ z_index = -2
 
 [node name="Enemies" type="Node" parent="." unique_id=1421116671]
 
-[node name="BadSeahorse" parent="Enemies" unique_id=605056912 instance=ExtResource("4_y45x4")]
-position = Vector2(2086, 1687)
-
 [node name="Spawn" type="Marker2D" parent="." unique_id=771486536]
 position = Vector2(3116, 2105)
 
-[node name="Timer" type="Timer" parent="." unique_id=452056012]
+[node name="IdeaSpawnTimer" type="Timer" parent="." unique_id=452056012]
 wait_time = 3.0
 autostart = true
 
@@ -37,5 +33,4 @@ autoplay = true
 bus = &"Music2"
 parameters/looping = true
 
-[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="IdeaSpawnTimer" to="." method="_on_idea_spawn_timer_timeout"]
